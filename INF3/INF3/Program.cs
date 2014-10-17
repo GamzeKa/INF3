@@ -14,7 +14,7 @@ namespace INF3
         [STAThread]
         static void Main()
         {
-            // Test von Dominik
+            // dies ist ein test Kommentar
             //test
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
