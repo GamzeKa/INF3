@@ -15,7 +15,6 @@ namespace INF3
         static void Main()
         {
             // dies ist ein test Kommentar
-            // Test dilek!
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
