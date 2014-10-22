@@ -26,7 +26,7 @@ namespace INF3
             //closing the Stream from client and break off the server-connection
         }
 
-        public void sendMessageToServer()
+        public void sendMessageToServer(String s)
         {
             //here send a message to the Server with the Sender-class (sender.sendMessage(String))
         }
