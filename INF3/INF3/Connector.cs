@@ -16,7 +16,6 @@ namespace INF3
        
 
 
-
         public Connector(String ip, int port)
         {
             //Konstruktor, connector and the server needs an ip-adress and a port for the unique identification
