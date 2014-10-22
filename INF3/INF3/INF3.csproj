@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Backend\Backend.cs" />
     <Compile Include="Backend\Entity.cs" />
     <Compile Include="Backend\Map.cs" />
     <Compile Include="Backend\Player.cs" />

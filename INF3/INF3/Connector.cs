@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace INF3
 {
-    class Connector
+    public class Connector
     {
         private Sender sender;
         private Receiver receiv;

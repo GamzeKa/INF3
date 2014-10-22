@@ -23,11 +23,6 @@ namespace TestVersuch{
             p.addPoints(10);
             Assert.AreEqual(10, p.getPoints());
         }
-        [TestMethod]
-        public void PlayerGetEntity()
-        {
-            Assert.AreEqual(10, p.getEntity());
-        }
 
     }
 }
