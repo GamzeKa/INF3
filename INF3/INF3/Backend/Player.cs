@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace INF3.Backend
 {
-    class Player
+   public  class Player
     {
     }
 }
