@@ -14,5 +14,9 @@ namespace INF3.Backend
         public int getEntity(){
             return id;
         }
+        public void setEntity(int eid)
+        {
+            this.id = eid;
+        }
     }
 }
