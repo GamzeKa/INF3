@@ -5,7 +5,7 @@ using System.Text;
 
 namespace INF3
 {
-    class Sender        // the class for send the data about the network to the server
+    class Sender        // the class to send data via network to the server
     {
         public Sender()
         {
@@ -13,7 +13,7 @@ namespace INF3
         }
         public void sendMessage(String message)
         {
-            //here send a message to the Server 
+            //here to send a message to the Server 
         }
     }
 }
