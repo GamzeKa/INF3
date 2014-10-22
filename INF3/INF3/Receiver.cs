@@ -12,7 +12,7 @@ namespace INF3
         {
 
         }
-        public String receiv()      //to receive data via network
+        public String receive()      //to receive data via network
         {
             return null;
         }
