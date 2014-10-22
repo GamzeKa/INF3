@@ -50,17 +50,19 @@
     <Compile Include="Backend\Position.cs" />
     <Compile Include="Buffer.cs" />
     <Compile Include="Connector.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Frontend\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Frontend\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Frontend\DefaultGUI.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
+    <Compile Include="Receiver_2.cs" />
+    <Compile Include="Sender_2.cs" />
+    <EmbeddedResource Include="Frontend\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
