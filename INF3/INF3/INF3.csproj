@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Backend\Backend.cs" />
+    <Compile Include="Backend\Dragon.cs" />
     <Compile Include="Backend\Entity.cs" />
     <Compile Include="Backend\Map.cs" />
     <Compile Include="Backend\Player.cs" />
@@ -61,7 +62,9 @@
     <Compile Include="Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Receiver.cs" />
     <Compile Include="Receiver_2.cs" />
+    <Compile Include="Sender.cs" />
     <Compile Include="Sender_2.cs" />
     <EmbeddedResource Include="Frontend\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

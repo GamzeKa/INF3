@@ -22,7 +22,7 @@ namespace INF3.Backend
 
         public void sendToConnector()
         {
-            INF3.Connector.sendMessageToServer();
+               
         }
     }
 }
