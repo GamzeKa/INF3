@@ -8,6 +8,10 @@ namespace INF3.Backend
 {
    public  class Player:Entity
     {
+       public Player()
+       {
+           this.setEntity(1);
+       }
        private int points=0;
        public bool getStaghuntDecision()
        {
