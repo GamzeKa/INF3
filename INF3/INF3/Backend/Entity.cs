@@ -8,7 +8,8 @@ namespace INF3.Backend
 {
     public class Entity
     {
-        
+
+        private List<Entity> list = new List<Entity>();
         private int id;
         private bool busy = false;
 
