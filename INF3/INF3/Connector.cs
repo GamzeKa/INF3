@@ -28,9 +28,9 @@ namespace INF3
 
         }
 
-        public void getBuffer()
+        public Buffer getBuffer()
         {
-
+            return buffer;
         }
     }
 
