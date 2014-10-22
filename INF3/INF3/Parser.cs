@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace INF3
 {
-    class Connector
+    class Parser
     {
-        
     }
 }

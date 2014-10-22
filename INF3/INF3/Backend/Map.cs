@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace INF3
+namespace INF3.Backend
 {
-    class Connector
+    class Map
     {
-        
     }
 }
