@@ -10,6 +10,7 @@ namespace INF3.Backend
     {
         List<Player> player = new List<Player>();
         Map map;
+        Connector c = new Connector();
 
         public void storePlayer(Player p)
         {
@@ -22,7 +23,7 @@ namespace INF3.Backend
 
         public void sendToConnector()
         {
-               
+            c.sendMessageToServer("");
         }
     }
 }

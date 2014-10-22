@@ -23,7 +23,7 @@ namespace INF3
 
         }
 
-        public void sendMessageToServer()
+        public void sendMessageToServer(String s)
         {
 
         }
