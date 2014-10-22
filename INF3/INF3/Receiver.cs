@@ -7,5 +7,14 @@ namespace INF3
 {
     class Receiver
     {
+
+        public Receiver()
+        {
+
+        }
+        public String receiv()
+        {
+
+        }
     }
 }
