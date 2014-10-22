@@ -8,5 +8,6 @@ namespace INF3
 {
     class Connector
     {
+        
     }
 }
