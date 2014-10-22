@@ -50,8 +50,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="TestPlayer.cs" />
     <Compile Include="TestBuffer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestParser.cs" />
+    <Compile Include="TestPosition.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\INF3\INF3.csproj">
