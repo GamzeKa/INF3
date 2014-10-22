@@ -8,5 +8,20 @@ namespace INF3
 {
     class Parser
     {
+        public String takeFromBuffer()
+        {
+
+            return "";
+        }
+
+        public Object parsAfterRule(String dataBuffer)
+        {
+            Object o=null;
+            return o;
+        }
+        public void determineMethod(String dataBuffer)
+        {
+
+        }
     }
 }
