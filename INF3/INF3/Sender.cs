@@ -7,5 +7,13 @@ namespace INF3
 {
     class Sender
     {
+        public Sender()
+        {
+
+        }
+        public void sendMessage()
+        {
+
+        }
     }
 }

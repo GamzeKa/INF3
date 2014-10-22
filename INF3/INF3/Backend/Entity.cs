@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace INF3.Backend
 {
-    class Entity
+    public class Entity
     {
+        private int id;
+        private bool busy = false;
+
+        public int getEntity(){
+            return id;
+        }
     }
 }
