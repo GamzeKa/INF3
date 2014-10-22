@@ -5,13 +5,13 @@ using System.Text;
 
 namespace INF3
 {
-    class Sender
+    class Sender        // the class for send the data to the server
     {
         public Sender()
         {
-
+            //Konstruktor
         }
-        public void sendMessage()
+        public void sendMessage(String message)
         {
 
         }
