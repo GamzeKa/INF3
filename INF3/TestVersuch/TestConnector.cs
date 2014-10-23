@@ -10,7 +10,6 @@ namespace TestVersuch
     class TestConnector
     {
         INF3.Connector c = new INF3.Connector("192.168.2.1",80);
-        INF3.Buffer b = new INF3.Buffer();
         
         [TestMethod]
         public void ConnectorConnectToServer()
@@ -21,14 +20,30 @@ namespace TestVersuch
         [TestMethod]
         public void ConnectorSendToBuffer()
         {
-            c.sendToBufer("Test");
-            Assert.AreEqual("Test", b.getMsg());
+            c.sendToBufer(c.getBuffer,"Test");
+            Assert.AreEqual("Test", c.getBuffer().getMsg());
         }
         [TestMethod]
         public void ConnectorSendToServer()
         {
-            c.sendToServer();
+            c.sendToServer("Ich bin ein Platzhalter");
             Assert.AreEqual("OK", c.getServerAnswer());
+        }
+        //-----------------------------
+        [TestMethod]
+        public void ConnectorIsConnected()
+        {
+            Assert.IsTrue(c.isConnected());
+        }
+        [TestMethod]
+        public void ConnectorHasBuffer()
+        {
+            Assert.IsNotNull(c.getBuffer());
+        }
+        [TestMethod]
+        public void ConnectorIsConnected()
+        {
+            Assert.IsTrue(c.isConnected());
         }
     }
 }

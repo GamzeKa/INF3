@@ -10,7 +10,8 @@ namespace TestVersuch
         [TestMethod]
         public void BackendSendToConnector()
         {
-            b.sendToConnector();
+            b.sendToConnector("Hat jemand meine Freunde gesehen? Sie sollten so ähnlich aussehen wie ich...");
+            Assert.AreEqual("Hat jemand meine Freunde gesehen? Sie sollten so ähnlich aussehen wie ich...", b.getConnector().getBuffer().getMsg());
         }
         [TestMethod]
         public void BackendCreatePlayer()

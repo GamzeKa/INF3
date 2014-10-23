@@ -12,6 +12,7 @@ namespace INF3
         private Sender sender;
         private Receiver receiv;
         private Buffer buffer;
+        private bool connected = false;
        
 
 
@@ -33,6 +34,11 @@ namespace INF3
         {
             //
             return buffer;
+        }
+
+        public bool isConnected()
+        {
+            return connected;
         }
     }
 

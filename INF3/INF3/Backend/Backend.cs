@@ -25,5 +25,9 @@ namespace INF3.Backend
         {
             c.sendMessageToServer("");
         }
+        public Connector getConnector()
+        {
+            return c;
+        }
     }
 }
