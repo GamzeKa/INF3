@@ -28,5 +28,25 @@ namespace TestVersuch
             b.deletePlayer(p);
             Assert.AreEqual(0, b.getPlayers());
         }
+        [TestMethod]
+        public void BackendCreateDragon()
+        {
+            INF3.Backend.Dragon d = new INF3.Backend.Dragon();
+            b.storeDragon(d);
+            Assert.AreEqual(1, b.getDragons());
+        }
+        [TestMethod]
+        public void BackendDeleteDragon()
+        {
+            INF3.Backend.Dragon d = new INF3.Backend.Dragon();
+            b.storeDragon(d);
+            b.deleteDragon(d);
+            Assert.AreEqual(0, b.getDragons());
+        }
+        [TestMethod]
+        public void BackendMap()
+        {
+            Assert.IsNotNull(b.getMap());
+        }
     }
 }
