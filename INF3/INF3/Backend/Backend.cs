@@ -21,7 +21,7 @@ namespace INF3.Backend
             player.Remove(p);
         }
 
-        public void sendToConnector()
+        public void sendToConnector(String value)
         {
             c.sendMessageToServer("");
         }
