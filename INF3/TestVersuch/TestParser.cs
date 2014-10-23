@@ -1,12 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestVersuch
 {
-    class TestParser
+    [TestClass]
+    public class TestParser
     {
+        INF3.Parser p = new INF3.Parser();
+        [TestMethod]
+        public void testTakeFromBuffer()
+        {
+            
+        }
     }
 }

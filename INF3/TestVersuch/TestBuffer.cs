@@ -6,18 +6,18 @@ namespace TestVersuch{
     public class TestBuffer{
         INF3.Buffer b = new INF3.Buffer();
         [TestMethod]
-        public void TestIsBufferEmpty(){
+        public void testIsBufferEmpty(){
             Assert.IsTrue(b.isBufferEmpty());
         }
 
         [TestMethod]
-        public void TestGiveBuffer()
+        public void testGiveBuffer()
         {
             Assert.AreEqual("",b.giveParser());
         }
 
         [TestMethod]
-        public void TestMessageComplete()
+        public void testMessageComplete()
         {
             Assert.IsTrue(b.MessageComplete());
         }
