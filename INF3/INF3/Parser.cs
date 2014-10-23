@@ -8,9 +8,11 @@ namespace INF3
 {
     public class Parser
     {
+        Buffer b;
         public String takeFromBuffer()
         {
-            return"";
+            //take the informations from the buffer and pass it
+            return b.giveParser();
         }
 //Pars Rules-------------------------------------
         public void parsToS(String dataBuffer)
@@ -38,16 +40,14 @@ namespace INF3
           
         }
 
-        public INF3.Backend.Dragon parsToDragone(String dataBuffer)
+        public void parsToDragone(String dataBuffer)
         {
-            INF3.Backend.Dragon d = new INF3.Backend.Dragon();
-            return d;
+            
         }
 
-        public INF3.Backend.Player parsToPlayer(String dataBuffer)
+        public void parsToPlayer(String dataBuffer)
         {
-            INF3.Backend.Player d = new INF3.Backend.Player();
-            return d;
+            
         }
         
         public void parsToPlayers(String dataBuffer)
@@ -55,10 +55,9 @@ namespace INF3
           
         }
 
-        public INF3.Backend.Entity parsToEntitys(String dataBuffer)
+        public void parsToEntitys(String dataBuffer)
         {
-            INF3.Backend.Entity d = new INF3.Backend.Entity();
-            return d;
+           
         }
 
         public void parsToMapcell(String dataBuffer)
@@ -66,10 +65,9 @@ namespace INF3
           
         }
 
-        public INF3.Backend.Map parsToMap(String dataBuffer)
+        public void parsToMap(String dataBuffer)
         {
-            INF3.Backend.Map d = new INF3.Backend.Map();
-            return d;
+         
         }
 
         public void parsToMessage(String dataBuffer)
@@ -94,7 +92,7 @@ namespace INF3
 //---------------------------------------------------------
         public void determineMethod(String dataBuffer)
         {
-
+            // selects the appropriate method from server tags
         }
     }
 }
