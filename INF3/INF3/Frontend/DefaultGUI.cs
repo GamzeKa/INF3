@@ -16,17 +16,18 @@ namespace INF3.Frontend
 
         }
 
-
+        // 
         public void updateGUI()
         {
-
+            
         }
-
 
 
         public bool isChat()
         {
             return true;
         }
+
+
     }
 }
