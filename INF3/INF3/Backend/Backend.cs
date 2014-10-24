@@ -11,9 +11,16 @@ namespace INF3.Backend
     {
         List<Player> players = new List<Player>();
         List<Dragon> dragons = new List<Dragon>();
+        Buffer b;
+        Parser p;
         Map map;
         Connector c = new Connector();
 
+        //Parser
+        public String parserMessage()
+        {
+            return "";
+        }
         //Player
         public void storePlayer(Player p)
         {
@@ -25,6 +32,10 @@ namespace INF3.Backend
         {
             Contract.Requires(p.GetType() == typeof(Player));
             players.Remove(p);
+        }
+        public int getPlayerSize()
+        {
+            return players.Count;
         }
         //Dragons
         public void storeDragon(Dragon d)
@@ -38,11 +49,14 @@ namespace INF3.Backend
             Contract.Requires(d.GetType() == typeof(Dragon));
             dragons.Remove(d);
         }
-
+        public int getDragonSize()
+        {
+            return dragons.Count;
+        }
+        //------------------
         public void sendToConnector(String value)
         {
-            Contract.Requires(value != null);
-            c.sendMessageToServer("");
+            c.sendMessageToServer(value);
         }
         public Connector getConnector()
         {

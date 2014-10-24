@@ -8,12 +8,14 @@ namespace TestVersuch{
 
         [TestMethod]
         public void PlayerGetStaghuntDecision(){
+            p.setStaghuntDecision();
             Assert.IsTrue(p.getStaghuntDecision());
         }
 
         [TestMethod]
         public void PlayerGetDragonDecision()
         {
+            p.setDragonDecision();
             Assert.IsTrue(p.getDragonDecision());
         }
         [TestMethod]

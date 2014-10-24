@@ -4,30 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace INF3.Frontend
 {
     public class DefaultGUI
     {
+        Backend b = new Backend();
 
-
-        public static bool isGUIaktiv()
+        public DefaultGUI(Backend b)
         {
-            return true;
-
+            
         }
 
         // 
         public void updateGUI()
         {
+            b.getMap();
             
         }
 
-
-        public bool isChat()
+        public void sendTextMessage()
         {
-            return true;
-        }
 
+        }
 
     }
 }

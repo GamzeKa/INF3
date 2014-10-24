@@ -5,35 +5,38 @@ namespace TestVersuch{
     [TestClass]
     public class TestBuffer{
         INF3.Buffer b = new INF3.Buffer();
+        INF3.Connector c = new INF3.Connector();
 
         [TestMethod]
         public void BufferIsBufferEmpty()
         {
             Assert.IsTrue(b.isBufferEmpty());
         }
-        [TestMethod]
-        public void BufferSendToBufer()
-        {
-            b.sendMessage("Ich bin auch ein Platzhalter, wie mein Kollege der sich auch hier irgendwo versteckt");
 
-            Assert.AreEqual("Blablabla", b.getMessage());
+        public void BufferMessageappend() { 
+            b.append("ashdjk");
+            Assert.AreEqual("",b.getMessage());
+
         }
+        
         [TestMethod]
         public void BufferDeleteMessage()
         {
-            b.deleteMsg("Ich bin auch ein Platzhalter, wie mein Kollege der sich auch hier irgendwo versteckt");
-            Assert.IsFalse(b.isBufferEmpty());
+            b.append("message");
+            b.clearBuffer();
+            Assert.IsTrue(b.isBufferEmpty());
         }
         //----------------------------------------------
        
         [TestMethod]
-        public void BufferGiveBuffer()
-        {
+        public void BufferGiveParser()
+        {   
             Assert.AreEqual("",b.giveParser());
         }
         [TestMethod]
         public void BufferMessageComplete()
         {
+            c.getBuffer();
             Assert.IsTrue(b.MessageComplete());
         }
 
