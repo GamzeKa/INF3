@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace INF3.Frontend
 {
-    class GUImanager
+   public class GUImanager
     {
 
         public static bool isGUIaktiv()
