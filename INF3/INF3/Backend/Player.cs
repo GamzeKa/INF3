@@ -3,51 +3,78 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics.Contracts;
 
 namespace INF3.Backend
 {
    public  class Player:Entity
     {
+       private int id;
+       private int points=0;
+       private Position pos;
+       private bool StaghuntDecision = false;
+       private bool SkirmishDecision = false;
+       private bool DragonDecision = false;
        public Player()
        {
            this.setEntity(1);
        }
-       private int points=0;
        public bool getStaghuntDecision()
        {
-           return true;
+           Contract.Requires(StaghuntDecision.GetType() == typeof(bool));
+           return this.StaghuntDecision;
        }
-       public void setStaghuntDecision()
+       public void setStaghuntDecision(bool d)
        {
-          
+           Contract.Requires(d.GetType() == typeof(bool));
+
+           Contract.Ensures(StaghuntDecision == d);
        }
        public bool getDragonDecision()
        {
-           return true;
+           Contract.Ensures(this.DragonDecision.GetType()==typeof(bool));
+           return this.DragonDecision;
        }
-       public void setDragonDecision()
+       public void setDragonDecision(bool d)
        {
-
+           Contract.Requires(d.GetType() == typeof(bool));
+           this.DragonDecision = d;
+           Contract.Ensures(StaghuntDecision == d);
        }
        public bool getSkirmishDecision()
        {
+           Contract.Requires(SkirmishDecision.GetType() == typeof(bool));
            return true;
        }
-       public void setSkirmishDecision()
+       public void setSkirmishDecision(bool d)
        {
-          
+           Contract.Requires(d.GetType() == typeof(bool));
+           this.StaghuntDecision = d;
+           Contract.Ensures(StaghuntDecision == d);
        }
        public int getPoints()
        {
+           Contract.Ensures(points >= 0);
            return points;
        }
        public void setPoints(int p)
        {
+           Contract.Requires(p >= 0);
            this.points = p;
+           Contract.Ensures(this.points == p);
        }
        public void addPoints(int p)
        {
+           Contract.Requires(p >= 0);
            this.points = this.points+p;
+           Contract.Ensures(this.points == (this.points+p));
+       }
+
+       [ContractInvariantMethod]
+       private void ObjectInvariant()
+       {
+           Contract.Invariant(id != null);
+           Contract.Invariant(pos != null);
        }
     }
 }

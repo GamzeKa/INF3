@@ -11,14 +11,14 @@ namespace TestVersuch
         public void BackendSendToConnector()
         {
             backend.sendToConnector("Hat jemand meine Freunde gesehen? Sie sollten so ähnlich aussehen wie ich...");
-            Assert.AreEqual("", backend.);
+            Assert.AreEqual("ok", backend.parserMessage());
         }
         [TestMethod]
         public void BackendCreatePlayer()
         {
             INF3.Backend.Player p = new INF3.Backend.Player();
             backend.storePlayer(p);
-            Assert.AreEqual(1, backend.getPlayers());
+            Assert.AreEqual(1, backend.getPlayerSize());
         }
         [TestMethod]
         public void BackendDeletePlayer()
@@ -26,14 +26,14 @@ namespace TestVersuch
             INF3.Backend.Player p = new INF3.Backend.Player();
             backend.storePlayer(p);
             backend.deletePlayer(p);
-            Assert.AreEqual(0, backend.getPlayers());
+            Assert.AreEqual(0, backend.getPlayerSize());
         }
         [TestMethod]
         public void BackendCreateDragon()
         {
             INF3.Backend.Dragon d = new INF3.Backend.Dragon();
-            b.storeDragon(d);
-            Assert.AreEqual(1, backend.getDragons());
+            backend.storeDragon(d);
+            Assert.AreEqual(1, backend.getDragonSize());
         }
         [TestMethod]
         public void BackendDeleteDragon()
@@ -41,12 +41,7 @@ namespace TestVersuch
             INF3.Backend.Dragon d = new INF3.Backend.Dragon();
             backend.storeDragon(d);
             backend.deleteDragon(d);
-            Assert.AreEqual(0, backend.getDragons());
-        }
-        [TestMethod]
-        public void BackendMap()
-        {
-            Assert.IsNotNull(backend.getMap());
+            Assert.AreEqual(0, backend.getDragonSize());
         }
     }
 }

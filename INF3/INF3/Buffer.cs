@@ -33,10 +33,13 @@ namespace INF3
         }
 
         public bool MessageComplete()
-        {
+        {   
             return true; //mechanism taht detects wether a message is finished
         }
 
+        public String getMessage() {
+            return "";
+        }
 
 
         public object getMessage()
