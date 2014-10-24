@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using INF3.Backend;
+using System.Diagnostics.Contracts;
 
 namespace INF3.Frontend
 {
     public class DefaultGUI
     {
-        Backend b = new Backend();
+        Backend.Backend b;
 
-        public DefaultGUI(Backend b)
+        public DefaultGUI(Backend.Backend b)
         {
+            Contract.Requires(b != null);
             
         }
 
@@ -25,7 +27,16 @@ namespace INF3.Frontend
 
         public void sendTextMessage()
         {
+            String s="";
+            Contract.Requires(s != null);
 
+        }
+
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(b != null);
+ 
         }
 
     }
