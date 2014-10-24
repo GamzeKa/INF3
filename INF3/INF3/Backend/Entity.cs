@@ -25,7 +25,9 @@ namespace INF3.Backend
         }
         public void setID(int id)
         {
-
+            Contract.Requires(id>=0));
+            this.id = id;
+            Contract.Ensures(this.id == id);
         }
         public int getID()
         {
@@ -33,10 +35,13 @@ namespace INF3.Backend
         }
         public void setBusy(bool busy)
         {
-
+            Contract.Requires(busy.GetType() == typeof(bool));
+            this.busy = busy;
+            Contract.Ensures(this.busy == busy);
         }
         public bool getBusy()
         {
+            Contract.Ensures(busy.GetType() == typeof(bool));
             return busy;
         }
         [ContractInvariantMethod]

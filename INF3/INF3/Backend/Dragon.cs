@@ -15,6 +15,13 @@ namespace INF3.Backend
             return 1;
         }
 
+        public void setPos(Position p)
+        {
+            Contract.Requires(p.GetType() == typeof(Position));
+            this.pos = p;
+            Contract.Ensures(this.pos == p);
+        }
+
         [ContractInvariantMethod]
         private void ObjectInvariant()
         {
