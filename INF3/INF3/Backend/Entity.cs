@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics.Contracts;
 
 namespace INF3.Backend
 {
@@ -16,9 +17,10 @@ namespace INF3.Backend
         public int getEntity(){
             return id;
         }
-        public void setEntity(int eid)
+        public void setEntity(int id)
         {
-            this.id = eid;
+            Contract.Requires(eid >= 0);
+            Contract.Ensures(this.id == eid);
         }
         public void setID(int id)
         {
@@ -36,6 +38,11 @@ namespace INF3.Backend
         {
             return busy;
         }
-
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(id != null);
+            Contract.Invariant(pos != null);
+        }
     }
 }
