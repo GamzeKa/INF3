@@ -42,10 +42,5 @@ namespace INF3
         }
 
 
-        public object getMessage()
-        {
-            
-            return null;
-        }
     }
 }
