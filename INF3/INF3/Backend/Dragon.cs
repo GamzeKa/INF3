@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace INF3.Backend
 {
-    class Dragon
+    public class Dragon
     {
         public int getDragonCount() {
             return 1;
