@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -19,7 +20,8 @@ namespace INF3
         public Connector(String ip, int port)
         {
             //Konstruktor, the server needs an ip-adress and a port for the unique identification
-
+            Contract.Requires(ip != null);
+            Contract.Requires(port != 0);
         }
         public void connectionClosing()
         {
@@ -29,6 +31,7 @@ namespace INF3
         public void sendMessageToServer(String s)
         {
             //here send a message to the Server with the Sender-class (sender.sendMessage(String))
+            Contract.Requires(s!=null);
         }
 
         public Buffer getBuffer()
@@ -39,7 +42,9 @@ namespace INF3
 
         public void setBuffer(String b)
         {
+            Contract.Requires(b != null);
             buffer.append(b);
+
         }
 
         public bool isConnected()
