@@ -8,5 +8,31 @@ namespace INF3.Frontend
 {
     class GUImanager
     {
+
+        public static bool isGUIaktiv()
+        {
+            return true;
+
+        }
+
+        public static String getCommand()
+        {
+            return "";
+        }
+
+        public static bool isCommand()
+        {
+            return true;
+        }
+
+        public static String getChat()
+        {
+            return "";
+        }
+
+        public static bool isChat()
+        {
+            return true;
+        }
     }
 }
