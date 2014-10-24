@@ -23,7 +23,7 @@ namespace INF3
             Contract.Requires(ip != null);
             Contract.Requires(port != 0);
         }
-        public void connectionClosing()
+        public void closeConnection()
         {
             //closing the Stream from client and break off the server-connection
         }
@@ -40,13 +40,6 @@ namespace INF3
             return buffer;
         }
 
-        public void setBuffer(String b)
-        {
-            Contract.Requires(b != null);
-            buffer.append(b);
-
-        }
-
         public bool isConnected()
         {
             return connected;
@@ -60,6 +53,7 @@ namespace INF3
         {
             Contract.Requires(p1 != null);
             Contract.Requires(p2 != null);
+            buffer.append(p2);
         }
 
 

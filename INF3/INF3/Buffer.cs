@@ -23,18 +23,18 @@ namespace INF3
 
         public bool isBufferEmpty()
         {
-            return true;  //information if the Buffer is full or empty
+            return true;  //information if the Buffer is empty
         }
 
         public void clearBuffer()
         {
      
-            //delet all messages 
+            //delete all messages 
         }
 
         public bool MessageComplete()
         {   
-            return true; //mechanism taht detects wether a message is finished
+            return true; //mechanism that detects wether a message is finished
         }
 
         public String getMessage() {

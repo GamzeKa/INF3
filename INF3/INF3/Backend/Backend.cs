@@ -17,7 +17,7 @@ namespace INF3.Backend
         Connector c = new Connector("192.168.178.1",8080);
 
         //Parser
-        public String parserMessage() //feedback form the Server
+        public String parserMessage() //feedback from the Server
         {
             return "";
         }

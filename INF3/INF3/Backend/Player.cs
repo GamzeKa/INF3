@@ -45,7 +45,7 @@ namespace INF3.Backend
            Contract.Requires(SkirmishDecision.GetType() == typeof(bool));
            return true;
        }
-       public void setSkirmishDecision(bool d)
+       public void setSkirmishDecision(bool d)//enum statt bool werten!
        {
            Contract.Requires(d.GetType() == typeof(bool));
            this.StaghuntDecision = d;
@@ -72,7 +72,7 @@ namespace INF3.Backend
        [ContractInvariantMethod]
        private void ObjectInvariant()
        {
-           Contract.Invariant(id != null);
+           Contract.Invariant(id != null);//0
            Contract.Invariant(pos != null);
        }
     }
