@@ -93,6 +93,7 @@ namespace INF3
         public void determineMethod(String dataBuffer)
         {
             // selects the appropriate method from server tags
+            //takeFromBuffer();
         }
     }
 }
