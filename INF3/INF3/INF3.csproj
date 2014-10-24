@@ -64,7 +64,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Receiver.cs" />
-    <Compile Include="Receiver_2.cs" />
     <Compile Include="Sender.cs" />
     <Compile Include="Sender_2.cs" />
     <EmbeddedResource Include="Frontend\Form1.resx">
