@@ -9,6 +9,12 @@ namespace INF3.Frontend
 {
     public class DefaultGUI
     {
+        Backend b = new Backend();
+
+        public DefaultGUI(Backend b)
+        {
+            
+        }
 
         // 
         public void updateGUI()
