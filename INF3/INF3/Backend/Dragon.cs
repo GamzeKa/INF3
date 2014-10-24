@@ -9,8 +9,17 @@ namespace INF3.Backend
 {
     public class Dragon
     {
+        private int id;
+        private Position pos;
         public int getDragonCount() {
             return 1;
+        }
+
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(id != null);
+            Contract.Invariant(pos != null);
         }
     }
 }
