@@ -9,26 +9,16 @@ namespace INF3.Backend
 {
     public class Entity
     {
-
-        private List<Entity> list = new List<Entity>();
         private int id;
         private bool busy = false;
 
-        public int getEntity(){
+        public int getID(){
             return id;
-        }
-        public void setEntity(int id)
-        {
-            Contract.Requires(eid >= 0);
-            Contract.Ensures(this.id == eid);
         }
         public void setID(int id)
         {
-
-        }
-        public int getID()
-        {
-            return id;
+            Contract.Requires(id >= 0);
+            Contract.Ensures(this.id == id);
         }
         public void setBusy(bool busy)
         {
@@ -42,7 +32,6 @@ namespace INF3.Backend
         private void ObjectInvariant()
         {
             Contract.Invariant(id != null);
-            Contract.Invariant(pos != null);
         }
     }
 }
