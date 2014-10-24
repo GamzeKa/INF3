@@ -18,6 +18,14 @@ namespace TestVersuch{
             p.setDragonDecision();
             Assert.IsTrue(p.getDragonDecision());
         }
+
+       
+        public void PlayergetSkirmishDecision()
+        {
+            p.setSkirmishDecision();
+            Assert.IsTrue(p.getSkirmishDecision());
+        }
+
         [TestMethod]
         public void PlayerTestPoints()
         {

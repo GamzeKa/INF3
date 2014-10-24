@@ -9,22 +9,14 @@ namespace TestVersuch{
         [TestMethod]
         public void EntityGetEntity()
         {
-            Assert.AreSame(1,e.getEntity());
-        }
-        [TestMethod]
-        public void EntityGetEntitys()
-        {
-            Assert.AreSame(1, e.getEntitys());
-        }
-        [TestMethod]
-        public void EntityGetID()
-        {
-            Assert.AreSame(1, e.getID());
+            e.setID(5);
+            Assert.AreSame(5,e.getID());
         }
         [TestMethod]
         public void EntityGetBusy()
         {
-            Assert.AreSame(1, e.getBusy());
+            e.setBusy(true);
+            Assert.AreSame(true, e.getBusy());
         }
     }
 }

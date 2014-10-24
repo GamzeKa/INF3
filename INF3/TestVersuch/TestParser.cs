@@ -12,8 +12,7 @@ namespace TestVersuch
         [TestMethod]
         public void testTakeFromBuffer()
         {
-            b.sendMessage("Blablabla");
-
+            b.append("Blablabla");
             Assert.AreEqual("Blablabla", p.takeFromBuffer());
         }
     }
