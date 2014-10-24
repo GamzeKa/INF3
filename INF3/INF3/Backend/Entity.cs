@@ -14,18 +14,9 @@ namespace INF3.Backend
         private int id;
         private bool busy = false;
 
-        public int getEntity(){
-            return id;
-        }
-        public void setEntity(int eid)
-        {
-            Contract.Requires(eid >= 0);
-            this.id = eid;
-            Contract.Ensures(this.id == eid);
-        }
         public void setID(int id)
         {
-            Contract.Requires(id>=0));
+            Contract.Requires(id>=0);
             this.id = id;
             Contract.Ensures(this.id == id);
         }
@@ -48,7 +39,6 @@ namespace INF3.Backend
         private void ObjectInvariant()
         {
             Contract.Invariant(id != null);
-            Contract.Invariant(pos != null);
         }
     }
 }

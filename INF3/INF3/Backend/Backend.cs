@@ -14,10 +14,10 @@ namespace INF3.Backend
         Buffer b;
         Parser p;
         Map map;
-        Connector c = new Connector();
+        Connector c = new Connector("192.168.178.1",8080);
 
         //Parser
-        public String parserMessage()
+        public String parserMessage() //feedback form the Server
         {
             return "";
         }
@@ -56,6 +56,7 @@ namespace INF3.Backend
         //------------------
         public void sendToConnector(String value)
         {
+            Contract.Requires(value!=null);
             c.sendMessageToServer(value);
         }
         public Connector getConnector()
@@ -65,7 +66,7 @@ namespace INF3.Backend
         }
         public Map getMap()
         {
-            Contract.Ensures(this.m.GetType() == typeof(Map));
+            Contract.Ensures(this.map.GetType() == typeof(Map));
             return map;
         }
 

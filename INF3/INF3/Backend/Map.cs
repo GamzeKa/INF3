@@ -21,8 +21,8 @@ namespace INF3.Backend
         }
         private int getWidth(int w)
         {
-            Contract.Ensures(this.width >=0)
-                return this.width;;
+            Contract.Ensures(this.width >= 0);
+                return this.width;
         }
         private void setHeight(int h)
         {
@@ -32,8 +32,8 @@ namespace INF3.Backend
         }
         private int getWidth(int w)
         {
-            Contract.Ensures(this.height >=0)
-                return this.height;;
+            Contract.Ensures(this.height >= 0);
+                return this.height;
         }
 
         [ContractInvariantMethod]

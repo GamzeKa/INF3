@@ -17,7 +17,7 @@ namespace INF3.Backend
        private bool DragonDecision = false;
        public Player()
        {
-           this.setEntity(1);
+           this.setID(1);
        }
        public bool getStaghuntDecision()
        {
@@ -27,7 +27,6 @@ namespace INF3.Backend
        public void setStaghuntDecision(bool d)
        {
            Contract.Requires(d.GetType() == typeof(bool));
-
            Contract.Ensures(StaghuntDecision == d);
        }
        public bool getDragonDecision()

@@ -58,13 +58,21 @@ namespace INF3
 
         public void sendToBuffer(object p1, string p2)
         {
-          
+            Contract.Requires(p1 != null);
+            Contract.Requires(p2 != null);
         }
 
 
         public object getServerAnswer()
         {
             return null;
+        }
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(sender != null);
+            Contract.Invariant(receiv != null);
+            Contract.Invariant(buffer != null);
         }
     }
 

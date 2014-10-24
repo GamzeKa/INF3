@@ -40,7 +40,10 @@ namespace INF3
         public String getMessage() {
             return "";
         }
-
-
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+           
+        }
     }
 }

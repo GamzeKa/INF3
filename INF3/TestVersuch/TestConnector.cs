@@ -16,13 +16,13 @@ namespace TestVersuch
         [TestMethod]
         public void ConnectorSendToBuffer()
         {
-            c.sendToBufer(c.getBuffer,"Test");
-            Assert.AreEqual("Test", c.getBuffer().getMsg());
+            c.setBuffer("Test");
+            Assert.AreEqual("Test", c.getBuffer().getMessage());
         }
         [TestMethod]
         public void ConnectorSendToServer()
         {
-            c.sendToServer("Ich bin ein Platzhalter");
+            c.sendMessageToServer("Ich bin ein Platzhalter");
             Assert.AreEqual("OK", c.getServerAnswer());
         }
         //-----------------------------

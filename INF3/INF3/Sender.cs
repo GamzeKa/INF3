@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics.Contracts;
 
 namespace INF3
 {
@@ -13,6 +14,7 @@ namespace INF3
         }
         public void sendMessage(String message)
         {
+            Contract.Requires(message != null);
             //here to send a message to the Server 
         }
     }

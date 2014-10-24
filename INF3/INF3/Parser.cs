@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics.Contracts;
 
 namespace INF3
 {
@@ -15,85 +16,92 @@ namespace INF3
             return b.giveParser();
         }
 //Pars Rules-------------------------------------
-        public void parsToS(String dataBuffer)
+        private void parsToS(String dataBuffer)
         {
-    
+            Contract.Requires(dataBuffer != null);
         }
 
-        public void parsToServermes(String dataBuffer)
+        private void parsToServermes(String dataBuffer)
         {
-            
+            Contract.Requires(dataBuffer != null);
         }
 
-        public void parsToResult(String dataBuffer)
+        private void parsToResult(String dataBuffer)
         {
-           
+            Contract.Requires(dataBuffer != null);
         }
 
-        public void parsToOpponent(String dataBuffer)
+        private void parsToOpponent(String dataBuffer)
         {
-            
+            Contract.Requires(dataBuffer != null);
         }
 
-        public void parsToChallenge(String dataBuffer)
+        private void parsToChallenge(String dataBuffer)
         {
-          
+            Contract.Requires(dataBuffer != null);
         }
 
-        public void parsToDragone(String dataBuffer)
+        private void parsToDragone(String dataBuffer)
         {
-            
+            Contract.Requires(dataBuffer != null);
         }
 
-        public void parsToPlayer(String dataBuffer)
+        private void parsToPlayer(String dataBuffer)
         {
-            
-        }
-        
-        public void parsToPlayers(String dataBuffer)
-        {
-          
+            Contract.Requires(dataBuffer != null);
         }
 
-        public void parsToEntitys(String dataBuffer)
+        private void parsToPlayers(String dataBuffer)
         {
-           
+            Contract.Requires(dataBuffer != null);
         }
 
-        public void parsToMapcell(String dataBuffer)
+        private void parsToEntitys(String dataBuffer)
         {
-          
+            Contract.Requires(dataBuffer != null);
         }
 
-        public void parsToMap(String dataBuffer)
+        private void parsToMapcell(String dataBuffer)
         {
-         
+            Contract.Requires(dataBuffer != null);
         }
 
-        public void parsToMessage(String dataBuffer)
+        private void parsToMap(String dataBuffer)
         {
-           
+            Contract.Requires(dataBuffer != null);
         }
 
-        public void parsToUpdate(String dataBuffer)
+        private void parsToMessage(String dataBuffer)
         {
-       
+            Contract.Requires(dataBuffer != null);
         }
 
-        public void parsToDelete(String dataBuffer)
+        private void parsToUpdate(String dataBuffer)
         {
-
+            Contract.Requires(dataBuffer != null);
         }
 
-        public void parsToAnswer(String dataBuffer)
+        private void parsToDelete(String dataBuffer)
         {
+            Contract.Requires(dataBuffer != null);
+        }
 
+        private void parsToAnswer(String dataBuffer)
+        {
+            Contract.Requires(dataBuffer != null);
         }
 //---------------------------------------------------------
         public void determineMethod(String dataBuffer)
         {
+            Contract.Requires(dataBuffer != null);
             // selects the appropriate method from server tags
             //takeFromBuffer();
+        }
+
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(b != null);
         }
     }
 }

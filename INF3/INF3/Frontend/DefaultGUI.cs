@@ -22,7 +22,6 @@ namespace INF3.Frontend
         public void updateGUI()
         {
             b.getMap();
-            
         }
 
         public void sendTextMessage()

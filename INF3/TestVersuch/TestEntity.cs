@@ -16,7 +16,7 @@ namespace TestVersuch{
         public void EntityGetBusy()
         {
             e.setBusy(true);
-            Assert.AreSame(true, e.getBusy());
+            Assert.IsTrue(e.getBusy());
         }
     }
 }
