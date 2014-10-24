@@ -36,10 +36,16 @@ namespace INF3
             return buffer;
         }
 
+        public void setBuffer(String b)
+        {
+            buffer.append(b);
+        }
+
         public bool isConnected()
         {
             return connected;
         }
+
     }
 
 }
