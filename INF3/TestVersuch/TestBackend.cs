@@ -11,7 +11,7 @@ namespace TestVersuch
         public void BackendSendToConnector()
         {
             backend.sendToConnector("Hat jemand meine Freunde gesehen? Sie sollten so ähnlich aussehen wie ich...");
-            Assert.AreEqual("", backend.getConnector().getParser().takeFromBuffer());
+            Assert.AreEqual("", backend.);
         }
         [TestMethod]
         public void BackendCreatePlayer()

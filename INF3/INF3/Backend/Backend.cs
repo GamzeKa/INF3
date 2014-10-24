@@ -34,7 +34,7 @@ namespace INF3.Backend
 
         public void sendToConnector(String value)
         {
-            c.sendMessageToServer("");
+            c.sendMessageToServer(value);
         }
         public Connector getConnector()
         {
