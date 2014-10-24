@@ -11,6 +11,7 @@ namespace INF3
     {
         private Sender sender;
         private Receiver receiv;
+        private Buffer buffer;
         private bool connected = false;
        
 
@@ -18,6 +19,7 @@ namespace INF3
         public Connector(String ip, int port)
         {
             //Konstruktor, the server needs an ip-adress and a port for the unique identification
+
         }
         public void connectionClosing()
         {
@@ -29,10 +31,22 @@ namespace INF3
             //here send a message to the Server with the Sender-class (sender.sendMessage(String))
         }
 
+        public Buffer getBuffer()
+        {
+            //
+            return buffer;
+        }
+
+        public void setBuffer(String b)
+        {
+            buffer.append(b);
+        }
+
         public bool isConnected()
         {
             return connected;
         }
+
     }
 
 }

@@ -41,8 +41,7 @@ namespace INF3.Backend
 
         public void sendToConnector(String value)
         {
-            Contract.Requires(value != null);
-            c.sendMessageToServer("");
+            c.sendMessageToServer(value);
         }
         public Connector getConnector()
         {
