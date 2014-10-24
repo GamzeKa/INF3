@@ -51,7 +51,21 @@ namespace INF3
         {
             return connected;
         }
+        public void connectToServer()
+        {
+           
+        }
 
+        public void sendToBuffer(object p1, string p2)
+        {
+          
+        }
+
+
+        public object getServerAnswer()
+        {
+            return null;
+        }
     }
 
 }

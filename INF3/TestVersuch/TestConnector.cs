@@ -20,13 +20,13 @@ namespace TestVersuch
         [TestMethod]
         public void ConnectorSendToBuffer()
         {
-            c.sendToBufer(c.getBuffer,"Test");
-            Assert.AreEqual("Test", c.getBuffer().getMsg());
+            c.sendToBuffer(c.getBuffer, "Test");
+            Assert.AreEqual("Test", c.getBuffer().getMessage());
         }
         [TestMethod]
         public void ConnectorSendToServer()
         {
-            c.sendToServer("Ich bin ein Platzhalter");
+            c.sendMessageToServer("Ich bin ein Platzhalter");
             Assert.AreEqual("OK", c.getServerAnswer());
         }
         //-----------------------------
@@ -40,10 +40,6 @@ namespace TestVersuch
         {
             Assert.IsNotNull(c.getBuffer());
         }
-        [TestMethod]
-        public void ConnectorIsConnected()
-        {
-            Assert.IsTrue(c.isConnected());
-        }
+     
     }
 }

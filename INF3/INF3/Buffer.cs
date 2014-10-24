@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace INF3
         public void append(String s)
         {
             //add a new message to the Buffer
+            Contract.Requires(s != null);
 
         }
 
@@ -26,6 +28,7 @@ namespace INF3
 
         public void clearBuffer()
         {
+     
             //delet all messages 
         }
 
@@ -35,5 +38,11 @@ namespace INF3
         }
 
 
+
+        public object getMessage()
+        {
+            
+            return null;
+        }
     }
 }
