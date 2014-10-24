@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics.Contracts;
 
 namespace INF3.Frontend
 {
    public class GUImanager
     {
 
+       public static DefaultGUI gui;
+
         public static bool isGUIaktiv()
         {
-            return true;
-
+            return gui != null;
         }
 
         public static String getCommand()
@@ -22,6 +24,7 @@ namespace INF3.Frontend
 
         public static bool isCommand()
         {
+            Contract.Requires(isCommand() == true);
             return true;
         }
 
@@ -34,5 +37,12 @@ namespace INF3.Frontend
         {
             return true;
         }
+
+       [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(gui != null);
+        }
+       
     }
 }
