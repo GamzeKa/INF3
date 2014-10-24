@@ -11,7 +11,6 @@ namespace INF3
     {
         private Sender sender;
         private Receiver receiv;
-        private Buffer buffer;
         private bool connected = false;
        
 
@@ -28,12 +27,6 @@ namespace INF3
         public void sendMessageToServer(String s)
         {
             //here send a message to the Server with the Sender-class (sender.sendMessage(String))
-        }
-
-        public Buffer getBuffer()
-        {
-            //
-            return buffer;
         }
 
         public bool isConnected()
