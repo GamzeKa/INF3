@@ -9,16 +9,11 @@ namespace INF3.Backend
 {
    public  class Player:Entity
     {
-       private int id;
        private int points=0;
-       private Position pos;
        private bool StaghuntDecision = false;
-       private bool SkirmishDecision = false;
+       private int SkirmishDecision = 0;
        private bool DragonDecision = false;
-       public Player()
-       {
-           this.setID(1);
-       }
+    
        public bool getStaghuntDecision()
        {
            Contract.Requires(StaghuntDecision.GetType() == typeof(bool));

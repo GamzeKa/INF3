@@ -10,31 +10,65 @@ namespace INF3.Backend
     public class Entity
     {
 
-        private List<Entity> list = new List<Entity>();
         private int id;
         private bool busy = false;
+        private Position pos;
+        private String type = "";
+        public Entity(int id, String type, int x, int y)
+        {
+            setID(id);
+            setType(type);
+            setPos(x,y);
+        }
 
-        public void setID(int id)
+        protected void setID(int id)
         {
             Contract.Requires(id>=0);
             this.id = id;
             Contract.Ensures(this.id == id);
         }
+
         public int getID()
         {
             return id;
         }
+
         public void setBusy(bool busy)
         {
             Contract.Requires(busy.GetType() == typeof(bool));
             this.busy = busy;
             Contract.Ensures(this.busy == busy);
         }
+
         public bool getBusy()
         {
             Contract.Ensures(busy.GetType() == typeof(bool));
             return busy;
         }
+
+        private void setType(String t)
+        {
+            Contract.Requires(t != null);
+            this.type = t;
+        }
+
+        public String getType()
+        {
+            return this.type;
+        }
+
+        private void setPos(int x, int y)
+        {
+            Contract.Requires(x >= 0);
+            Contract.Requires(y>=0);
+            pos = new Position(x, y);
+        }
+
+        public Position getPos()
+        {
+            return this.pos;
+        }
+
         [ContractInvariantMethod]
         private void ObjectInvariant()
         {

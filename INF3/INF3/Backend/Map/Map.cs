@@ -13,24 +13,34 @@ namespace INF3.Backend
         protected int width;
         protected int height;
 
+        public Map(int width, int height)
+        {
+            this.mapArray = new MapCell[width, height];
+            setWidth(width);
+            setHeight(height);
+        }
+
         private void setWidth(int w)
         {
             Contract.Requires(w >= 0);
             this.width = w;
             Contract.Ensures(this.width == w);
         }
-        private int getWidth(int w)
+
+        public int getWidth(int w)
         {
             Contract.Ensures(this.width >= 0);
                 return this.width;
         }
+
         private void setHeight(int h)
         {
             Contract.Requires(h >= 0);
             this.height = h;
             Contract.Ensures(this.height == h);
         }
-        private int getWidth(int w)
+
+        public int getWidth(int w)
         {
             Contract.Ensures(this.height >= 0);
                 return this.height;

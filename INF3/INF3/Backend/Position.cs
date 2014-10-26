@@ -12,6 +12,12 @@ namespace INF3.Backend
         private int x;
         private int y;
 
+        public Position(int x, int y)
+        {
+            setX(x);
+            setY(y);
+        }
+
         public int getX() {
             return x;
         }
@@ -19,17 +25,19 @@ namespace INF3.Backend
         public int getY() {
             return y;
         }
-        public void setX(int x) {
+
+        private void setX(int x) {
             Contract.Requires(x >= 0);
             this.x = x;
             Contract.Ensures(this.x == x);
         }
 
-        public void setY(int y) {
+        private void setY(int y) {
             Contract.Requires(y >= 0);
             this.y = y;
             Contract.Ensures(this.y == y);
         }
+
         [ContractInvariantMethod]
         private void ObjectInvariant()
         {
