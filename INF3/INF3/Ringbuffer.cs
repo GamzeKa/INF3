@@ -53,13 +53,17 @@ namespace INF3
         return full;
         }
 
-        public void addString(String message){
+        public void addMessage(String message){
             if (message != null)
             {
                 if (this.memory[this.writePointer] == null)
                 {
                     memory[this.writePointer] = message;
                     this.incWritePointer();
+                }
+                else
+                {
+                    //Speicherplatz zuweisen
                 }
             }
         }
