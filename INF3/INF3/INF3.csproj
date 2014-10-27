@@ -70,6 +70,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Receiver.cs" />
+    <Compile Include="Ringbuffer.cs" />
     <Compile Include="Sender.cs" />
     <Compile Include="Syntax.cs" />
     <EmbeddedResource Include="Frontend\Form1.resx">
