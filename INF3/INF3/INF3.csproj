@@ -45,8 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Backend\Backend.cs" />
-    <Compile Include="Backend\Dragon.cs" />
-    <Compile Include="Backend\Entity.cs" />
+    <Compile Include="Backend\entities\Dragon.cs" />
+    <Compile Include="Backend\entities\Entity.cs" />
+    <Compile Include="Backend\entities\EntityManager.cs" />
     <Compile Include="enums\EnumDragonfight.cs" />
     <Compile Include="enums\EnumSkirmish.cs" />
     <Compile Include="enums\EnumStaghunt.cs" />
@@ -54,7 +55,7 @@
     <Compile Include="Backend\Map\Map.cs" />
     <Compile Include="Backend\Map\MapCell.cs" />
     <Compile Include="Backend\Map\MapManager.cs" />
-    <Compile Include="Backend\Player.cs" />
+    <Compile Include="Backend\entities\Player.cs" />
     <Compile Include="Backend\Position.cs" />
     <Compile Include="Buffer.cs" />
     <Compile Include="Connector.cs" />
