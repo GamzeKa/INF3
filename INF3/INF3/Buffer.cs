@@ -9,21 +9,22 @@ namespace INF3
 {
     public class Buffer //is filed by the connector
     {
+        Ringbuffer buffer = new Ringbuffer(15);
         public void append(String s)
         {
             //add a new message to the Buffer
             Contract.Requires(s != null);
-
+            buffer.addMessage(s);
         }
 
         public String giveParser()
         {
-            return ""; //if the buffer ist full or a message is finished reading, content is give to the parser
+            return ""; //if the buffer is full or a message is finished reading, content is give to the parser
         }
 
-        public bool isBufferEmpty()
+        public bool isBufferFull()
         {
-            return true;  //information if the Buffer is empty
+            return buffer.isFull();  
         }
 
         public void clearBuffer()
@@ -40,6 +41,7 @@ namespace INF3
         public String getMessage() {
             return "";
         }
+
         [ContractInvariantMethod]
         private void ObjectInvariant()
         {
