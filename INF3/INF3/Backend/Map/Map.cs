@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics.Contracts;
 
-namespace INF3.Backend
+namespace INF3.Backend.Map
 {
     public class Map
     {

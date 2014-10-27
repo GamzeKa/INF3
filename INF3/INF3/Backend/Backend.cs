@@ -9,65 +9,84 @@ namespace INF3.Backend
 {
     public class Backend
     {
-        List<Player> players = new List<Player>();
-        List<Dragon> dragons = new List<Dragon>();
+        
         Buffer b;
         Parser p;
-        Map map;
+        Map.Map map;
         Connector c = new Connector("192.168.178.1",8080);
 
+        public Backend
+
         //Parser
-        public String parserMessage() //feedback from the Server
+        public void showMessage() //show Message on GUI
         {
-            return "";
+            
         }
-        //Player
-        public void storePlayer(Player p)
+
+        
+
+        //Map
+        public void setMap(Map.Map map)
         {
-            Contract.Requires(p.GetType() == typeof(Player));
-            players.Add(p);
-            Contract.Ensures(players.Count > 0);
+
         }
-        public void deletePlayer(Player p)
+        public Map.Map getMap()
         {
-            Contract.Requires(p.GetType() == typeof(Player));
-            players.Remove(p);
+            Contract.Ensures(this.map.GetType() == typeof(Map));
+            return map;
         }
-        public int getPlayerSize()
+
+        public void updateCell()
         {
-            return players.Count;
+
         }
-        //Dragons
-        public void storeDragon(Dragon d)
-        {
-            Contract.Requires(d.GetType()==typeof(Dragon));
-            dragons.Add(d);
-            Contract.Ensures(dragons.Count > 0);
-        }
-        public void deleteDragon(Dragon d)
-        {
-            Contract.Requires(d.GetType() == typeof(Dragon));
-            dragons.Remove(d);
-        }
-        public int getDragonSize()
-        {
-            return dragons.Count;
-        }
-        //------------------
+
+        //Connector
         public void sendToConnector(String value)
         {
-            Contract.Requires(value!=null);
+            Contract.Requires(value != null);
             c.sendMessageToServer(value);
         }
+
         public Connector getConnector()
         {
             Contract.Ensures(this.c.GetType() == typeof(Connector));
             return c;
         }
-        public Map getMap()
+
+        public void receiveTime()
         {
-            Contract.Ensures(this.map.GetType() == typeof(Map));
-            return map;
+
+        }
+
+        public void onlineInfo()
+        {
+
+        }
+
+        public void yourID()
+        {
+
+        }
+
+        public void challangeInfo()
+        {
+
+        }
+
+        public void opponentInfo()
+        {
+
+        }
+
+        public void serverAnswer()
+        {
+
+        }
+
+        public void gameInfo()
+        {
+
         }
 
         [ContractInvariantMethod]
