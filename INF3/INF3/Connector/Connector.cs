@@ -16,7 +16,6 @@ namespace INF3.Connector
         private bool connected = false;
         private TClient client;
 
-       
 
 
         public Connector(String ip, int port)
@@ -33,12 +32,27 @@ namespace INF3.Connector
         public void closeConnection()
         {
             //closing the Stream from client and break off the server-connection
+            try
+            {
+                // close the stream
+                client.getStream().Close();
+                // closes the server-connection 
+                client.Close();
+
+            }
+            catch (Exception g)
+            {
+                Console.WriteLine(g.Message);
+            }
         }
+
 
         public void sendMessageToServer(String s)
         {
             //here send a message to the Server with the Sender-class (sender.sendMessage(String))
             Contract.Requires(s!=null);
+
+            sender.sendMessage(s);
         }
 
         public Buffer getBuffer()
@@ -53,6 +67,7 @@ namespace INF3.Connector
         }
         public void connectToServer()
         {
+            
            
         }
 
