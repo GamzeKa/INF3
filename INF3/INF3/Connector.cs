@@ -14,6 +14,8 @@ namespace INF3
         private Receiver receiv;
         private Buffer buffer;
         private bool connected = false;
+        private TClient client;
+
        
 
 
