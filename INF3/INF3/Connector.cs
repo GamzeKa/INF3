@@ -24,6 +24,11 @@ namespace INF3
             //Konstruktor, the server needs an ip-adress and a port for the unique identification
             Contract.Requires(ip != null);
             Contract.Requires(port != 0);
+            client = new TClient(ip,port);
+            receiv = new Receiver(client.getTClient());
+            sender = new Sender(client.getTClient());
+            buffer = new Buffer();
+
         }
         public void closeConnection()
         {
