@@ -28,7 +28,6 @@ namespace INF3
 
             // Translate the passed message into UTF8 and store it as a Byte array.
             this.array = System.Text.Encoding.UTF8.GetBytes(message + "\r\n");
-            this.array2 = System.Text.Encoding.UTF8.GetBytes("get:online\r\n");
 
 
             Contract.Requires(client.GetStream().CanWrite == true);
