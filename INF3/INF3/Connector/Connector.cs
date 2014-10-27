@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace INF3
+namespace INF3.Connector
 {
     public class Connector
     {
