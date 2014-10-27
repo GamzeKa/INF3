@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 
-namespace INF3
+namespace INF3.Connector
 {
     class Receiver
     {
