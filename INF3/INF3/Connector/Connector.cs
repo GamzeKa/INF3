@@ -13,11 +13,12 @@ namespace INF3.Connector
     public class Connector
     {
         private Sender sender;
-        private Receiver receive;
-        private static Buffer buffer;
-        private static bool connected = true;
+        private Receiver receiv;
+        private Buffer buffer;
+        private bool connected = false;
         private TClient client;
 
+       
 
 
 
@@ -28,9 +29,9 @@ namespace INF3.Connector
             Contract.Requires(port != 0);
 
             client = new TClient(ip,port);
-            receive = new Receiver(client.getTClient());
+            receiv = new Receiver(client.getTClient());
             sender = new Sender(client.getTClient());
-            buffer = new Buffer();
+            buffer = new Buffer(15);
 
         }
         public void closeConnection()
@@ -38,24 +39,22 @@ namespace INF3.Connector
             //closing the Stream from client and break off the server-connection
             try
             {
-                // close the stream
                 client.getStream().Close();
-                // closes the server-connection 
                 client.Close();
-
             }
-            catch (Exception g)
+            catch (Exception e)
             {
-                Console.WriteLine(g.Message);
-            }
-        }
 
+                Console.WriteLine(e);
+            }
+
+        }
 
         public void sendMessageToServer(String s)
         {
             //here send a message to the Server with the Sender-class (sender.sendMessage(String))
-            Contract.Requires(s!=null);
 
+            Contract.Requires(s!=null);
             sender.sendMessage(s);
         }
 
@@ -71,7 +70,6 @@ namespace INF3.Connector
         }
         public void connectToServer()
         {
-            
            
         }
 
@@ -91,7 +89,7 @@ namespace INF3.Connector
         private void ObjectInvariant()
         {
             Contract.Invariant(sender != null);
-            Contract.Invariant(receive != null);
+            Contract.Invariant(receiv != null);
             Contract.Invariant(buffer != null);
         }
     }
