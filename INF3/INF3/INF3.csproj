@@ -49,6 +49,7 @@
     <Compile Include="Backend\entities\Dragon.cs" />
     <Compile Include="Backend\entities\Entity.cs" />
     <Compile Include="Backend\entities\EntityManager.cs" />
+    <Compile Include="Backend\Minigames\Game.cs" />
     <Compile Include="Backend\Minigames\Skirmish.cs" />
     <Compile Include="Backend\Minigames\Staghunt.cs" />
     <Compile Include="enums\EnumDragonfight.cs" />
