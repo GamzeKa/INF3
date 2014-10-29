@@ -13,7 +13,14 @@ namespace INF3.Backend
         Buffer b;
         Parser p;
         Map.Map map;
-        Connector c = new Connector("192.168.178.1",8080);
+        INF3.Connector.Connector c = new INF3.Connector.Connector("192.168.178.1",8080);
+
+        private INF3.Backend.entities.EntityManager em= new INF3.Backend.entities.EntityManager();
+        
+
+        private static Dragonfight dragonhunt; //Games
+        private static Skirmish skirmish;
+        private static Staghunt staghunt;
 
         public Backend;
 
@@ -22,8 +29,6 @@ namespace INF3.Backend
         {
             
         }
-
-        
 
         //Map
         public void setMap(Map.Map map)
@@ -48,9 +53,9 @@ namespace INF3.Backend
             c.sendMessageToServer(value);
         }
 
-        public Connector getConnector()
+        public INF3.Connector.ConnectorConnector getConnector()
         {
-            Contract.Ensures(this.c.GetType() == typeof(Connector));
+            Contract.Ensures(this.c.GetType() == typeof(INF3.Connector.ConnectorConnector));
             return c;
         }
 
@@ -87,6 +92,47 @@ namespace INF3.Backend
         public void gameInfo()
         {
 
+        }
+
+        public void storePlayer(INF3.Backend.entities.Player p)
+        {
+            em.storePlayer(p);
+        }
+
+        public void deletePlayer(INF3.Backend.entities.Player p)
+        {
+            em.deletePlayer(p);
+        }
+
+        public int getPlayerAmount()
+        {
+            return em.getPlayerAmount();
+        }
+
+        public void updatePlayer(INF3.Backend.entities.Player player, Position pos)
+        {
+            em.updatePlayer(player, pos);
+        }
+
+        //Dragons
+        public void storeDragon(INF3.Backend.entities.Dragon d)
+        {
+            em.storeDragon(d);
+        }
+
+        public void deleteDragon(INF3.Backend.entities.Dragon d)
+        {
+            em.deleteDragon(d);
+        }
+
+        public int getDragonAmount()
+        {
+            return em.getDragonAmount();
+        }
+
+        public void updateDragon(INF3.Backend.entities.Dragon d, Position pos)
+        {
+            em.updateDragon(d,pos);
         }
 
         [ContractInvariantMethod]

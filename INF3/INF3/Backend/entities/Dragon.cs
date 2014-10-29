@@ -9,13 +9,11 @@ namespace INF3.Backend.entities
 {
     public class Dragon:Entity
     {
-
-
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
+        public Dragon(int id, String type, Boolean busy, String desc, int positionX, int positionY)
+            : base(id, type,new INF3.Backend.Position(positionX,positionY))
         {
-            Contract.Invariant(id != null);
-            Contract.Invariant(pos != null);
+            setBusy(busy);
+            setDescription(desc);
         }
     }
 }

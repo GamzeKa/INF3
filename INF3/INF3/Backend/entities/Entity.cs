@@ -14,11 +14,13 @@ namespace INF3.Backend.entities
         private bool busy = false;
         private Position pos;
         private String type = "";
-        public Entity(int id, String type, int x, int y)
+        private String description = "";
+        
+        public Entity(int id, String type,INF3.Backend.Position pos)
         {
             setID(id);
             setType(type);
-            setPos(x,y);
+            this.pos = pos;
         }
 
         protected void setID(int id)
@@ -57,12 +59,16 @@ namespace INF3.Backend.entities
             return this.type;
         }
 
-        private void setPos(int x, int y)
+        public String getDescription()
         {
-            Contract.Requires(x >= 0);
-            Contract.Requires(y>=0);
-            pos = new Position(x, y);
+            return this.description;
         }
+
+        protected void setDescription(String s)
+        {
+            this.description = s;
+        }
+
 
         public Position getPos()
         {

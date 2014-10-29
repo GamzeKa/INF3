@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace INF3.Backend.entities
 {
-    class EntityManager
+    public class EntityManager
     {
         List<Player> players = new List<Player>();
         List<Dragon> dragons = new List<Dragon>();
