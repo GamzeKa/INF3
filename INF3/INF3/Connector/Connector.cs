@@ -11,9 +11,9 @@ namespace INF3.Connector
     public class Connector
     {
         private Sender sender;
-        private Receiver receiv;
-        private Buffer buffer;
-        private bool connected = false;
+        private Receiver receive;
+        private static Buffer buffer;
+        private static bool connected = true;
         private TClient client;
 
 
@@ -24,7 +24,7 @@ namespace INF3.Connector
             Contract.Requires(ip != null);
             Contract.Requires(port != 0);
             client = new TClient(ip,port);
-            receiv = new Receiver(client.getTClient());
+            receive = new Receiver(client.getTClient());
             sender = new Sender(client.getTClient());
             buffer = new Buffer();
 
@@ -87,7 +87,7 @@ namespace INF3.Connector
         private void ObjectInvariant()
         {
             Contract.Invariant(sender != null);
-            Contract.Invariant(receiv != null);
+            Contract.Invariant(receive != null);
             Contract.Invariant(buffer != null);
         }
     }
