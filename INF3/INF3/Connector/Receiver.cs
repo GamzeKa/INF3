@@ -9,7 +9,7 @@ namespace INF3.Connector
     class Receiver
     {
         private TcpClient client;
-        byte []array;
+        byte [] data;
 
 
         public Receiver(TcpClient client)
@@ -21,13 +21,13 @@ namespace INF3.Connector
 
             String s=String.Empty;
             try{
-                array=new byte[client.Available];
+                data=new byte[client.Available];
                 // size of the array for the answer was defined
 
                 // client read the answer from the server and save this in a array
                 // define a type -->var because the type of the answer is unknown
                 // asychron var for unblocking processes
-                var reader = client.GetStream().BeginRead(array, 0, array.Length,null,null);
+                var reader = client.GetStream().BeginRead(data, 0, data.Length,null,null);
 
                 // BeginRead -> start the asynchronReader
                 // EndRead -> end of the asynchronRead. Save the bytes of read in int
@@ -37,7 +37,7 @@ namespace INF3.Connector
                 // the bytecode convert to String
                 if (client.Connected == true)
                 {
-                    return System.Text.Encoding.UTF8.GetString(array, 0, reads);
+                    return System.Text.Encoding.UTF8.GetString(data, 0, reads);
                 }
                 else
                 {

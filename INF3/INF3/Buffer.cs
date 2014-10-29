@@ -9,12 +9,12 @@ namespace INF3
 {
     public class Buffer //is filled by the connector
     {
-        Ringbuffer buffer;
+        private Ringbuffer buffer;
+        private int messageCounter = 0;
        
 
         public Buffer(int größe) {
             Contract.Requires(größe > 0);
-
             buffer = new Ringbuffer(größe);
         }
 
@@ -29,7 +29,7 @@ namespace INF3
         {
             Contract.Requires(buffer != null);
             String message="";
-            //Contract.Requires(MessageComplete() == true);
+            Contract.Requires(MessageComplete() == true);
             if (MessageComplete()) {
                 message = buffer.getMessage();
                 //send message to parser

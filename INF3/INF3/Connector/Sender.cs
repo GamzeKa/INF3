@@ -11,8 +11,7 @@ namespace INF3.Connector
     {
 
         TcpClient client; 
-        byte[] array;
-        byte[] array2;
+        byte[] data;
 
 
         public Sender(TcpClient client)
@@ -27,12 +26,12 @@ namespace INF3.Connector
             Contract.Requires(message != null);
 
             // Translate the passed message into UTF8 and store it as a Byte array.
-            this.array = System.Text.Encoding.UTF8.GetBytes(message + "\r\n");
+            this.data = System.Text.Encoding.UTF8.GetBytes(message + "\r\n");
 
 
             Contract.Requires(client.GetStream().CanWrite == true);
             // Send the message to the connected TcpServer
-             client.GetStream().Write(array, 0, array.Length);
+             client.GetStream().Write(data, 0, data.Length);
 
 
             Contract.Requires(client.GetStream().CanWrite == false);

@@ -9,9 +9,9 @@ namespace INF3.Backend.Map
 {
     public class Map
     {
-        protected MapCell[,] mapArray;
-        protected int width;
-        protected int height;
+        private MapCell[,] mapArray;
+        private int width;
+        private int height;
 
         public Map(int width, int height)
         {

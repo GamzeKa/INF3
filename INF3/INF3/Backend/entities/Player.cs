@@ -10,12 +10,10 @@ namespace INF3.Backend.entities
    public  class Player:Entity
     {
        private int points=0;
-       private bool StaghuntDecision = false;
-       private int SkirmishDecision = 0;
-       private bool DragonDecision = false;
+       
 
        public Player(int id, String type, Boolean busy, String desc, int positionX, int positionY, int points)
-           : base(id, type, new)
+           : base(id, type, new Position(positionX,positionY))
        {
 
            setPoints(points);
