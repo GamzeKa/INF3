@@ -799,10 +799,6 @@ namespace INF3
 
 					}
 				}
-		//		Console.WriteLine("-------------------------------------------------------------------------\r\n");
-
-				//Spieler raussuchen und Eigenschaften updaten.
-				//Überprüfung der Dragon ID ob bereits existent, falls nicht muss der Drache erstellt werden, ansonsten Drache updaten.
 			}
             Console.WriteLine("Parsing Create Dragon ending\r\n");
 		}
