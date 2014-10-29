@@ -17,6 +17,8 @@ namespace INF3
         {
             Contract.Requires(buffer != null);
             Contract.Requires(backend != null);
+            Contract.OldValue(this.buffer == null);
+            Contract.OldValue(this.backend == null);
 
             if(buffer!=null)
             {
@@ -26,6 +28,8 @@ namespace INF3
             {
                 this.backend=backend;
             }
+            Contract.Assert(this.buffer != null);
+            Contract.Assert(this.buffer != null);
             while(true){
                 takeFromBuffer();
             }
@@ -135,28 +139,28 @@ namespace INF3
                         else if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.ENTITIES).Success &&
                             !(Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.UPDATE)).Success)
                         {
-
+                            this.EntityList(dataFromBuffer);
                         }
 
                         //Empfängt wenn "Players" gesendet werden.
                         else if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.PLAYERS).Success &&
                             !(Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.UPDATE)).Success)
                         {
-                            
+                            this.creatPlayers(dataFromBuffer);
                         }
 
                         //Empfängt wenn nur ein "Player" gesendet wird.
                         else if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.PLAYER).Success &&
                             !(Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.UPDATE)).Success)
                         {
-                            
+                            this.creatPlayer(dataFromBuffer);
                         }
 
                         //Empfängt wenn nur ein "Dragon" gesendet wird.
                         else if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.DRAGON).Success &&
                             !(Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.UPDATE)).Success)
                         {
-                            
+                            this.creatDragon(dataFromBuffer);
                         }
 
                         //Überprüfung ob es sich um eine "Map" handelt.
@@ -514,6 +518,294 @@ namespace INF3
             }
             Console.WriteLine("Parsing Delete Dragon ending\r\n");
         }
+
+        public void EntityList(String dataFromBuffer)
+        {
+            if (dataFromBuffer != null)
+            {
+
+                // Der übergebene String wird durch die Hilfsklasse "ParseDrawl" gesplittet.
+                String[] matchPlayer = parsMatchPlayer(dataFromBuffer);
+
+                foreach (String parMatch in matchPlayer)
+                {
+                    if ((Regex.Match(parMatch, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.DRAGON)).Success)
+                    {
+                        String[] matchDragon = parsMatchDragon(dataFromBuffer);
+
+                        foreach (String parMatchDragon in matchDragon)
+                        {
+                            if ((Regex.Match(parMatchDragon, Syntax.END + Syntax.COLON_CHAR + Syntax.PLAYER)).Success)
+                            {
+                                creatPlayer(parMatchDragon);
+                            }
+                            else if ((Regex.Match(parMatchDragon, Syntax.END + Syntax.COLON_CHAR + Syntax.DRAGON)).Success)
+                            {
+                                creatDragon(parMatchDragon);
+                            }
+                        }
+                    }
+                    else if ((Regex.Match(parMatch, Syntax.END + Syntax.COLON_CHAR + Syntax.PLAYER)).Success)
+                    {
+                        creatPlayer(parMatch);
+                    }
+                }
+            }
+        }
+
+        public void creatPlayer(String dataFromBuffer)
+        {
+            Int32 id;
+            String typ;
+            Boolean busyboolean;
+            String description;
+            Int32 x;
+            Int32 y;
+
+            MatchCollection matches = null;
+
+            Int32 points;
+		
+		//Die geparsten Objekte werden den Listen hinzugefügt.
+            List<Backend.entities.Player> listPlayer;
+
+            if (dataFromBuffer != null)
+            {
+                matches = parsMatchCollection(dataFromBuffer);
+
+                // Die foreach-Schleife sorgt dafür das der Array Index für Index ausgelesen wird.
+                // Anweisungen werden für jedes Element im Array wiederholt.
+                foreach (Match parMatch in matches)
+                {
+                    if ((Regex.Match(parMatch.Value, Syntax.ID + Syntax.COLON_CHAR)).Success)
+                    {
+                        // Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+                        id = parsToInt32(parMatch.Value);
+                        //			Console.WriteLine("ID = " + id);
+
+                    }
+                    else if ((Regex.Match(parMatch.Value, Syntax.TYPE + Syntax.COLON_CHAR)).Success)
+                    {
+                        // Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+                        typ = Regex.Match(parMatch.Value, Syntax.STRING).Value;
+                        //				Console.WriteLine("Typ = " + typ);
+                    }
+                    else if ((Regex.Match(parMatch.Value, Syntax.BUSY + Syntax.COLON_CHAR)).Success)
+                    {
+                        // Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+                        busyboolean = parsToBoolean(parMatch.Value);
+                        //				Console.WriteLine("Busy = " + busyboolean);
+
+                    }
+                    else if ((Regex.Match(parMatch.Value, Syntax.DESCRIPTION + Syntax.COLON_CHAR)).Success)
+                    {
+                        // Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+                        description = parsToString(parMatch.Value);
+                        //			Console.WriteLine("desc = " + description);
+
+                    }
+                    else if ((Regex.Match(parMatch.Value, Syntax.POS_X + Syntax.COLON_CHAR)).Success)
+                    {
+                        // Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+                        x = parsToInt32(parMatch.Value);
+                        //		Console.WriteLine("x = " + x);
+
+                    }
+                    else if ((Regex.Match(parMatch.Value, Syntax.POS_Y + Syntax.COLON_CHAR)).Success)
+                    {
+                        // Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+                        y = parsToInt32(parMatch.Value);
+                        //				Console.WriteLine("y = " + y);
+
+                    }
+                    else if ((Regex.Match(parMatch.Value, Syntax.POINTS + Syntax.COLON_CHAR)).Success)
+                    {
+                        // Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+                        points = parsToInt32(parMatch.Value);
+                        //			Console.WriteLine("points = " + points);
+
+                    }
+                    else if ((Regex.Match(parMatch.Value, Syntax.END + Syntax.COLON_CHAR + Syntax.PLAYER)).Success)
+                    {
+                        Backend.entities.Player p = new Backend.entities.Player(id, typ, busyboolean, description, x, y, points);
+                        listPlayer.Add(p);
+                        break;
+
+                    }
+                }
+            }
+            Console.WriteLine("Parsing Player ending\r\n");
+        }
+
+        public void creatPlayers(String dataFromBuffer)
+        {
+
+            int index = 1;
+            Int32 id;
+            String typ;
+            Boolean busyboolean;
+            String description;
+            Int32 x;
+            Int32 y;
+
+            MatchCollection matches = null;
+
+            Int32 points;
+
+            //Die geparsten Objekte werden den Listen hinzugefügt.
+            List<Backend.entities.Player> listPlayer;
+
+            if (dataFromBuffer != null)
+            {
+                //			Console.WriteLine("--------------------------Parsing Players--------------------------------");
+                // Der übergebene String wird durch die Hilfsklasse "ParseDrawl" gesplittet.
+                matches = parsMatchCollection(dataFromBuffer);
+
+                // Die foreach-Schleife sorgt dafür das der Array Index für Index ausgelesen wird.
+                foreach (Match parMatch in matches)
+                {
+                    if ((Regex.Match(parMatch.Value, Syntax.ID + Syntax.COLON_CHAR)).Success)
+                    {
+                        // Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+                        id = parsToInt32(parMatch.Value);
+                        //				Console.WriteLine("ID = " + id);
+
+                    }
+                    else if ((Regex.Match(parMatch.Value, Syntax.TYPE + Syntax.COLON_CHAR)).Success)
+                    {
+                        typ = Regex.Match(parMatch.Value, Syntax.STRING).Value;
+                        Console.WriteLine("Typ = " + typ);
+                    }
+                    else if ((Regex.Match(parMatch.Value, Syntax.BUSY + Syntax.COLON_CHAR)).Success)
+                    {
+                        // Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+                        busyboolean = parsToBoolean(parMatch.Value);
+                        //				Console.WriteLine("Busy = " + busyboolean);
+
+                    }
+                    else if ((Regex.Match(parMatch.Value, Syntax.DESCRIPTION + Syntax.COLON_CHAR)).Success)
+                    {
+                        // Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+                        description = parsToString(parMatch.Value);
+                        //				Console.WriteLine("desc = " + description);
+
+                    }
+                    else if ((Regex.Match(parMatch.Value, Syntax.POS_X + Syntax.COLON_CHAR)).Success)
+                    {
+                        // Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+                        x = parsToInt32(parMatch.Value);
+                        //				Console.WriteLine("x = " + x);
+
+                    }
+                    else if ((Regex.Match(parMatch.Value, Syntax.POS_Y + Syntax.COLON_CHAR)).Success)
+                    {
+                        // Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+                        y = parsToInt32(parMatch.Value);
+                        //			Console.WriteLine("y = " + y);
+
+                    }
+
+                    else if ((Regex.Match(parMatch.Value, Syntax.POINTS + Syntax.COLON_CHAR)).Success)
+                    {
+                        // Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+                        points = parsToInt32(parMatch.Value);
+                        //				Console.WriteLine("points = " + points);
+
+                    }
+                    else if ((Regex.Match(parMatch.Value, Syntax.END + Syntax.COLON_CHAR + Syntax.PLAYER)).Success && !(Regex.Match(parMatch.Value, Syntax.END + Syntax.COLON_CHAR + Syntax.PLAYERS)).Success)
+                    {
+                        Console.WriteLine("-------------------------------------------------------------------------\r\n");
+
+                        //Spieler raussuchen und Eigenschaften updaten.
+                        Backend.entities.Player p = new Backend.entities.Player(id, typ, busyboolean, description, x, y, points);
+                        listPlayer.Add(p);
+                        //Überprüfung der Player ID ob bereits existent, falls nicht muss sie erstellt werden, ansonsten Spieler updaten.
+                        index++;
+                    }
+
+                }
+
+
+            }
+            Console.WriteLine("Parsing Players ending\r\n");
+        }
+
+        public void creatDragon(String dataFromBuffer)
+		{
+
+		    MatchCollection matches = null;
+            Int32 id;
+            String typ;
+            Boolean busyboolean;
+            String description;
+            Int32 x;
+            Int32 y;
+
+            List<Backend.entities.Dragon> listDragon;
+
+			if (dataFromBuffer != null)
+			{
+				// Der übergebene String wird durch die Hilfsklasse "ParseDrawl" gesplittet.
+                matches = parsMatchCollection(dataFromBuffer);
+				// Die foreach-Schleife sorgt dafür das der Array Index für Index ausgelesen wird.
+				foreach (Match parMatch in matches)
+				{
+					if ((Regex.Match(parMatch.Value, Syntax.ID + Syntax.COLON_CHAR)).Success)
+					{
+						// Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+						id = parsToInt32(parMatch.Value);
+			//			Console.WriteLine("ID = " + id);
+
+					}
+					else if ((Regex.Match(parMatch.Value, Syntax.TYPE + Syntax.COLON_CHAR)).Success)
+					{
+						typ = Regex.Match(parMatch.Value, Syntax.STRING).Value;
+			//			Console.WriteLine("Typ = " + typ);
+					}
+					else if ((Regex.Match(parMatch.Value, Syntax.BUSY + Syntax.COLON_CHAR)).Success)
+					{
+						// Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+						busyboolean = parsToBoolean(parMatch.Value);
+		//				Console.WriteLine("Busy = " + busyboolean);
+
+					}
+					else if ((Regex.Match(parMatch.Value, Syntax.DESCRIPTION + Syntax.COLON_CHAR)).Success)
+					{
+						// Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+						description = parsToString(parMatch.Value);
+		//				Console.WriteLine("desc = " + description);
+
+					}
+					else if ((Regex.Match(parMatch.Value, Syntax.POS_X + Syntax.COLON_CHAR)).Success)
+					{
+						// Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+						x = parsToInt32(parMatch.Value);
+			//			Console.WriteLine("x = " + x);
+
+					}
+					else if ((Regex.Match(parMatch.Value, Syntax.POS_Y + Syntax.COLON_CHAR)).Success)
+					{
+						// Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+						y = parsToInt32(parMatch.Value);
+		//				Console.WriteLine("y = " + y);
+
+					}
+					else if ((Regex.Match(parMatch.Value, Syntax.END + Syntax.COLON_CHAR + Syntax.DRAGON)).Success)
+					{
+						// beendet die Schleife
+                        Backend.entities.Dragon d = new Backend.entities.Dragon(id, typ, busyboolean, description, x, y);
+                        listDragon.Add(d);
+                        break;
+
+					}
+				}
+		//		Console.WriteLine("-------------------------------------------------------------------------\r\n");
+
+				//Spieler raussuchen und Eigenschaften updaten.
+				//Überprüfung der Dragon ID ob bereits existent, falls nicht muss der Drache erstellt werden, ansonsten Drache updaten.
+			}
+            Console.WriteLine("Parsing Create Dragon ending\r\n");
+		}
 
         [ContractInvariantMethod]
         private void ObjectInvariant()
