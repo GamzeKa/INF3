@@ -8,5 +8,6 @@ namespace INF3.Backend
 {
     class Skirmish :Game
     {
+
     }
 }
