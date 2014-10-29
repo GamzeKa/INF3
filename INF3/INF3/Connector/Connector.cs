@@ -15,7 +15,7 @@ namespace INF3.Connector
         private Sender sender;
         private Receiver receive;
         private static Buffer buffer;
-        private static bool connected = true;
+        private static bool connected = false;
         private TClient client;
 
 
@@ -25,15 +25,18 @@ namespace INF3.Connector
             //the server needs an ip-adress and a port for the unique identification
             Contract.Requires(ip != null);
             Contract.Requires(port != 0);
+            Contract.Requires(connected == false);
 
             client = new TClient(ip,port);
             receive = new Receiver(client.getTClient());
             sender = new Sender(client.getTClient());
             buffer = new Buffer(15);
+            connected = true;
 
         }
         public void closeConnection()
         {
+            Contract.Requires(connected== true);
             //closing the Stream from client and break off the server-connection
             try
             {
@@ -54,6 +57,7 @@ namespace INF3.Connector
         {
             //here send a message to the Server with the Sender-class (sender.sendMessage(String))
             Contract.Requires(s!=null);
+            Contract.Requires(connected == true); 
 
             sender.sendMessage(s);
         }
@@ -78,6 +82,7 @@ namespace INF3.Connector
         {
             Contract.Requires(p1 != null);
             Contract.Requires(p2 != null);
+            Contract.Requires(connected == true);
             buffer.append(p2);
         }
 
