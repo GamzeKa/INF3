@@ -9,5 +9,6 @@ namespace INF3.enums
     {
         FIGHT,
         REST
+
     }
 }
