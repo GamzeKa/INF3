@@ -39,7 +39,6 @@ namespace INF3
             }
         }
 //---------------------------------------------------------
-
         public static String parsToString(String input)
         {
             return Regex.Match(input, Syntax.STRING).Value.Replace("\r", "");
@@ -97,7 +96,6 @@ namespace INF3
                         //Überprüfung ob es sich um ein "Update" handelt.
                         if ((Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.UPDATE)).Success)
                         {
-
                             //Player - Update
                             if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.PLAYER).Success)
                             {
@@ -162,7 +160,7 @@ namespace INF3
                         //Überprüfung ob es sich um eine "Map" handelt.
                         else if ((Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.MAP)).Success)
                         {
-                      
+                            
                         }
 
                         //Überprüfung ob es sich um eine "Message" handelt.
@@ -170,8 +168,6 @@ namespace INF3
                         {
                             
                         }
-
-
                         //Überprüfungen ob es sich um eine "ClientInfo" handelt.
 
                         //Time - Info
@@ -185,33 +181,27 @@ namespace INF3
                         {
                             
                         }
-
-
                         //YourID - Info
                         else if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.YOURID).Success)
                         {
                             
                         }
-
-
                         //Challenge - Info
                         else if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.CHALLENGE).Success)
                         {
                           
                         }
-
                         //Opponent - Info
                         else if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.OPPONENT).Success)
                         {
                            
                         }
-
                         //Überprüfungen ob es sich um einen "Type-Minigame" handelt.                   
 
                         //Dragonhunt
                         else if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.TYPE).Success)
                         {
-                            
+                                
                         }
                         //Staghunt
                         else if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.TYPE).Success)
