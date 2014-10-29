@@ -26,7 +26,7 @@ namespace INF3.Connector
             client = new TClient(ip,port);
             receiv = new Receiver(client.getTClient());
             sender = new Sender(client.getTClient());
-            buffer = new Buffer();
+            buffer = new Buffer(15);
 
         }
         public void closeConnection()

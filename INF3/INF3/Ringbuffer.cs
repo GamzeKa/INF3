@@ -68,7 +68,7 @@ namespace INF3
             }
         }
 
-        public String getMessage(int location) {
+        public String getMessage() {
             if (this.readPointer == null) {
                 throw new Exception("Feld leer");
             }
