@@ -5,7 +5,7 @@ namespace TestVersuch{
     [TestClass]
     public class TestBuffer{
         INF3.Buffer b = new INF3.Buffer();
-        INF3.Connector c = new INF3.Connector("192.168.178.1", 8080);
+        INF3.Connector c = new INF3.Connector();
 
         [TestMethod]
         public void BufferIsBufferEmpty()
@@ -38,6 +38,7 @@ namespace TestVersuch{
         {
             c.getBuffer();
             Assert.IsTrue(b.MessageComplete());
+
         }
 
     }

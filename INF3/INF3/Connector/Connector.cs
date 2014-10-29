@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace INF3
+namespace INF3.Connector
 {
     public class Connector
     {
@@ -14,7 +14,8 @@ namespace INF3
         private Receiver receiv;
         private Buffer buffer;
         private bool connected = false;
-       
+        private TClient client;
+
 
 
         public Connector(String ip, int port)
@@ -22,16 +23,36 @@ namespace INF3
             //Konstruktor, the server needs an ip-adress and a port for the unique identification
             Contract.Requires(ip != null);
             Contract.Requires(port != 0);
+            client = new TClient(ip,port);
+            receiv = new Receiver(client.getTClient());
+            sender = new Sender(client.getTClient());
+            buffer = new Buffer();
+
         }
         public void closeConnection()
         {
             //closing the Stream from client and break off the server-connection
+            try
+            {
+                // close the stream
+                client.getStream().Close();
+                // closes the server-connection 
+                client.Close();
+
+            }
+            catch (Exception g)
+            {
+                Console.WriteLine(g.Message);
+            }
         }
+
 
         public void sendMessageToServer(String s)
         {
             //here send a message to the Server with the Sender-class (sender.sendMessage(String))
             Contract.Requires(s!=null);
+
+            sender.sendMessage(s);
         }
 
         public Buffer getBuffer()
@@ -46,6 +67,7 @@ namespace INF3
         }
         public void connectToServer()
         {
+            
            
         }
 
