@@ -20,6 +20,7 @@ namespace INF3.Connector
 
 
 
+
         public Connector(String ip, Int32 port)
         {
             //the server needs an ip-adress and a port for the unique identification
