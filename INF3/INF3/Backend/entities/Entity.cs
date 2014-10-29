@@ -14,6 +14,7 @@ namespace INF3.Backend.entities
         private bool busy = false;
         private Position pos;
         private String type = "";
+        private String description = "";
         public Entity(int id, String type, int x, int y)
         {
             setID(id);
@@ -55,6 +56,16 @@ namespace INF3.Backend.entities
         public String getType()
         {
             return this.type;
+        }
+
+        public String getDescription()
+        {
+            return this.description;
+        }
+
+        protected void setDescription(String s)
+        {
+            this.description = s;
         }
 
         private void setPos(int x, int y)
