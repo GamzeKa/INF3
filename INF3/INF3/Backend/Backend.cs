@@ -9,20 +9,25 @@ namespace INF3.Backend
 {
     public class Backend
     {
-        
-        Buffer b;
-        Parser p;
-        Map.Map map;
-        INF3.Connector.Connector c = new INF3.Connector.Connector("192.168.178.1",8080);
 
-        private INF3.Backend.entities.EntityManager em= new INF3.Backend.entities.EntityManager();
+        private Buffer b;
+        private Parser p;
+        private Map.Map map;
+        private INF3.Connector.Connector c;
+        private INF3.Backend.entities.EntityManager em;
         
 
         private static Dragonfight dragonhunt; //Games
         private static Skirmish skirmish;
         private static Staghunt staghunt;
 
-        public Backend;
+        public Backend()
+        {
+            c = new INF3.Connector.Connector("192.168.178.1", 8080);
+            em = new INF3.Backend.entities.EntityManager();
+            b= new Buffer(15);
+        }
+
 
         //Parser
         public void showMessage() //show Message on GUI

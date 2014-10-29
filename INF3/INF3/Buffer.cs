@@ -9,7 +9,8 @@ namespace INF3
 {
     public class Buffer //is filled by the connector
     {
-        Ringbuffer buffer;
+        private Ringbuffer buffer;
+        private int messageCounter = 0;
        
 
         public Buffer(int größe) {

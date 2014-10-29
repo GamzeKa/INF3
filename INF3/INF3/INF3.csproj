@@ -45,17 +45,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Backend\Backend.cs" />
+    <Compile Include="Backend\Minigames\Dragonfight.cs" />
     <Compile Include="Backend\entities\Dragon.cs" />
     <Compile Include="Backend\entities\Entity.cs" />
     <Compile Include="Backend\entities\EntityManager.cs" />
-    <Compile Include="Connector\ConnectionManager.cs" />
+    <Compile Include="Backend\Minigames\Game.cs" />
+    <Compile Include="Backend\Minigames\Skirmish.cs" />
+    <Compile Include="Backend\Minigames\Staghunt.cs" />
     <Compile Include="enums\EnumDragonfight.cs" />
     <Compile Include="enums\EnumSkirmish.cs" />
     <Compile Include="enums\EnumStaghunt.cs" />
     <Compile Include="enums\Property.cs" />
     <Compile Include="Backend\Map\Map.cs" />
     <Compile Include="Backend\Map\MapCell.cs" />
-    <Compile Include="Backend\Map\MapManager.cs" />
     <Compile Include="Backend\entities\Player.cs" />
     <Compile Include="Backend\Position.cs" />
     <Compile Include="Buffer.cs" />
