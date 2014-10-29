@@ -14,7 +14,6 @@ namespace INF3
 
         public Buffer(int größe) {
             Contract.Requires(größe > 0);
-
             buffer = new Ringbuffer(größe);
         }
 
@@ -29,7 +28,7 @@ namespace INF3
         {
             Contract.Requires(buffer != null);
             String message="";
-            //Contract.Requires(MessageComplete() == true);
+            Contract.Requires(MessageComplete() == true);
             if (MessageComplete()) {
                 message = buffer.getMessage();
                 //send message to parser

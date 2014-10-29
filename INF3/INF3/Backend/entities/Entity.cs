@@ -7,7 +7,7 @@ using System.Diagnostics.Contracts;
 
 namespace INF3.Backend.entities
 {
-    public class Entity
+    public abstract class Entity
     {
 
         private int id;
