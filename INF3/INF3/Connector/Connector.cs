@@ -8,43 +8,54 @@ using System.Threading.Tasks;
 
 namespace INF3.Connector
 {
+
+    //class to apply sender and receiver
     public class Connector
     {
         private Sender sender;
-        private Receiver receive;
-        private static Buffer buffer;
-        private static bool connected = true;
+        private Receiver receiv;
+        private Buffer buffer;
+        private bool connected = false;
         private TClient client;
 
        
 
-        public Connector(String ip, int port)
+
+
+        public Connector(String ip, Int32 port)
         {
-            //Konstruktor, the server needs an ip-adress and a port for the unique identification
+            //the server needs an ip-adress and a port for the unique identification
             Contract.Requires(ip != null);
             Contract.Requires(port != 0);
+
             client = new TClient(ip,port);
-            receive = new Receiver(client.getTClient());
+            receiv = new Receiver(client.getTClient());
             sender = new Sender(client.getTClient());
-            buffer = new Buffer();
+            buffer = new Buffer(15);
 
         }
         public void closeConnection()
         {
             //closing the Stream from client and break off the server-connection
-        }
+            try
+            {
+                client.getStream().Close();
+                client.Close();
+            }
             catch (Exception e)
             {
+
                 Console.WriteLine(e);
             }
-        }
 
+        }
 
         public void sendMessageToServer(String s)
         {
             //here send a message to the Server with the Sender-class (sender.sendMessage(String))
 
             Contract.Requires(s!=null);
+            sender.sendMessage(s);
         }
 
         public Buffer getBuffer()
@@ -59,7 +70,6 @@ namespace INF3.Connector
         }
         public void connectToServer()
         {
-           
            
         }
 
@@ -79,7 +89,7 @@ namespace INF3.Connector
         private void ObjectInvariant()
         {
             Contract.Invariant(sender != null);
-            Contract.Invariant(receive != null);
+            Contract.Invariant(receiv != null);
             Contract.Invariant(buffer != null);
         }
     }
