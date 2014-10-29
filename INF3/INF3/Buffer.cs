@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 
 namespace INF3
 {
-    public class Buffer //is filed by the connector
+    public class Buffer //is filled by the connector
     {
         Ringbuffer buffer;
        
 
         public Buffer(int größe) {
+            Contract.Requires(größe > 0);
+
             buffer = new Ringbuffer(größe);
         }
 
@@ -25,10 +27,12 @@ namespace INF3
 
         public String giveParser()
         {
+            Contract.Requires(buffer != null);
             String message="";
+            //Contract.Requires(MessageComplete() == true);
             if (MessageComplete()) {
                 message = buffer.getMessage();
-                //message Parser ünergben 
+                //send message to parser
 
             }
             return message; //if the buffer is full or a message is finished reading, content is give to the parser
@@ -58,7 +62,6 @@ namespace INF3
         [ContractInvariantMethod]
         private void ObjectInvariant()
         {
-           
         }
     }
 }
