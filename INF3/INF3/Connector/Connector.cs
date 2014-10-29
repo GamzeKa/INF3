@@ -33,12 +33,23 @@ namespace INF3.Connector
         public void closeConnection()
         {
             //closing the Stream from client and break off the server-connection
+            try
+            {
+                client.getStream().Close();
+                client.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         public void sendMessageToServer(String s)
         {
             //here send a message to the Server with the Sender-class (sender.sendMessage(String))
+
             Contract.Requires(s!=null);
+            sender.sendMessage(s);
         }
 
         public Buffer getBuffer()
