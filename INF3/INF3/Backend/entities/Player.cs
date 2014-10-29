@@ -15,7 +15,7 @@ namespace INF3.Backend.entities
        private bool DragonDecision = false;
 
        public Player(int id, String type, Boolean busy, String desc, int positionX, int positionY, int points)
-           : base(id, type, positionX, positionY)
+           : base(id, type, new)
        {
 
            setPoints(points);
