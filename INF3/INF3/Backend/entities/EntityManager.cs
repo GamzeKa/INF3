@@ -33,7 +33,7 @@ namespace INF3.Backend.entities
 
         public void updatePlayer(Player player, Position pos)
         {
-            if (p == null)
+            if (player == null)
             {
                 throw new ArgumentNullException("Kein Spieler zum updaten vorhanden.");
             }
