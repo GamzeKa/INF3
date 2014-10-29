@@ -15,7 +15,7 @@ namespace INF3.Backend
         Map.Map map;
         Connector c = new Connector("192.168.178.1",8080);
 
-        public Backend
+        public Backend;
 
         //Parser
         public void showMessage() //show Message on GUI
