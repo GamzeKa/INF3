@@ -40,8 +40,10 @@ namespace INF3.Connector
             }
             catch (Exception e)
             {
+
                 Console.WriteLine(e);
             }
+
         }
 
         public void sendMessageToServer(String s)
