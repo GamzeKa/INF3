@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using INF3.Connector;
+using INF3.Backend.entities;
 using System.Diagnostics.Contracts;
 
 namespace INF3.Backend
@@ -13,8 +15,8 @@ namespace INF3.Backend
         private Buffer b;
         private Parser p;
         private Map.Map map;
-        private INF3.Connector.Connector c;
-        private INF3.Backend.entities.EntityManager em;
+        private Connector.Connector c;
+        private EntityManager em;
         
 
         private static Dragonfight dragonhunt; //Games
@@ -42,7 +44,7 @@ namespace INF3.Backend
         }
         public Map.Map getMap()
         {
-            Contract.Ensures(this.map.GetType() == typeof(Map));
+            Contract.Ensures(this.map.GetType() == typeof(Map.Map));
             return map;
         }
 
@@ -58,9 +60,9 @@ namespace INF3.Backend
             c.sendMessageToServer(value);
         }
 
-        public INF3.Connector.ConnectorConnector getConnector()
+        public Connector.Connector getConnector()
         {
-            Contract.Ensures(this.c.GetType() == typeof(INF3.Connector.ConnectorConnector));
+            Contract.Ensures(this.c.GetType() == typeof(Connector.Connector));
             return c;
         }
 
