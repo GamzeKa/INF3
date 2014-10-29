@@ -13,7 +13,10 @@ namespace INF3.Backend
         Buffer b;
         Parser p;
         Map.Map map;
-        Connector c = new Connector("192.168.178.1",8080);
+        INF3.Connector.Connector c = new INF3.Connector.Connector("192.168.178.1",8080);
+
+        private INF3.Backend.entities.EntityManager em= new INF3.Backend.entities.EntityManager();
+        
 
         private static Dragonfight dragonhunt; //Games
         private static Skirmish skirmish;
@@ -50,9 +53,9 @@ namespace INF3.Backend
             c.sendMessageToServer(value);
         }
 
-        public Connector getConnector()
+        public INF3.Connector.ConnectorConnector getConnector()
         {
-            Contract.Ensures(this.c.GetType() == typeof(Connector));
+            Contract.Ensures(this.c.GetType() == typeof(INF3.Connector.ConnectorConnector));
             return c;
         }
 
@@ -91,51 +94,45 @@ namespace INF3.Backend
 
         }
 
-        public void storePlayer(Player p)
+        public void storePlayer(INF3.Backend.entities.Player p)
         {
-            Contract.Requires(p.GetType() == typeof(Player));
-            players.Add(p);
-            Contract.Ensures(players.Count > 0);
+            em.storePlayer(p);
         }
 
-        public void deletePlayer(Player p)
+        public void deletePlayer(INF3.Backend.entities.Player p)
         {
-            Contract.Requires(p.GetType() == typeof(Player));
-            players.Remove(p);
+            em.deletePlayer(p);
         }
 
         public int getPlayerAmount()
         {
-            return players.Count;
+            return em.getPlayerAmount();
         }
 
-        public void updatePlayer(Player player, Position pos)
+        public void updatePlayer(INF3.Backend.entities.Player player, Position pos)
         {
-            
+            em.updatePlayer(player, pos);
         }
 
         //Dragons
-        public void storeDragon(Dragon d)
+        public void storeDragon(INF3.Backend.entities.Dragon d)
         {
-            Contract.Requires(d.GetType() == typeof(Dragon));
-            dragons.Add(d);
-            Contract.Ensures(dragons.Count > 0);
+            em.storeDragon(d);
         }
 
-        public void deleteDragon(Dragon d)
+        public void deleteDragon(INF3.Backend.entities.Dragon d)
         {
-            Contract.Requires(d.GetType() == typeof(Dragon));
-            dragons.Remove(d);
+            em.deleteDragon(d);
         }
 
         public int getDragonAmount()
         {
-            return dragons.Count;
+            return em.getDragonAmount();
         }
 
-        public void updateDragon(Dragon d, Position pos)
+        public void updateDragon(INF3.Backend.entities.Dragon d, Position pos)
         {
-
+            em.updateDragon(d,pos);
         }
 
         [ContractInvariantMethod]
