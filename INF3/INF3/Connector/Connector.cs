@@ -27,7 +27,7 @@ namespace INF3.Connector
             Contract.Requires(port != 0);
             Contract.Requires(connected == false);
 
-            client = new TClient(ip,port);
+            client = new TClient(ip, port);
             receive = new Receiver(client.getTClient());
             sender = new Sender(client.getTClient());
             buffer = new Buffer(15);

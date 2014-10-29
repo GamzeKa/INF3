@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,7 +33,7 @@ namespace INF3.Backend.entities
 
         public void updatePlayer(Player player, Position pos)
         {
-            if (p == null)
+            if (player == null)
             {
                 throw new ArgumentNullException("Kein Spieler zum updaten vorhanden.");
             }
