@@ -9,7 +9,13 @@ namespace INF3
 {
     public class Buffer //is filed by the connector
     {
-        Ringbuffer buffer = new Ringbuffer(15);
+        Ringbuffer buffer;
+       
+
+        public Buffer(int größe) {
+            buffer = new Ringbuffer(größe);
+        }
+
         public void append(String s)
         {
             //add a new message to the Buffer
@@ -19,7 +25,13 @@ namespace INF3
 
         public String giveParser()
         {
-            return ""; //if the buffer is full or a message is finished reading, content is give to the parser
+            String message="";
+            if (MessageComplete()) {
+                message = buffer.getMessage();
+                //message Parser ünergben 
+
+            }
+            return message; //if the buffer is full or a message is finished reading, content is give to the parser
         }
 
         public bool isBufferFull()
@@ -39,8 +51,9 @@ namespace INF3
         }
 
         public String getMessage() {
-            return "";
+            return buffer.getMessage(); 
         }
+
 
         [ContractInvariantMethod]
         private void ObjectInvariant()

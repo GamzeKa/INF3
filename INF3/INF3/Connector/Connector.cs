@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace INF3.Connector
 {
+
+    //class to apply sender and receiver
     public class Connector
     {
         private Sender sender;
@@ -19,15 +21,16 @@ namespace INF3.Connector
        
 
 
-        public Connector(String ip, int port)
+        public Connector(String ip, Int32 port)
         {
-            //Konstruktor, the server needs an ip-adress and a port for the unique identification
+            //the server needs an ip-adress and a port for the unique identification
             Contract.Requires(ip != null);
             Contract.Requires(port != 0);
+
             client = new TClient(ip,port);
             receiv = new Receiver(client.getTClient());
             sender = new Sender(client.getTClient());
-            buffer = new Buffer();
+            buffer = new Buffer(15);
 
         }
         public void closeConnection()
