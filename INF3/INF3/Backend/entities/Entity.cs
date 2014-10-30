@@ -15,7 +15,7 @@ namespace INF3.Backend.entities
         private Position pos;
         private String type = "";
         private String description = "";
-        private int ichBinderCommitTestVonChris;
+        // private int ichBinderCommitTestVonChris;
         
         public Entity(int id, String type,INF3.Backend.Position pos)
         {
