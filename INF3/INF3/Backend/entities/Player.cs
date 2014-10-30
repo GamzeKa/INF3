@@ -11,21 +11,18 @@ namespace INF3.Backend.entities
 {
    public  class Player:Entity
     {
-       private int points=0;
-       private Staghunt 
-      
-       
+       private int points=0;       
 
-       public Player(int id, String type, Boolean busy, String desc, int positionX, int positionY, int points)
+       public Player(int id, String type, Boolean busy, String des, int positionX, int positionY, int points)
            : base(id, type, new Position(positionX,positionY))
        {
 
            setPoints(points);
            setBusy(busy);
-           setDescription(desc);
+           setDescription(des);
 
        }
-
+       /*
        public bool getStaghuntDecision()
        {
            Contract.Requires(StaghuntDecision.GetType() == typeof(bool));
@@ -57,7 +54,7 @@ namespace INF3.Backend.entities
            Contract.Requires(skirmish.GetType() == typeof(EnumSkirmish);
            this.skirmish = skirmish;
            Contract.Ensures(StaghuntDecision == d);
-       }
+       }*/ //should be answerd by opponent
        public int getPoints()
        {
            Contract.Ensures(points >= 0);

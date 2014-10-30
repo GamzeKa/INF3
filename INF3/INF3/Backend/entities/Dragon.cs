@@ -9,11 +9,11 @@ namespace INF3.Backend.entities
 {
     public class Dragon:Entity
     {
-        public Dragon(int id, String type, Boolean busy, String desc, int positionX, int positionY)
+        public Dragon(int id, String type, Boolean busy, String des, int positionX, int positionY)
             : base(id, type, new Position(positionX, positionY))
         {
             setBusy(busy);
-            setDescription(desc);
+            setDescription(des);
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace INF3.Backend
 {
-    public abstract class Game
+    public abstract class Skirmish
     {
         private int id;
         private bool excepted;
