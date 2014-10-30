@@ -5,15 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using INF3.Backend;
 
 namespace INF3
 {
     public class Parser
     {
         Buffer buffer;
-        Backend.Backend backend;
+        Backend backend;
 
-        public Parser(Buffer buffer,Backend.Backend backend)
+        public Parser(Buffer buffer,Backend backend)
         {
             Contract.Requires(buffer != null);
             Contract.Requires(backend != null);
