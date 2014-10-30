@@ -96,7 +96,7 @@ namespace INF3
                 
                 try
                 {
-                         //schaut ersteinmal um was es sich handelt wenns ein update ist
+                       
                         
                         //Check is this a update
                         if ((Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.UPDATE)).Success)
@@ -139,28 +139,28 @@ namespace INF3
 
                         }
 
-                        //Empfängt wenn "Entities" gesendet werden.
+                        //recieves entities
                         else if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.ENTITIES).Success &&
                             !(Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.UPDATE)).Success)
                         {
                             this.EntityList(dataFromBuffer);
                         }
 
-                        //Empfängt wenn "Players" gesendet werden.
+                        //recieves players
                         else if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.PLAYERS).Success &&
                             !(Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.UPDATE)).Success)
                         {
                             this.creatPlayers(dataFromBuffer);
                         }
 
-                        //recieves is a player
+                        //recieves a player
                         else if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.PLAYER).Success &&
                             !(Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.UPDATE)).Success)
                         {
                             this.creatPlayer(dataFromBuffer);
                         }
 
-                        //recieves is a dragon
+                        //recieves a dragon
                         else if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.DRAGON).Success &&
                             !(Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.UPDATE)).Success)
                         {
