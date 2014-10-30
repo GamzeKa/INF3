@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics.Contracts;
+using INF3.Backend;
 
 namespace INF3.Backend.entities
 {
@@ -15,9 +16,9 @@ namespace INF3.Backend.entities
         private Position pos;
         private String type = "";
         private String description = "";
-        private int ichBinderCommitTestVonChris;
+        // private int ichBinderCommitTestVonChris;
         
-        public Entity(int id, String type,INF3.Backend.Position pos)
+        public Entity(int id, String type,Position pos)
         {
             setID(id);
             setType(type);

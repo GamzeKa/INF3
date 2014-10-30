@@ -32,7 +32,7 @@ namespace INF3.Backend
 
 
         //Parser
-        public void showMessage() //show Message on GUI
+        public void setMessage(String message)
         {
             
         }
@@ -48,7 +48,7 @@ namespace INF3.Backend
             return map;
         }
 
-        public void updateCell()
+        public void updateCell(Int32 row, Int32 col, List<enums.Property> property)
         {
 
         }
@@ -66,37 +66,37 @@ namespace INF3.Backend
             return c;
         }
 
-        public void receiveTime()
+        public void receiveTime(long time)
         {
 
         }
 
-        public void onlineInfo()
+        public void onlineInfo(Int32 online)
         {
 
         }
 
-        public void yourID()
+        public void yourID(Int32 yourid)
         {
 
         }
 
-        public void challangeInfo()
+        public void setChallange(INF3.Backend.Minigames.Game minigame)
         {
 
         }
 
-        public void opponentInfo()
+        public void setOpponent(Opponent o)
         {
 
         }
 
-        public void serverAnswer()
+        public void serverAnswer(String answer)
         {
 
         }
 
-        public void gameInfo()
+        public void setResult(Int32 round, Boolean running,Int32 delay)
         {
 
         }
@@ -106,9 +106,9 @@ namespace INF3.Backend
             em.storePlayer(p);
         }
 
-        public void deletePlayer(INF3.Backend.entities.Player p)
+        public void deletePlayer(Int32 idDragon, String typ)
         {
-            em.deletePlayer(p);
+            //em.deletePlayer();
         }
 
         public int getPlayerAmount()
@@ -116,9 +116,9 @@ namespace INF3.Backend
             return em.getPlayerAmount();
         }
 
-        public void updatePlayer(INF3.Backend.entities.Player player, Position pos)
+        public void updatePlayer(Int32 id, String typ, Boolean busyboolean, String description, Int32 x, Int32 y,Int32 points)
         {
-            em.updatePlayer(player, pos);
+            //em.updatePlayer(player, pos);
         }
 
         //Dragons
@@ -127,9 +127,9 @@ namespace INF3.Backend
             em.storeDragon(d);
         }
 
-        public void deleteDragon(INF3.Backend.entities.Dragon d)
+        public void deleteDragon(Int32 idDragon, String typ)
         {
-            em.deleteDragon(d);
+            //em.deleteDragon();
         }
 
         public int getDragonAmount()
@@ -137,9 +137,9 @@ namespace INF3.Backend
             return em.getDragonAmount();
         }
 
-        public void updateDragon(INF3.Backend.entities.Dragon d, Position pos)
+        public void updateDragon(Int32 id,String typ,Boolean busyboolean,String description,Int32 x,Int32 y)
         {
-            em.updateDragon(d,pos);
+            //em.updateDragon(d,pos);
         }
 
         [ContractInvariantMethod]

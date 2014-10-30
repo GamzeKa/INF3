@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace INF3.Backend.Minigames
+namespace INF3.Backend
 {
     public abstract class Game
     {
