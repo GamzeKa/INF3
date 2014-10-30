@@ -5,11 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics.Contracts;
 
+using INF3.enums;
+   
 namespace INF3.Backend.entities
 {
    public  class Player:Entity
     {
        private int points=0;
+       private Staghunt 
+      
        
 
        public Player(int id, String type, Boolean busy, String desc, int positionX, int positionY, int points)
@@ -48,10 +52,10 @@ namespace INF3.Backend.entities
            Contract.Requires(SkirmishDecision.GetType() == typeof(bool));
            return true;
        }
-       public void setSkirmishDecision(bool d)//enum statt bool werten!
+       public void setSkirmishDecision(EnumSkirmish skirmish)//enum statt bool werten!
        {
-           Contract.Requires(d.GetType() == typeof(bool));
-           this.StaghuntDecision = d;
+           Contract.Requires(skirmish.GetType() == typeof(EnumSkirmish);
+           this.skirmish = skirmish;
            Contract.Ensures(StaghuntDecision == d);
        }
        public int getPoints()
