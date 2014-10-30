@@ -12,3 +12,4 @@ namespace INF3.enums
         BUNNY
     }
 }
+
