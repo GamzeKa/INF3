@@ -95,7 +95,9 @@ namespace INF3
                 
                 try
                 {
-                        //Überprüfung ob es sich um ein "Update" handelt.
+                         //schaut ersteinmal um was es sich handelt wenns ein update ist
+                        
+                        //Check is this a update
                         if ((Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.UPDATE)).Success)
                         {
                             //Player - Update
@@ -117,6 +119,7 @@ namespace INF3
                             }
 
                         }
+                            // kein update sondern ums löschen geht
                         else if ((Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.DELETE)).Success)
                         {
 
@@ -156,25 +159,25 @@ namespace INF3
                             this.creatPlayer(dataFromBuffer);
                         }
 
-                        //Empfängt wenn nur ein "Dragon" gesendet wird.
+                        //recieves is a dragon
                         else if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.DRAGON).Success &&
                             !(Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.UPDATE)).Success)
                         {
                             this.creatDragon(dataFromBuffer);
                         }
 
-                        //Überprüfung ob es sich um eine "Map" handelt.
+                        //check if this is an map
                         else if ((Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.MAP)).Success)
                         {
                             this.createMap(dataFromBuffer);
                         }
 
-                        //Überprüfung ob es sich um eine "Message" handelt.
+                        //check if this is a message
                         else if ((Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.MESSAGE)).Success)
                         {
                             this.createMessage(dataFromBuffer);
                         }
-                        //Überprüfungen ob es sich um eine "ClientInfo" handelt.
+                        
 
                         //Time - Info
                         else if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.TIME).Success)
@@ -258,50 +261,44 @@ namespace INF3
 
             if (dataFromBuffer != null)
             {
-                matches = parsMatchCollection(dataFromBuffer); // Der übergebene String wird gesplittet
+                matches = parsMatchCollection(dataFromBuffer); 
 
 
-                foreach (Match parMatch in matches) // Foreach schleife sorgt dafür das einfach die array index für index duch gelesen wird
+                foreach (Match parMatch in matches) 
                 {
                     if ((Regex.Match(parMatch.Value, Syntax.ID + Syntax.COLON_CHAR)).Success)
                     {
-                        id = parsToInt32(parMatch.Value); // Hilfs klasse ParseDrawl wandelt die Strem in denn gewünschten wert um
-                        //                     Console.WriteLine("ID = " + id);
+                        id = parsToInt32(parMatch.Value); 
 
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.TYPE + Syntax.COLON_CHAR)).Success)
                     {
-                        typ = Regex.Match(parMatch.Value, Syntax.STRING).Value; // Hilfs klasse ParseDrawl wandelt die Strem in denn gewünschten wert um
-                        //                       Console.WriteLine("Typ = " + typ);
+                        typ = Regex.Match(parMatch.Value, Syntax.STRING).Value; 
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.BUSY + Syntax.COLON_CHAR)).Success)
                     {
-                        busyboolean = parsToBoolean(parMatch.Value); // Hilfs klasse ParseDrawl wandelt die Strem in denn gewünschten wert um
-                        //                      Console.WriteLine("Busy = " + busyboolean);
+                        busyboolean = parsToBoolean(parMatch.Value); 
 
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.DESCRIPTION + Syntax.COLON_CHAR)).Success)
                     {
-                        description = parsToString(parMatch.Value); // Hilfs klasse ParseDrawl wandelt die Strem in denn gewünschten wert um
-                        //                       Console.WriteLine("desc = " + description);
+                        description = parsToString(parMatch.Value); 
 
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.POS_X + Syntax.COLON_CHAR)).Success)
                     {
-                        x = parsToInt32(parMatch.Value); // Hilfs klasse ParseDrawl wandelt die Strem in denn gewünschten wert um
-                        //                       Console.WriteLine("x = " + x);
+                        x = parsToInt32(parMatch.Value); 
 
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.POS_Y + Syntax.COLON_CHAR)).Success)
                     {
-                        y = parsToInt32(parMatch.Value); // Hilfs klasse ParseDrawl wandelt die Strem in denn gewünschten wert um
-                        //                       Console.WriteLine("y = " + y);
+                        y = parsToInt32(parMatch.Value); 
 
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.POINTS + Syntax.COLON_CHAR)).Success)
                     {
                         points = parsToInt32(parMatch.Value);
-                        //                       Console.WriteLine("points = " + points);
+                      
 
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.END + Syntax.COLON_CHAR + Syntax.UPDATE)).Success)
