@@ -10,6 +10,7 @@ namespace INF3.enums
     {
         STAG,
         BUNNY
+
     }
 }
 
