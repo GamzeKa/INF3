@@ -152,7 +152,7 @@ namespace INF3
                             this.creatPlayers(dataFromBuffer);
                         }
 
-                        //Empfängt wenn nur ein "Player" gesendet wird.
+                        //recieves is a player
                         else if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.PLAYER).Success &&
                             !(Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.UPDATE)).Success)
                         {
