@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
+
 namespace INF3
 {
     public class Parser
@@ -13,7 +14,7 @@ namespace INF3
         Buffer buffer;
         Backend.Backend backend;
 
-        public Parser(Buffer buffer,Backend.Backend backend)
+        public Parser(Buffer buffer, Backend.Backend backend)
         {
             Contract.Requires(buffer != null);
             Contract.Requires(backend != null);
@@ -29,7 +30,7 @@ namespace INF3
                 this.backend=backend;
             }
             Contract.Assert(this.buffer != null);
-            Contract.Assert(this.buffer != null);
+            Contract.Assert(this.backend != null);
             while(true){
                 takeFromBuffer();
             }
@@ -326,42 +327,42 @@ namespace INF3
 
             if (dataFromBuffer != null)
             {
-                matches = parsMatchCollection(dataFromBuffer); // Der übergebene String wird duch die hilfs klasse ParseDrawl gesplittet
+                matches = parsMatchCollection(dataFromBuffer); 
 
                 foreach (Match parMatch in matches) // Foreach schleife sorgt dafür das einfach die array index für index duch gelesen wird
                 {
                     if ((Regex.Match(parMatch.Value, Syntax.ID + Syntax.COLON_CHAR)).Success)
                     {
-                        id = parsToInt32(parMatch.Value); // Hilfs klasse ParseDrawl wandelt die Strem in denn gewünschten wert um
+                        id = parsToInt32(parMatch.Value); 
                         //                        Console.WriteLine("ID = " + id);
 
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.TYPE + Syntax.COLON_CHAR)).Success)
                     {
-                        typ = Regex.Match(parMatch.Value, Syntax.STRING).Value; // Hilfs klasse ParseDrawl wandelt die Strem in denn gewünschten wert um
+                        typ = Regex.Match(parMatch.Value, Syntax.STRING).Value; 
                         //                        Console.WriteLine("Typ = " + typ);
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.BUSY + Syntax.COLON_CHAR)).Success)
                     {
-                        busyboolean = parsToBoolean(parMatch.Value); // Hilfs klasse ParseDrawl wandelt die Strem in denn gewünschten wert um
+                        busyboolean = parsToBoolean(parMatch.Value); 
                         //                      Console.WriteLine("Busy = " + busyboolean);
 
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.DESCRIPTION + Syntax.COLON_CHAR)).Success)
                     {
-                        description = parsToString(parMatch.Value); // Hilfs klasse ParseDrawl wandelt die Strem in denn gewünschten wert um
+                        description = parsToString(parMatch.Value); 
                         //                    Console.WriteLine("desc = " + description);
 
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.POS_X + Syntax.COLON_CHAR)).Success)
                     {
-                        x = parsToInt32(parMatch.Value); // Hilfs klasse ParseDrawl wandelt die Strem in denn gewünschten wert um
+                        x = parsToInt32(parMatch.Value); 
                         //                   Console.WriteLine("x = " + x);
 
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.POS_Y + Syntax.COLON_CHAR)).Success)
                     {
-                        y = parsToInt32(parMatch.Value); // Hilfs klasse ParseDrawl wandelt die Strem in denn gewünschten wert um
+                        y = parsToInt32(parMatch.Value); 
                         //                     Console.WriteLine("y = " + y);
 
                     }
@@ -520,7 +521,7 @@ namespace INF3
             if (dataFromBuffer != null)
             {
 
-                // Der übergebene String wird durch die Hilfsklasse "ParseDrawl" gesplittet.
+                
                 String[] matchPlayer = parsMatchPlayer(dataFromBuffer);
 
                 foreach (String parMatch in matchPlayer)
@@ -572,48 +573,48 @@ namespace INF3
                 {
                     if ((Regex.Match(parMatch.Value, Syntax.ID + Syntax.COLON_CHAR)).Success)
                     {
-                        // Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+                        
                         id = parsToInt32(parMatch.Value);
                         //			Console.WriteLine("ID = " + id);
 
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.TYPE + Syntax.COLON_CHAR)).Success)
                     {
-                        // Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+                        
                         typ = Regex.Match(parMatch.Value, Syntax.STRING).Value;
                         //				Console.WriteLine("Typ = " + typ);
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.BUSY + Syntax.COLON_CHAR)).Success)
                     {
-                        // Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+                        
                         busyboolean = parsToBoolean(parMatch.Value);
                         //				Console.WriteLine("Busy = " + busyboolean);
 
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.DESCRIPTION + Syntax.COLON_CHAR)).Success)
                     {
-                        // Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+                        
                         description = parsToString(parMatch.Value);
                         //			Console.WriteLine("desc = " + description);
 
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.POS_X + Syntax.COLON_CHAR)).Success)
                     {
-                        // Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+                        
                         x = parsToInt32(parMatch.Value);
                         //		Console.WriteLine("x = " + x);
 
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.POS_Y + Syntax.COLON_CHAR)).Success)
                     {
-                        // Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+                        
                         y = parsToInt32(parMatch.Value);
                         //				Console.WriteLine("y = " + y);
 
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.POINTS + Syntax.COLON_CHAR)).Success)
                     {
-                        // Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+                        
                         points = parsToInt32(parMatch.Value);
                         //			Console.WriteLine("points = " + points);
 
@@ -636,7 +637,7 @@ namespace INF3
             if (dataFromBuffer != null)
             {
                 //			Console.WriteLine("--------------------------Parsing Players--------------------------------");
-                // Der übergebene String wird durch die Hilfsklasse "ParseDrawl" gesplittet.
+                
                 matches = parsMatchCollection(dataFromBuffer);
 
                 // Die foreach-Schleife sorgt dafür das der Array Index für Index ausgelesen wird.
@@ -661,14 +662,14 @@ namespace INF3
 
 			if (dataFromBuffer != null)
 			{
-				// Der übergebene String wird durch die Hilfsklasse "ParseDrawl" gesplittet.
+				
                 matches = parsMatchCollection(dataFromBuffer);
 				// Die foreach-Schleife sorgt dafür das der Array Index für Index ausgelesen wird.
 				foreach (Match parMatch in matches)
 				{
 					if ((Regex.Match(parMatch.Value, Syntax.ID + Syntax.COLON_CHAR)).Success)
 					{
-						// Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+						
 						id = parsToInt32(parMatch.Value);
 			//			Console.WriteLine("ID = " + id);
 
@@ -680,28 +681,28 @@ namespace INF3
 					}
 					else if ((Regex.Match(parMatch.Value, Syntax.BUSY + Syntax.COLON_CHAR)).Success)
 					{
-						// Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+						
 						busyboolean = parsToBoolean(parMatch.Value);
 		//				Console.WriteLine("Busy = " + busyboolean);
 
 					}
 					else if ((Regex.Match(parMatch.Value, Syntax.DESCRIPTION + Syntax.COLON_CHAR)).Success)
 					{
-						// Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+						
 						description = parsToString(parMatch.Value);
 		//				Console.WriteLine("desc = " + description);
 
 					}
 					else if ((Regex.Match(parMatch.Value, Syntax.POS_X + Syntax.COLON_CHAR)).Success)
 					{
-						// Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+						
 						x = parsToInt32(parMatch.Value);
 			//			Console.WriteLine("x = " + x);
 
 					}
 					else if ((Regex.Match(parMatch.Value, Syntax.POS_Y + Syntax.COLON_CHAR)).Success)
 					{
-						// Hilfsklasse "ParseDrawl" wandelt den Stream in den gewünschten Wert um.
+						
 						y = parsToInt32(parMatch.Value);
 		//				Console.WriteLine("y = " + y);
 

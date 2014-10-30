@@ -43,6 +43,7 @@ namespace INF3.Backend
             return "X: " + this.getX() + " Y: " + this.getY();
         }
 
+
         [ContractInvariantMethod]
         private void ObjectInvariant()
         {
