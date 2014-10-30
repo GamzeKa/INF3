@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Backend\Backend.cs" />
+    <Compile Include="Backend\entities\Me.cs" />
     <Compile Include="Backend\Minigames\Dragonfight.cs" />
     <Compile Include="Backend\entities\Dragon.cs" />
     <Compile Include="Backend\entities\Entity.cs" />

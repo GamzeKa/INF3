@@ -9,16 +9,14 @@ namespace INF3.Backend.Minigames
     public class Opponent
     {
         private int id;
-        private Enum desc;
+        private Enum descision;
         private int points;
         private int total;
 
-        public Opponent(int id, String desc, int points, int total)
+        public Opponent(int id, String des, int points, int total)
         {
             this.id = id;
-
-            // decission of decission
-
+            //this.descision=des;
             this.points = points;
             this.total = total;
         }
@@ -40,7 +38,7 @@ namespace INF3.Backend.Minigames
 
         public Enum getDecision()
         {
-            return desc;
+            return this.descision;
         }
 
 

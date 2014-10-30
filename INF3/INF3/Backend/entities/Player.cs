@@ -54,7 +54,7 @@ namespace INF3.Backend.entities
            Contract.Requires(skirmish.GetType() == typeof(EnumSkirmish);
            this.skirmish = skirmish;
            Contract.Ensures(StaghuntDecision == d);
-       }*/ //should be answerd by opponent
+       }*/ //should be answerd by Game
        public int getPoints()
        {
            Contract.Ensures(points >= 0);
@@ -71,6 +71,11 @@ namespace INF3.Backend.entities
            Contract.Requires(p >= 0);
            this.points = this.points+p;
            Contract.Ensures(this.points == (this.points+p));
+       }
+
+       public override string ToString()
+       {
+           return "Player Id:" + this.getID() + " Points:" + this.getPoints() + " Pos:" + this.getPos().ToString();
        }
 
        [ContractInvariantMethod]

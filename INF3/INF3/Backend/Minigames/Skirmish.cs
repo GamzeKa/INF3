@@ -1,4 +1,6 @@
 ﻿using INF3.Backend.entities;
+using INF3.Backend.Minigames;
+using INF3.enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,19 +9,25 @@ using System.Threading.Tasks;
 
 namespace INF3.Backend
 {
-    public abstract class Skirmish
+    public class Skirmish : Game
     {
-        private int id;
-        private bool excepted;
-        private Player opponent;
+        private EnumSkirmish enumSkirmish;
 
-        public Game(int id, bool excepted, Player opponent)
+        public Skirmish(int id, bool accepted)
+            : base(id, accepted)
         {
-            this.id = id;
-            this.excepted = excepted;
-            this.opponent = opponent;
+            enumSkirmish = new EnumSkirmish();
 
+        }
 
+        public EnumSkirmish getEnum()
+        {
+            return enumSkirmish;
+        }
+
+        public void setEnum(String desc)
+        {
+            
         }
     }
 }
