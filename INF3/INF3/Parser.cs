@@ -29,6 +29,7 @@ namespace INF3
             {
                 this.backend=backend;
             }
+            //checks the conditions of buffer and backend
             Contract.Assert(this.buffer != null);
             Contract.Assert(this.backend != null);
             while(true){
@@ -40,10 +41,11 @@ namespace INF3
         {
             if (buffer!=null)
             {
-                determineParsMethod(buffer.giveParser());  
+                determineParsMethod(buffer.giveParser());  //takes the information from buffer with the giveparser() method
             }
         }
 //---------------------------------------------------------
+        //parsto-methods for the string input, to int32, bool, long etc..
         public static String parsToString(String input)
         {
             return Regex.Match(input, Syntax.STRING).Value.Replace("\r", "");
@@ -96,9 +98,9 @@ namespace INF3
                 
                 try
                 {
-                         //schaut ersteinmal um was es sich handelt wenns ein update ist
+         
                         
-                        //Check is this a update
+                        //Check if this is a update
                         if ((Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.UPDATE)).Success)
                         {
                             //Player - Update
@@ -120,7 +122,7 @@ namespace INF3
                             }
 
                         }
-                            // kein update sondern ums löschen geht
+                            //Check if this is a delete
                         else if ((Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.DELETE)).Success)
                         {
 
@@ -139,14 +141,14 @@ namespace INF3
 
                         }
 
-                        //Empfängt wenn "Entities" gesendet werden.
+                        //Check if this are entities
                         else if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.ENTITIES).Success &&
                             !(Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.UPDATE)).Success)
                         {
                             this.EntityList(dataFromBuffer);
                         }
 
-                        //Empfängt wenn "Players" gesendet werden.
+                        //Check if this are players
                         else if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.PLAYERS).Success &&
                             !(Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.UPDATE)).Success)
                         {
