@@ -18,3 +18,4 @@ namespace INF3.Backend.entities
         }
     }
 }
+
