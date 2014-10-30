@@ -14,6 +14,7 @@ namespace INF3.Backend.entities
         {
             setBusy(busy);
             setDescription(desc);
+
         }
     }
 }
