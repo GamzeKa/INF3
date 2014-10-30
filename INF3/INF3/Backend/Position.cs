@@ -38,6 +38,11 @@ namespace INF3.Backend
             Contract.Ensures(this.y == y);
         }
 
+        public override String ToString()
+        {
+            return "X: " + this.getX() + " Y: " + this.getY();
+        }
+
         [ContractInvariantMethod]
         private void ObjectInvariant()
         {

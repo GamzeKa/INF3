@@ -32,7 +32,7 @@ namespace INF3.Backend
 
 
         //Parser
-        public void showMessage() //show Message on GUI
+        public void setMessage(String message)
         {
             
         }
@@ -66,37 +66,37 @@ namespace INF3.Backend
             return c;
         }
 
-        public void receiveTime()
+        public void receiveTime(long time)
         {
 
         }
 
-        public void onlineInfo()
+        public void onlineInfo(Int32 online)
         {
 
         }
 
-        public void yourID()
+        public void yourID(Int32 yourid)
         {
 
         }
 
-        public void challangeInfo()
+        public void setChallange(INF3.Backend.Minigames.Game minigame)
         {
 
         }
 
-        public void opponentInfo()
+        public void setOpponent(Opponent o)
         {
 
         }
 
-        public void serverAnswer()
+        public void serverAnswer(String answer)
         {
 
         }
 
-        public void gameInfo()
+        public void setResult(Int32 round, Boolean running,Int32 delay)
         {
 
         }

@@ -5,23 +5,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics.Contracts;
 
+using INF3.enums;
+   
 namespace INF3.Backend.entities
 {
    public  class Player:Entity
     {
-       private int points=0;
-       
+       private int points=0;       
 
-       public Player(int id, String type, Boolean busy, String desc, int positionX, int positionY, int points)
+       public Player(int id, String type, Boolean busy, String des, int positionX, int positionY, int points)
            : base(id, type, new Position(positionX,positionY))
        {
 
            setPoints(points);
            setBusy(busy);
-           setDescription(desc);
+           setDescription(des);
 
        }
-
+       /*
        public bool getStaghuntDecision()
        {
            Contract.Requires(StaghuntDecision.GetType() == typeof(bool));
@@ -48,12 +49,12 @@ namespace INF3.Backend.entities
            Contract.Requires(SkirmishDecision.GetType() == typeof(bool));
            return true;
        }
-       public void setSkirmishDecision(bool d)//enum statt bool werten!
+       public void setSkirmishDecision(EnumSkirmish skirmish)//enum statt bool werten!
        {
-           Contract.Requires(d.GetType() == typeof(bool));
-           this.StaghuntDecision = d;
+           Contract.Requires(skirmish.GetType() == typeof(EnumSkirmish);
+           this.skirmish = skirmish;
            Contract.Ensures(StaghuntDecision == d);
-       }
+       }*/ //should be answerd by Game
        public int getPoints()
        {
            Contract.Ensures(points >= 0);
@@ -70,6 +71,11 @@ namespace INF3.Backend.entities
            Contract.Requires(p >= 0);
            this.points = this.points+p;
            Contract.Ensures(this.points == (this.points+p));
+       }
+
+       public override string ToString()
+       {
+           return "Player Id:" + this.getID() + " Points:" + this.getPoints() + " Pos:" + this.getPos().ToString();
        }
 
        [ContractInvariantMethod]

@@ -15,8 +15,8 @@ namespace INF3.Backend.entities
         private bool busy = false;
         private Position pos;
         private String type = "";
-        private String description = "";
-        // private int ichBinderCommitTestVonChris;
+        private String description;
+ 
         
         public Entity(int id, String type,Position pos)
         {

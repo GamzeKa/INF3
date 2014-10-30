@@ -723,62 +723,65 @@ namespace INF3
 
         private void createResult(string dataFromBuffer)
         {
-            throw new NotImplementedException();
+            Int32 round=0;
+            Boolean running=false;
+            Int32 delay=0;
+
+            backend.setResult(round, running, delay);
         }
 
         private void createAnswer(string dataFromBuffer)
         {
-            throw new NotImplementedException();
-        }
-
-        private void createSkirmish(string dataFromBuffer)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void createStaghunt(string dataFromBuffer)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void createDragonFight(string dataFromBuffer)
-        {
-            throw new NotImplementedException();
+            String answer = null;
+            backend.serverAnswer(answer);
         }
 
         private void createOpponent(string dataFromBuffer)
         {
-            throw new NotImplementedException();
+            Backend.Opponent o=null;
+            backend.setOpponent(o);
         }
 
         private void createChallenge(string dataFromBuffer)
         {
-            throw new NotImplementedException();
+            Backend.Minigames.Game minigame = null;
+            backend.setChallange(minigame);
         }
 
         private void createYourID(string dataFromBuffer)
         {
-            throw new NotImplementedException();
+            Int32 yourid=0;
+            backend.yourID(yourid);
         }
 
         private void createOnlineInfo(string dataFromBuffer)
         {
-            throw new NotImplementedException();
+            Int32 online=0;
+            backend.onlineInfo(online);
         }
 
         private void createTimeInfo(string dataFromBuffer)
         {
-            throw new NotImplementedException();
+            long time=0;
+            backend.receiveTime(time);
         }
 
         private void createMessage(string dataFromBuffer)
         {
-            throw new NotImplementedException();
+            String message=null;
+            backend.setMessage(message);
         }
 
         private void createMap(string dataFromBuffer)
         {
-            throw new NotImplementedException();
+            Backend.Map.Map m=null;
+
+            backend.setMap(m);
+        }
+
+        public void createMapCell(String value)
+        { 
+        
         }
 
         [ContractInvariantMethod]
