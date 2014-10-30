@@ -98,9 +98,8 @@ namespace INF3
                 
                 try
                 {
-         
                         
-                        //Check if this is a update
+                        //Check if this is an update
                         if ((Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.UPDATE)).Success)
                         {
                             //Player - Update
@@ -141,35 +140,35 @@ namespace INF3
 
                         }
 
-                        //Check if this are entities
+                        //recieves entities
                         else if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.ENTITIES).Success &&
                             !(Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.UPDATE)).Success)
                         {
                             this.EntityList(dataFromBuffer);
                         }
 
-                        //Check if this are players
+                        //receives players
                         else if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.PLAYERS).Success &&
                             !(Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.UPDATE)).Success)
                         {
                             this.creatPlayers(dataFromBuffer);
                         }
 
-                        //recieves is a player
+                        //recieves a player
                         else if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.PLAYER).Success &&
                             !(Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.UPDATE)).Success)
                         {
                             this.creatPlayer(dataFromBuffer);
                         }
 
-                        //recieves is a dragon
+                        //recieves a dragon
                         else if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.DRAGON).Success &&
                             !(Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.UPDATE)).Success)
                         {
                             this.creatDragon(dataFromBuffer);
                         }
 
-                        //check if this is an map
+                        //check if this is a map
                         else if ((Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.MAP)).Success)
                         {
                             this.createMap(dataFromBuffer);
@@ -208,7 +207,7 @@ namespace INF3
                         {
                             this.createOpponent(dataFromBuffer);
                         }
-                        //Überprüfungen ob es sich um einen "Type-Minigame" handelt.                   
+                        //check if this is a type of a minigame                 
 
                         //Dragonhunt
                         else if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.TYPE).Success)
@@ -226,12 +225,12 @@ namespace INF3
                             createSkirmish(dataFromBuffer);
                         }
 
-                        //Überprüfung ob es sich um eine Antwort vom Server handelt.
+                        //Check if this is a answer from server
                         else if (Regex.Match(dataFromBuffer, Syntax.ANSWER + Syntax.COLON_CHAR).Success)
                         {
                             createAnswer(dataFromBuffer);
                         }
-                        //Überprüfung ob es sich um eine"GameInfo handelt.
+                        //Check if this is a game info
                         else if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.RESULT).Success)
                         {
                             createResult(dataFromBuffer);
@@ -250,7 +249,7 @@ namespace INF3
 
 // Update Methods---------------------------------------------------------------------------------------------------
 
-        public void updatePlayer(String dataFromBuffer)
+        public void updatePlayer(String dataFromBuffer) //update method for the player
         {
             MatchCollection matches = null;
             Int32 id=0;
@@ -304,19 +303,19 @@ namespace INF3
                       
 
                     }
-                    else if ((Regex.Match(parMatch.Value, Syntax.END + Syntax.COLON_CHAR + Syntax.UPDATE)).Success)
+                    else if ((Regex.Match(parMatch.Value, Syntax.END + Syntax.COLON_CHAR + Syntax.UPDATE)).Success) //end update information
                     {
                         player = new Backend.entities.Player(id, typ, busyboolean, description, x, y, points);
                         break;
                     }
-                    //Update Player
+                    //Updates Player
                     backend.updatePlayer(id, typ, busyboolean, description, x, y, points);
                 }
             }
             Console.WriteLine("Parsing Update Player ending\r\n");
         }
 
-        public void updateDragon(String dataFromBuffer)
+        public void updateDragon(String dataFromBuffer) //update method for the dragon
         {
             MatchCollection matches = null;
             Int32 id=0;
@@ -331,7 +330,7 @@ namespace INF3
             {
                 matches = parsMatchCollection(dataFromBuffer); 
 
-                foreach (Match parMatch in matches) // Foreach schleife sorgt dafür das einfach die array index für index duch gelesen wird
+                foreach (Match parMatch in matches) // Foreach searches for each parMatch in matches index to index
                 {
                     if ((Regex.Match(parMatch.Value, Syntax.ID + Syntax.COLON_CHAR)).Success)
                     {
@@ -370,20 +369,20 @@ namespace INF3
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.END + Syntax.COLON_CHAR + Syntax.UPDATE)).Success)
                     {
-                        // beendet die Schleife
+                        // ends foreach 
                         dragon = new Backend.entities.Dragon(id, typ, busyboolean, description, x, y);
 
                         break;
 
                     }
-                    //Update Dragon
+                    //Updates the Dragon
                     backend.updateDragon(id, typ, busyboolean, description, x, y);
                 }
             }
             Console.WriteLine("Parsing Update Dragon ending\r\n");
         }
 
-        public void updateMapCell(String dataFromBuffer)
+        public void updateMapCell(String dataFromBuffer) //update method for mapcell
         {
             MatchCollection matches = null;
             Backend.Map.MapCell cell=null;
@@ -395,7 +394,7 @@ namespace INF3
 
             if (dataFromBuffer != null)
             {
-                matches = parsMatchCollection(dataFromBuffer);
+                matches = parsMatchCollection(dataFromBuffer); //split method
 
                 foreach (Match parMatch in matches)
                 {
@@ -457,7 +456,7 @@ namespace INF3
                         break;
 
                     }
-                    //Update MapCell
+                    //Updates the MapCell
                     backend.updateCell(row, col, property);
                 }
             }
@@ -466,7 +465,7 @@ namespace INF3
 
 // Delete Methods---------------------------------------------------------------------------------------------------
 
-        public void deletePlayer(String dataFromBuffer)
+        public void deletePlayer(String dataFromBuffer)//delete method the player
         {
             MatchCollection matches = null;
             Int32 idPlayer=0;
@@ -492,7 +491,7 @@ namespace INF3
             Console.WriteLine("Parsing Delete Player ending\r\n");
         }
 
-        public void deleteDragon(String dataFromBuffer)
+        public void deleteDragon(String dataFromBuffer) //delete method for dragon
         {
             MatchCollection matches = null;
             Int32 idDragon=0;
@@ -518,7 +517,7 @@ namespace INF3
             Console.WriteLine("Parsing Delete Dragon ending\r\n");
         }
 
-        public void EntityList(String dataFromBuffer)
+        public void EntityList(String dataFromBuffer) //entities method for dragon and player
         {
             if (dataFromBuffer != null)
             {
@@ -552,7 +551,7 @@ namespace INF3
             }
         }
 
-        public void creatPlayer(String dataFromBuffer)
+        public void creatPlayer(String dataFromBuffer) //create method for the player
         {
             Int32 id=0;
             String typ=null;
@@ -569,8 +568,8 @@ namespace INF3
             {
                 matches = parsMatchCollection(dataFromBuffer);
 
-                // Die foreach-Schleife sorgt dafür das der Array Index für Index ausgelesen wird.
-                // Anweisungen werden für jedes Element im Array wiederholt.
+                // foreach searches for each parMatch in matches
+                // repeats this for each index in array
                 foreach (Match parMatch in matches)
                 {
                     if ((Regex.Match(parMatch.Value, Syntax.ID + Syntax.COLON_CHAR)).Success)
@@ -632,7 +631,7 @@ namespace INF3
             Console.WriteLine("Parsing Player ending\r\n");
         }
 
-        public void creatPlayers(String dataFromBuffer)
+        public void creatPlayers(String dataFromBuffer) //create method for players
         {
             MatchCollection matches = null;
 
@@ -642,7 +641,7 @@ namespace INF3
                 
                 matches = parsMatchCollection(dataFromBuffer);
 
-                // Die foreach-Schleife sorgt dafür das der Array Index für Index ausgelesen wird.
+                // foreach searches each parMatch in matches
                 foreach (Match parMatch in matches)
                 {
                     this.creatPlayer(parMatch.Value);
@@ -651,7 +650,7 @@ namespace INF3
             Console.WriteLine("Parsing Players ending\r\n");
         }
 
-        public void creatDragon(String dataFromBuffer)
+        public void creatDragon(String dataFromBuffer) //create method for the dragon
 		{
 
 		    MatchCollection matches = null;
@@ -666,7 +665,7 @@ namespace INF3
 			{
 				
                 matches = parsMatchCollection(dataFromBuffer);
-				// Die foreach-Schleife sorgt dafür das der Array Index für Index ausgelesen wird.
+                // foreach searches each parMatch in matches
 				foreach (Match parMatch in matches)
 				{
 					if ((Regex.Match(parMatch.Value, Syntax.ID + Syntax.COLON_CHAR)).Success)
@@ -721,7 +720,7 @@ namespace INF3
             Console.WriteLine("Parsing Create Dragon ending\r\n");
 		}
 
-        private void createResult(string dataFromBuffer)
+        private void createResult(string dataFromBuffer)// create method for result
         {
             Int32 round=0;
             Boolean running=false;
@@ -730,56 +729,56 @@ namespace INF3
             backend.setResult(round, running, delay);
         }
 
-        private void createAnswer(string dataFromBuffer)
+        private void createAnswer(string dataFromBuffer) // create method for the answer
         {
             String answer = null;
             backend.serverAnswer(answer);
         }
 
-        private void createOpponent(string dataFromBuffer)
+        private void createOpponent(string dataFromBuffer) //create method for the opponent
         {
             Backend.Opponent o=null;
             backend.setOpponent(o);
         }
 
-        private void createChallenge(string dataFromBuffer)
+        private void createChallenge(string dataFromBuffer) // create method for the challenge
         {
             Backend.Minigames.Game minigame = null;
             backend.setChallange(minigame);
         }
 
-        private void createYourID(string dataFromBuffer)
+        private void createYourID(string dataFromBuffer) //create method for creating the id
         {
             Int32 yourid=0;
             backend.yourID(yourid);
         }
 
-        private void createOnlineInfo(string dataFromBuffer)
+        private void createOnlineInfo(string dataFromBuffer) //create method for online info
         {
             Int32 online=0;
             backend.onlineInfo(online);
         }
 
-        private void createTimeInfo(string dataFromBuffer)
+        private void createTimeInfo(string dataFromBuffer) // create method for the time info
         {
             long time=0;
             backend.receiveTime(time);
         }
 
-        private void createMessage(string dataFromBuffer)
+        private void createMessage(string dataFromBuffer)// create method for the message
         {
             String message=null;
             backend.setMessage(message);
         }
 
-        private void createMap(string dataFromBuffer)
+        private void createMap(string dataFromBuffer)//create method for map
         {
             Backend.Map.Map m=null;
 
             backend.setMap(m);
         }
 
-        public void createMapCell(String value)
+        public void createMapCell(String value) //create method for mapcell
         { 
         
         }
