@@ -57,6 +57,7 @@
     <Compile Include="Backend\Opponent.cs" />
     <Compile Include="enums\EnumDragonfight.cs" />
     <Compile Include="enums\EnumSkirmish.cs" />
+    <Compile Include="enums\EnumStaghunt.cs" />
     <Compile Include="enums\Property.cs" />
     <Compile Include="Backend\Map\Map.cs" />
     <Compile Include="Backend\Map\MapCell.cs" />
