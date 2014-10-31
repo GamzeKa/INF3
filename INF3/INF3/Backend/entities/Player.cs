@@ -81,8 +81,8 @@ namespace INF3.Backend.entities
        [ContractInvariantMethod]
        private void ObjectInvariant()
        {
-           Contract.Invariant(id != 0);//0
-           Contract.Invariant(pos != null);
+          // Contract.Invariant(id != 0);//0
+           //Contract.Invariant(pos != null);
        }
     }
 }

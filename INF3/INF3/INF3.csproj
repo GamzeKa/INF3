@@ -54,7 +54,7 @@
     <Compile Include="Backend\Minigames\Opponent.cs" />
     <Compile Include="Backend\Minigames\Skirmish.cs" />
     <Compile Include="Backend\Minigames\Staghunt.cs" />
-    <Compile Include="Backend\Opponent.cs" />
+    <Compile Include="Backend\entities\Opponent.cs" />
     <Compile Include="enums\EnumDragonfight.cs" />
     <Compile Include="enums\EnumSkirmish.cs" />
     <Compile Include="enums\EnumStaghunt.cs" />
