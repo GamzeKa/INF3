@@ -42,8 +42,5 @@ namespace INF3.Backend.Minigames
         {
             return this.descision;
         }
-
-
-    }
     }
 }
