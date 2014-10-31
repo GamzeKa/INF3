@@ -1,4 +1,5 @@
-﻿using System;
+﻿using INF3.Backend.entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace INF3.Backend.Minigames
 {
-    public class Opponent
+    public class Opponent : Player
     {
         private int id;
         private Enum descision;
