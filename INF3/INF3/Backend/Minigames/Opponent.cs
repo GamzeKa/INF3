@@ -14,7 +14,8 @@ namespace INF3.Backend.Minigames
         private int points;
         private int total;
 
-        public Opponent(int id, String des, int points, int total)
+        public Opponent(int id, String des, int points, int totalString, int positionX, int positionY, Int32 total, String type, bool busy)
+            : base(id, type, busy, des, positionX, positionY, points)
         {
             this.id = id;
             //this.descision=des;
