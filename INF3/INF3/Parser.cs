@@ -168,7 +168,7 @@ namespace INF3
                             this.creatDragon(dataFromBuffer);
                         }
 
-                        //check if this is a map
+                        //recieves a map
                         else if ((Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.MAP)).Success)
                         {
                             this.createMap(dataFromBuffer);
@@ -197,12 +197,12 @@ namespace INF3
                         {
                             this.createYourID(dataFromBuffer);
                         }
-                        //Challenge - Info
+                        //recieves Challenge
                         else if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.CHALLENGE).Success)
                         {
                             this.createChallenge(dataFromBuffer);
                         }
-                        //Opponent - Info
+                        //recieves Opponent
                         else if (Regex.Match(dataFromBuffer, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.OPPONENT).Success)
                         {
                             this.createOpponent(dataFromBuffer);
@@ -781,6 +781,21 @@ namespace INF3
         public void createMapCell(String value) //create method for mapcell
         { 
         
+        }
+
+        public void createSkirmish(string dataFromBuffer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void createStaghunt(string dataFromBuffer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void createDragonFight(string dataFromBuffer)
+        {
+            throw new NotImplementedException();
         }
 
         [ContractInvariantMethod]
