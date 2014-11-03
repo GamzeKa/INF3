@@ -36,7 +36,7 @@ namespace INF3.Connector
         }
         public void closeConnection()
         {
-            Contract.Requires(connected== true);
+            Contract.Requires(connected);
             //closing the Stream from client and break off the server-connection
             try
             {
@@ -57,7 +57,7 @@ namespace INF3.Connector
         {
             //here send a message to the Server with the Sender-class (sender.sendMessage(String))
             Contract.Requires(s!=null);
-            Contract.Requires(connected == true); 
+            Contract.Requires(connected); 
 
             sender.sendMessage(s);
         }
@@ -82,7 +82,7 @@ namespace INF3.Connector
         {
             Contract.Requires(p1 != null);
             Contract.Requires(p2 != null);
-            Contract.Requires(connected == true);
+            Contract.Requires(connected);
             buffer.append(p2);
         }
 

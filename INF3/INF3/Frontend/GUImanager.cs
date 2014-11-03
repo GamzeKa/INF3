@@ -24,7 +24,7 @@ namespace INF3.Frontend
 
         public static bool isCommand()
         {
-            Contract.Requires(isCommand() == true);
+            Contract.Requires(isCommand());
             return true;
         }
 

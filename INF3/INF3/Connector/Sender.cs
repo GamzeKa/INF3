@@ -29,7 +29,7 @@ namespace INF3.Connector
             this.data = System.Text.Encoding.UTF8.GetBytes(message + "\r\n");
 
 
-            Contract.Requires(client.GetStream().CanWrite == true);
+            Contract.Requires(client.GetStream().CanWrite);
             // Send the message to the connected TcpServer
              client.GetStream().Write(data, 0, data.Length);
 
