@@ -86,10 +86,10 @@ namespace INF3.Backend
 
         }
 
-        public void setOpponent(Opponent o)
+       /* public void setOpponent(Opponent o)
         {
-
-        }
+            
+        }*/
 
         public void serverAnswer(String answer)
         {

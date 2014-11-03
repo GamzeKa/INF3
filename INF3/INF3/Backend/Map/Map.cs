@@ -40,7 +40,7 @@ namespace INF3.Backend.Map
             Contract.Ensures(this.height == h);
         }
 
-        public int getWidth(int w)
+        public int getHeight()
         {
             Contract.Ensures(this.height >= 0);
                 return this.height;
