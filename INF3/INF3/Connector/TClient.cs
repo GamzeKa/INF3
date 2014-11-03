@@ -52,7 +52,7 @@ namespace INF3.Connector
         {
             try
             {
-                Contract.Requires(client.Connected == true);
+                Contract.Requires(client.Connected);
                     return client;
 
             }
