@@ -74,7 +74,7 @@ namespace INF3.Connector
         }
         public void connectToServer()
         {
-            
+            client.TConnect();
            
         }
 

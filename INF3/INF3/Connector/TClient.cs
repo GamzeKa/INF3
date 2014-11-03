@@ -10,12 +10,18 @@ namespace INF3.Connector
     class TClient
     {
         private TcpClient client;
+        String ip;
+        Int32 port;
+        
 
         public TClient(String ip, Int32 port)   //Konstruktor transfer the ip and port to the Client
         {
+            //Prüfen ob daten korrekt
+            this.ip = ip;
+            this.port = port;
             try
             {
-                this.client = new TcpClient(ip, port);
+                this.client = new TcpClient();
             }
             catch (Exception e)
             {
@@ -62,13 +68,13 @@ namespace INF3.Connector
                 return null;
             }
         }
-        public void TConnect(String ip, Int32 port)     // if the client is not connected then the method connect 
+        public void TConnect()     // if the client is not connected then the method connect 
                                                         //with ip-adress and port
         {
             try
             {
-                Contract.Requires(client.Connected==false);
-                    client.Connect(ip, port);
+                Contract.Requires(!client.Connected);
+                client.Connect(this.ip, this.port);
                 Contract.Ensures(client.Connected);
             }
             catch (Exception e)

@@ -20,44 +20,16 @@ namespace INF3
             /*Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());*/
+            INF3.Connector.Connector c = new Connector.Connector("127.0.0.1",666);
 
-            byte[] data = new byte[1024];
-            string input, stringData;
-            IPEndPoint ipep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 666);
-
-            Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
-            try
-            {
-                server.Connect(ipep);
-            }
-            catch (SocketException e)
-            {
-                Console.WriteLine("Unable to connect to server.");
-                Console.WriteLine(e.ToString());
-                return;
-            }
-
-
-            int recv = server.Receive(data);
-            stringData = Encoding.ASCII.GetString(data, 0, recv);
-            Console.WriteLine(stringData);
-
+            Buffer b =c.getBuffer();
             while (true)
             {
-                input = Console.ReadLine();
-                if (input == "exit")
-                    break;
-               // server.Send(Encoding.ASCII.GetBytes(input));
-                data = new byte[1024];
-                recv = server.Receive(data);
-                stringData = Encoding.ASCII.GetString(data, 0, recv);
-                Console.WriteLine(stringData);
+                if (!b.isBufferEmpty())
+                {
+                    Console.WriteLine(b.getMessage());
+                }
             }
-            Console.WriteLine("Disconnecting from server...");
-            server.Shutdown(SocketShutdown.Both);
-            server.Close();
-            Console.ReadKey();
         }
     }
 }

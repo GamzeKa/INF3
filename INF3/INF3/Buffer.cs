@@ -45,7 +45,10 @@ namespace INF3
         {
             return buffer.isFull();  
         }
-
+        public bool isBufferEmpty()
+        {
+            return this.buffer.isBufferEmpty();
+        }
 
         public bool MessageComplete() //mechanism that detects wether a message is finished
         {   String message="";
