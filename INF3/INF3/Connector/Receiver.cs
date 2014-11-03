@@ -35,7 +35,7 @@ namespace INF3.Connector
 
 
                 // the bytecode convert to String
-                if (client.Connected == true)
+                if (client.Connected)
                 {
                     return System.Text.Encoding.UTF8.GetString(data, 0, reads);
                 }

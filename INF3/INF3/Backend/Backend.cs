@@ -34,7 +34,7 @@ namespace INF3.Backend
         //Parser
         public void setMessage(String message)
         {
-            
+            Contract.Requires(message != null);
         }
 
         //Map

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics.Contracts;
 using INF3.Backend;
+using INF3.enums;
 
 namespace INF3.Backend.entities
 {
@@ -14,11 +15,11 @@ namespace INF3.Backend.entities
         private int id;
         private bool busy = false;
         private Position pos;
-        private String type = "";
+        private EnumType type;
         private String description;
  
         
-        public Entity(int id, String type,Position pos)
+        public Entity(int id, EnumType type,Position pos)
         {
             setID(id);
             setType(type);
@@ -50,13 +51,13 @@ namespace INF3.Backend.entities
             return busy;
         }
 
-        private void setType(String t)
+        private void setType(EnumType t)
         {
             Contract.Requires(t != null);
             this.type = t;
         }
 
-        public String getType()
+        public EnumType getType()
         {
             return this.type;
         }

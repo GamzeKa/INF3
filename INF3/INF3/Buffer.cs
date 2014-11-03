@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace INF3
@@ -10,19 +11,21 @@ namespace INF3
     public class Buffer //is filled by the connector
     {
         private Ringbuffer buffer;
+        private Ringbuffer uBuffer;
         private int messageCounter = 0;
        
 
         public Buffer(int größe) {
             Contract.Requires(größe > 0);
             buffer = new Ringbuffer(größe);
+            uBuffer = new Ringbuffer(größe);
         }
 
         public void append(String s)
         {
             //add a new message to the Buffer
             Contract.Requires(s != null);
-            buffer.addMessage(s);
+            uBuffer.addMessage(s);
         }
 
         public String giveParser()
@@ -49,9 +52,15 @@ namespace INF3
             //delete all messages 
         }
 
-        public bool MessageComplete()
-        {   
-            return true; //mechanism that detects wether a message is finished
+        public bool MessageComplete() //mechanism that detects wether a message is finished
+        {   String message="";
+        while (!message.Contains(Syntax.END + Syntax.COLON_CHAR + messageCounter)) {
+            message += this.uBuffer.getMessage();
+        }
+        String[] content=Regex.Split(message, Syntax.END + Syntax.COLON_CHAR + messageCounter);
+        message = String.Empty;
+        this.buffer.addMessage(content[0]);
+            return true; 
         }
 
         public String getMessage() {
