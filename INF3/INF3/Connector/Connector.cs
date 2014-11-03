@@ -83,7 +83,8 @@ namespace INF3.Connector
             Contract.Requires(p1 != null);
             Contract.Requires(p2 != null);
             Contract.Requires(connected);
-            buffer.append(p2);
+           // buffer.append(p2);
+            Console.WriteLine("Ausgabe: "+p2);
         }
 
 
