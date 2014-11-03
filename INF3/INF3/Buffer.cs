@@ -32,7 +32,7 @@ namespace INF3
         {
             Contract.Requires(buffer != null);
             String message="";
-            Contract.Requires(MessageComplete() == true);
+            Contract.Requires(MessageComplete());
             if (MessageComplete()) {
                 message = buffer.getMessage();
                 //send message to parser
@@ -46,11 +46,6 @@ namespace INF3
             return buffer.isFull();  
         }
 
-        public void clearBuffer()
-        {
-     
-            //delete all messages 
-        }
 
         public bool MessageComplete() //mechanism that detects wether a message is finished
         {   String message="";
@@ -59,7 +54,14 @@ namespace INF3
         }
         String[] content=Regex.Split(message, Syntax.END + Syntax.COLON_CHAR + messageCounter);
         message = String.Empty;
-        this.buffer.addMessage(content[0]);
+        if (!buffer.isFull())
+        {
+            this.buffer.addMessage(content[0]);
+            this.messageCounter++;
+        }
+        else {
+            Console.WriteLine("Parser zu langsam :D");    
+        }
             return true; 
         }
 
