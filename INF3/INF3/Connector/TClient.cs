@@ -26,7 +26,7 @@ namespace INF3.Connector
         {
             try
             {
-                Contract.Requires(client.Connected==true);
+                Contract.Requires(client.Connected);
                     client.Close();
                     Contract.Ensures(client.Connected == false);
 
@@ -69,7 +69,7 @@ namespace INF3.Connector
             {
                 Contract.Requires(client.Connected==false);
                     client.Connect(ip, port);
-                Contract.Ensures(client.Connected==true);
+                Contract.Ensures(client.Connected);
             }
             catch (Exception e)
             {
