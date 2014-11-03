@@ -11,9 +11,9 @@ namespace INF3.Backend.entities
 {
    public  class Player:Entity
     {
-       private int points=0;       
+       private int points=0;
 
-       public Player(int id, String type, Boolean busy, String des, int positionX, int positionY, int points)
+       public Player(int id, EnumType type, Boolean busy, String des, int positionX, int positionY, int points)
            : base(id, type, new Position(positionX,positionY))
        {
 

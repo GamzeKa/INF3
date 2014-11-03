@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using INF3.enums;
 
 
 namespace INF3
@@ -253,7 +254,7 @@ namespace INF3
         {
             MatchCollection matches = null;
             Int32 id=0;
-            String typ=null;
+            EnumType typ=EnumType.PLAYER;
             Boolean busyboolean=false;
             String description=null;
             Int32 x=0;
@@ -275,7 +276,17 @@ namespace INF3
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.TYPE + Syntax.COLON_CHAR)).Success)
                     {
-                        typ = Regex.Match(parMatch.Value, Syntax.STRING).Value; 
+                        if ((Regex.Match(parMatch.Value, Syntax.STRING).Value) == "Dragon")
+                        {
+                            typ = EnumType.DRAGON;
+                        }
+                        else
+                        {
+                            if((Regex.Match(parMatch.Value, Syntax.STRING).Value) == "Player")
+                            {
+                                typ=EnumType.PLAYER;
+                            }
+                        }
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.BUSY + Syntax.COLON_CHAR)).Success)
                     {
@@ -305,6 +316,7 @@ namespace INF3
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.END + Syntax.COLON_CHAR + Syntax.UPDATE)).Success) //end update information
                     {
+                        
                         player = new Backend.entities.Player(id, typ, busyboolean, description, x, y, points);
                         break;
                     }
@@ -319,7 +331,7 @@ namespace INF3
         {
             MatchCollection matches = null;
             Int32 id=0;
-            String typ=null;
+            EnumType typ=EnumType.DRAGON;
             Boolean busyboolean=false;
             String description=null;
             Int32 x=0;
@@ -340,8 +352,17 @@ namespace INF3
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.TYPE + Syntax.COLON_CHAR)).Success)
                     {
-                        typ = Regex.Match(parMatch.Value, Syntax.STRING).Value; 
-                        //                        Console.WriteLine("Typ = " + typ);
+                        if ((Regex.Match(parMatch.Value, Syntax.STRING).Value) == "Dragon")
+                        {
+                            typ = EnumType.DRAGON;
+                        }
+                        else
+                        {
+                            if ((Regex.Match(parMatch.Value, Syntax.STRING).Value) == "Player")
+                            {
+                                typ = EnumType.PLAYER;
+                            }
+                        }
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.BUSY + Syntax.COLON_CHAR)).Success)
                     {
@@ -554,7 +575,7 @@ namespace INF3
         public void creatPlayer(String dataFromBuffer) //create method for the player
         {
             Int32 id=0;
-            String typ=null;
+            EnumType typ = EnumType.PLAYER;
             Boolean busyboolean=false;
             String description=null;
             Int32 x=0;
@@ -581,9 +602,18 @@ namespace INF3
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.TYPE + Syntax.COLON_CHAR)).Success)
                     {
-                        
-                        typ = Regex.Match(parMatch.Value, Syntax.STRING).Value;
-                        //				Console.WriteLine("Typ = " + typ);
+
+                        if ((Regex.Match(parMatch.Value, Syntax.STRING).Value) == "Dragon")
+                        {
+                            typ = EnumType.DRAGON;
+                        }
+                        else
+                        {
+                            if ((Regex.Match(parMatch.Value, Syntax.STRING).Value) == "Player")
+                            {
+                                typ = EnumType.PLAYER;
+                            }
+                        }
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.BUSY + Syntax.COLON_CHAR)).Success)
                     {
@@ -655,7 +685,7 @@ namespace INF3
 
 		    MatchCollection matches = null;
             Int32 id=0;
-            String typ=null;
+            EnumType typ = EnumType.DRAGON;
             Boolean busyboolean=false;
             String description=null;
             Int32 x=0;
@@ -677,8 +707,17 @@ namespace INF3
 					}
 					else if ((Regex.Match(parMatch.Value, Syntax.TYPE + Syntax.COLON_CHAR)).Success)
 					{
-						typ = Regex.Match(parMatch.Value, Syntax.STRING).Value;
-			//			Console.WriteLine("Typ = " + typ);
+                        if ((Regex.Match(parMatch.Value, Syntax.STRING).Value) == "Dragon")
+                        {
+                            typ = EnumType.DRAGON;
+                        }
+                        else
+                        {
+                            if ((Regex.Match(parMatch.Value, Syntax.STRING).Value) == "Player")
+                            {
+                                typ = EnumType.PLAYER;
+                            }
+                        }
 					}
 					else if ((Regex.Match(parMatch.Value, Syntax.BUSY + Syntax.COLON_CHAR)).Success)
 					{

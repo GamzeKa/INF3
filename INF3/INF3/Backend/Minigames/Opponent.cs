@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using INF3.enums;
 
 namespace INF3.Backend.Minigames
 {
@@ -14,7 +15,7 @@ namespace INF3.Backend.Minigames
         private int points;
         private int total;
 
-        public Opponent(int id, String des, int points, int totalString, int positionX, int positionY, Int32 total, String type, bool busy)
+        public Opponent(int id, String des, int points, int totalString, int positionX, int positionY, Int32 total, EnumType type, bool busy)
             : base(id, type, busy, des, positionX, positionY, points)
         {
             this.id = id;

@@ -58,7 +58,6 @@ namespace INF3
             Console.WriteLine("Disconnecting from server...");
             server.Shutdown(SocketShutdown.Both);
             server.Close();
-
         }
     }
 }

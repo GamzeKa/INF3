@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using INF3.enums;
 
 namespace INF3.Backend.entities
 {
@@ -11,7 +12,7 @@ namespace INF3.Backend.entities
         private int myId;
 
 
-        public Me(int id, String type, Boolean busy, String desc, int positionX, int positionY, int points)
+        public Me(int id, EnumType type, Boolean busy, String desc, int positionX, int positionY, int points)
             : base(id, type, busy, desc, positionX, positionY, points)
         {
             setMyId(id);

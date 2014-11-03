@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using INF3.Connector;
 using INF3.Backend.entities;
 using System.Diagnostics.Contracts;
+using INF3.enums;
 
 namespace INF3.Backend
 {
@@ -86,10 +87,10 @@ namespace INF3.Backend
 
         }
 
-       /* public void setOpponent(Opponent o)
+        public void setOpponent(Opponent o)
         {
             
-        }*/
+        }
 
         public void serverAnswer(String answer)
         {
@@ -116,7 +117,7 @@ namespace INF3.Backend
             return em.getPlayerAmount();
         }
 
-        public void updatePlayer(Int32 id, String typ, Boolean busyboolean, String description, Int32 x, Int32 y,Int32 points)
+        public void updatePlayer(Int32 id, EnumType typ, Boolean busyboolean, String description, Int32 x, Int32 y,Int32 points)
         {
             //em.updatePlayer(player, pos);
         }
@@ -137,7 +138,7 @@ namespace INF3.Backend
             return em.getDragonAmount();
         }
 
-        public void updateDragon(Int32 id,String typ,Boolean busyboolean,String description,Int32 x,Int32 y)
+        public void updateDragon(Int32 id, EnumType typ, Boolean busyboolean, String description, Int32 x, Int32 y)
         {
             //em.updateDragon(d,pos);
         }
