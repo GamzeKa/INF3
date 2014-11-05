@@ -48,6 +48,42 @@ namespace INF3
             return this.buffer.isBufferEmpty();
         }
 
+        public void complete()
+        {
+            String message = "";
+            String message2 = "";
+            bool zweiteMessage = false;
+
+            if (this.uBuffer.getMsgAtReadPointer().Contains(Syntax.BEGIN + Syntax.COLON_CHAR + this.messageCounter)) {
+                while (!message.Contains(Syntax.END + Syntax.COLON_CHAR + this.messageCounter)) {
+                    if (this.uBuffer.getMsgAtReadPointer().Contains(Syntax.BEGIN + Syntax.COLON_CHAR + this.messageCounter + 1))
+                    {
+                        while (!message2.Contains(Syntax.END + Syntax.COLON_CHAR + this.messageCounter + 1)) {
+                            message2 += this.uBuffer.getMessage();
+                        }
+                        zweiteMessage = true;
+                    }
+                    message += this.uBuffer.getMessage();
+                }
+
+                             if (zweiteMessage)
+                             {
+                                this.messageCounter = this.messageCounter + 2;
+                                buffer.addMessage(message);
+                                buffer.addMessage(message2);
+                             }
+                            else
+                             {
+                                 this.messageCounter++;
+                                 buffer.addMessage(message);
+                             }   
+                
+            }
+            
+            message = String.Empty;
+            message2 = String.Empty;
+        }
+
         public void messageComplete() //mechanism that detects wether a message is finished
         {   
             String message="";

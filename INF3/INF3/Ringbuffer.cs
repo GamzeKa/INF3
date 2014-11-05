@@ -75,6 +75,11 @@ namespace INF3
             return s;
         }
 
+        public String getMsgAtReadPointer() {
+            String s = this.memory[this.readPointer];
+            return s;
+        }
+
         public bool isBufferEmpty()
         {
             if (this.memory.Count() == 0)
