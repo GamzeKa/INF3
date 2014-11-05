@@ -14,7 +14,7 @@ namespace INF3
 
 
         public Ringbuffer(int size){
-            if (size != null && size > 0)
+            if (size > 0)
             {  
                 memory = new String[size];
             }
@@ -61,17 +61,13 @@ namespace INF3
                     memory[this.writePointer] = message;
                     this.incWritePointer();
                 }
-                else
-                {
-                    //Speicherplatz zuweisen
-                }
             }
         }
 
         public String getMessage() {
             if (this.memory[this.readPointer] == null)
             {
-                //throw new Exception("Feld leer");
+                throw new Exception("Feld leer");
             }
             String s = this.memory[this.readPointer];
             this.memory[this.readPointer] = null;

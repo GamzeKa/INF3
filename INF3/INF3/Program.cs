@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text;
+using System.Threading;
 
 namespace INF3
 {
@@ -22,14 +23,9 @@ namespace INF3
             Application.Run(new Form1());*/
             INF3.Connector.Connector c = new Connector.Connector("127.0.0.1",666);
 
-            Buffer b =c.getBuffer();
-            while (true)
-            {
-                if (!b.isBufferEmpty())
-                {
-                    Console.WriteLine(b.getMessage());
-                }
-            }
+            c.connectToServer();
+            c.send("get:time");
+            //c.closeConnection();
         }
     }
 }

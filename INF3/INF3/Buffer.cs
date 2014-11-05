@@ -32,12 +32,10 @@ namespace INF3
         {
             Contract.Requires(buffer != null);
             String message="";
-            Contract.Requires(MessageComplete());
-            if (MessageComplete()) {
-                message = buffer.getMessage();
-                //send message to parser
 
-            }
+            messageComplete();
+            message = buffer.getMessage();
+            //send message to parser
             return message; //if the buffer is full or a message is finished reading, content is give to the parser
         }
 
@@ -50,23 +48,25 @@ namespace INF3
             return this.buffer.isBufferEmpty();
         }
 
-        public bool MessageComplete() //mechanism that detects wether a message is finished
-        {   String message="";
-        while (!message.Contains(Syntax.END + Syntax.COLON_CHAR + messageCounter)) {
-            message += this.uBuffer.getMessage();
-        }
-        String[] content=Regex.Split(message, Syntax.END + Syntax.COLON_CHAR + messageCounter);
-        message = String.Empty;
-        if (!buffer.isFull())
-        {
-            this.buffer.addMessage(content[0]);
-            this.messageCounter++;
-        }
-        else {
-            Console.WriteLine("Parser zu langsam :D");    
-        }
-            return true; 
-        }
+        public void messageComplete() //mechanism that detects wether a message is finished
+        {   
+            String message="";
+            while (!message.Contains(Syntax.END + Syntax.COLON_CHAR + messageCounter)) 
+            {
+                message += this.uBuffer.getMessage();
+            }
+            String[] content=Regex.Split(message, Syntax.END + Syntax.COLON_CHAR + messageCounter);
+            message = String.Empty;
+            if (!buffer.isFull())
+            {
+                this.buffer.addMessage(content[0]);
+                this.messageCounter++;
+            }
+            else 
+            {
+                Console.WriteLine("Parser zu langsam :D");    
+            } 
+         }
 
         public String getMessage() {
             return buffer.getMessage(); 

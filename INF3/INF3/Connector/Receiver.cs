@@ -1,54 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
+
 
 namespace INF3.Connector
 {
-    class Receiver
+    public class Receiver
     {
         private TcpClient client;
         byte [] data;
+        private String rcvString;
+        private Buffer buffer;
 
 
         public Receiver(TcpClient client)
         {
             this.client=client;
+            buffer = new Buffer(15);
         }
-        public String receive()      //to receive data via network
+        public void receive()      //to receive data via network
         {
-
-            String s=String.Empty;
             try{
-                data=new byte[client.Available];
-                // size of the array for the answer was defined
-
-                // client read the answer from the server and save this in a array
-                // define a type -->var because the type of the answer is unknown
-                // asychron var for unblocking processes
-                var reader = client.GetStream().BeginRead(data, 0, data.Length,null,null);
-
-                // BeginRead -> start the asynchronReader
-                // EndRead -> end of the asynchronRead. Save the bytes of read in int
-                int reads = client.GetStream().EndRead(reader);
-
-
-                // the bytecode convert to String
-                if (client.Connected)
+                while(true)
                 {
-                    return System.Text.Encoding.UTF8.GetString(data, 0, reads);
+                    data = new byte[1024];
+                    int recv = client.Client.Receive(data);
+                    rcvString = Encoding.ASCII.GetString(data, 0, recv);
+                    this.sendToBuffer(rcvString);
                 }
-                else
-                {
-                    return null;
-                }
-                
-            }catch(Exception d){
+            }catch(Exception d)
+            {
                 Console.WriteLine(d);
-                return null;
-                }
-            
+            }
+        }
+        public void sendToBuffer(string msg)
+        {
+            Contract.Requires(msg != null);
+
+            Console.WriteLine(msg);
+            //buffer.append(msg);
         }
     }
 }

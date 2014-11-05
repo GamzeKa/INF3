@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,11 +15,11 @@ namespace INF3.Connector
     public class Connector
     {
         private Sender sender;
-        private Receiver receive;
-        private static Buffer buffer;
-        private static bool connected = false;
-        private TClient client;
-
+        private Receiver receiver;
+        private bool connected = false;
+        private TcpClient client;
+        private IPEndPoint ipep;
+        private Thread receiveThread;
 
 
         public Connector(String ip, Int32 port)
@@ -27,12 +29,12 @@ namespace INF3.Connector
             Contract.Requires(port != 0);
             Contract.Requires(connected == false);
 
-            client = new TClient(ip, port);
-            receive = new Receiver(client.getTClient());
-            sender = new Sender(client.getTClient());
-            buffer = new Buffer(15);
-            connected = true;
+            ipep= new IPEndPoint(IPAddress.Parse(ip), port);
 
+            client = new TcpClient();
+            receiver = new Receiver(this.client);
+            sender = new Sender(this.client);
+            this.receiveThread = new Thread(new ThreadStart(receive));
         }
         public void closeConnection()
         {
@@ -40,10 +42,12 @@ namespace INF3.Connector
             //closing the Stream from client and break off the server-connection
             try
             {
+                this.receiveThread.Abort();
                 // close the stream
-                client.getStream().Close();
+                client.GetStream().Close();
                 // closes the server-connection 
                 client.Close();
+                connected = false;
 
             }
             catch (Exception g)
@@ -62,42 +66,50 @@ namespace INF3.Connector
             sender.sendMessage(s);
         }
 
-        public Buffer getBuffer()
-        {
-            //
-            return buffer;
-        }
-
         public bool isConnected()
         {
             return connected;
         }
         public void connectToServer()
         {
-            client.TConnect();
+            try
+            {
+                client.Connect(this.ipep);
+                this.connected = true;
+                this.receiveThread.Start();
+            }
+            catch (SocketException e)
+            {
+                Console.WriteLine("Unable to connect to server.");
+                Console.WriteLine(e.ToString());
+            }
            
         }
 
-        public void sendToBuffer(object p1, string p2)
+        private void receive()
         {
-            Contract.Requires(p1 != null);
-            Contract.Requires(p2 != null);
-            Contract.Requires(connected);
-           // buffer.append(p2);
-            Console.WriteLine("Ausgabe: "+p2);
+            if (this.isConnected())
+            {
+                this.receiver.receive();
+            }
+            else
+            {
+                throw new Exception("Can not receive without connection!");
+            }
         }
 
-
-        public object getServerAnswer()
+        public void send(String msg)
         {
-            return null;
+            if (msg!=null)
+            {
+                this.sender.sendMessage(msg);
+            }
         }
         [ContractInvariantMethod]
         private void ObjectInvariant()
         {
             Contract.Invariant(sender != null);
-            Contract.Invariant(receive != null);
-            Contract.Invariant(buffer != null);
+            Contract.Invariant(receiver != null);
         }
     }
 

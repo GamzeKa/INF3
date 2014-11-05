@@ -16,7 +16,6 @@ namespace INF3.Connector
 
         public Sender(TcpClient client)
         {
-            //Konstruktor
             this.client = client;
         }
 
@@ -26,17 +25,13 @@ namespace INF3.Connector
             Contract.Requires(message != null);
 
             // Translate the passed message into UTF8 and store it as a Byte array.
-            this.data = System.Text.Encoding.UTF8.GetBytes(message + "\r\n");
+            this.data = System.Text.Encoding.UTF8.GetBytes(message + "\n");
 
-
-            Contract.Requires(client.GetStream().CanWrite);
-            // Send the message to the connected TcpServer
-             client.GetStream().Write(data, 0, data.Length);
+            client.GetStream().Write(data, 0, data.Length);
 
 
             Contract.Requires(client.GetStream().CanWrite == false);
-            Console.WriteLine("You cannot write to the Stream!");
-                }
+            }
         }
     }
 
