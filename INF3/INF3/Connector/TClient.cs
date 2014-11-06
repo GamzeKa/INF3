@@ -16,7 +16,7 @@ namespace INF3.Connector
 
         public TClient(String ip, Int32 port)   //Konstruktor transfer the ip and port to the Client
         {
-            //Prüfen ob daten korrekt
+            //Check if data is correct
             this.ip = ip;
             this.port = port;
             try
@@ -32,9 +32,11 @@ namespace INF3.Connector
         {
             try
             {
-                Contract.Requires(client.Connected);
+                if (client.Connected)
+                {
                     client.Close();
-                    Contract.Ensures(client.Connected == false);
+                }
+                    Contract.Ensures(!client.Connected);
 
             }
             catch (Exception e)
@@ -58,23 +60,28 @@ namespace INF3.Connector
         {
             try
             {
-                Contract.Requires(client.Connected);
+                if (client.Connected)
+                {
                     return client;
-
+                }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return null;
             }
+            return null;
         }
+
         public void TConnect()     // if the client is not connected then the method connect 
                                                         //with ip-adress and port
         {
             try
             {
                 Contract.Requires(!client.Connected);
-                client.Connect(this.ip, this.port);
+                if (!client.Connected)
+                {
+                    client.Connect(this.ip, this.port);
+                }
                 Contract.Ensures(client.Connected);
             }
             catch (Exception e)
