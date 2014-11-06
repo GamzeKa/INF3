@@ -52,7 +52,7 @@ namespace INF3
         {
             String message = "";
             String message2 = "";
-            bool zweiteMessage = false;
+            bool secondMessage = false;
 
             if (this.uBuffer.getMsgAtReadPointer().Contains(Syntax.BEGIN + Syntax.COLON_CHAR + this.messageCounter)) {
                 while (!message.Contains(Syntax.END + Syntax.COLON_CHAR + this.messageCounter)) {
@@ -61,12 +61,12 @@ namespace INF3
                         while (!message2.Contains(Syntax.END + Syntax.COLON_CHAR + this.messageCounter + 1)) {
                             message2 += this.uBuffer.getMessage();
                         }
-                        zweiteMessage = true;
+                        secondMessage = true;
                     }
                     message += this.uBuffer.getMessage();
                 }
 
-                             if (zweiteMessage)
+                             if (secondMessage)
                              {
                                 this.messageCounter = this.messageCounter + 2;
                                 buffer.addMessage(message);
