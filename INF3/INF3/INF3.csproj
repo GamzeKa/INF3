@@ -81,7 +81,6 @@
     <Compile Include="Ringbuffer.cs" />
     <Compile Include="Connector\Sender.cs" />
     <Compile Include="Syntax.cs" />
-    <Compile Include="Connector\TClient.cs" />
     <EmbeddedResource Include="Frontend\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
