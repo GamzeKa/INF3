@@ -10,7 +10,7 @@ namespace INF3.Connector
     class Sender        // the class to send data via network to the server
     {
 
-        TcpClient client; 
+        TcpClient client;
         byte[] data;
 
 
@@ -23,15 +23,16 @@ namespace INF3.Connector
         {
 
             Contract.Requires(message != null);
+            if (message != null)
+            {
 
-            // Translate the passed message into UTF8 and store it as a Byte array.
-            this.data = System.Text.Encoding.UTF8.GetBytes(message + "\n");
+                // Translate the passed message into UTF8 and store it as a Byte array.
+                this.data = System.Text.Encoding.UTF8.GetBytes(message + "\n");
+            }
 
             client.GetStream().Write(data, 0, data.Length);
 
-
-            Contract.Requires(client.GetStream().CanWrite == false);
-            }
+            Contract.Requires(!client.GetStream().CanWrite);
         }
     }
-
+}
