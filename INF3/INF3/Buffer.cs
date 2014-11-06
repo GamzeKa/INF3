@@ -100,7 +100,7 @@ namespace INF3
             }
             else 
             {
-                Console.WriteLine("Parser zu langsam :D");    
+                Console.WriteLine("Parser is too slow :D");    
             } 
          }
 
