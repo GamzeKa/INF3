@@ -20,7 +20,7 @@ namespace INF3
             if (größe > 0)
             {
                 buffer = new Ringbuffer(größe);
-                uBuffer = new Ringbuffer(größe*3);
+                uBuffer = new Ringbuffer(größe*5);
             }
         }
 
