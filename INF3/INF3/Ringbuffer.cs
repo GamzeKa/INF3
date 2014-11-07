@@ -82,14 +82,16 @@ namespace INF3
 
         public bool isBufferEmpty()
         {
+            bool r;
             if (this.memory.Count() == 0)
             {
-                return true;
+                r= true;
             }
             else
             {
-                return false;
+                r = false; ;
             }
+            return r;
         }
 
     }
