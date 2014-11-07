@@ -28,7 +28,10 @@ namespace INF3
         {
             //add a new message to the Buffer
             Contract.Requires(s != null);
-            uBuffer.addMessage(s);
+            if (!uBuffer.isFull())
+            { 
+                uBuffer.addMessage(s);
+            }
         }
 
         public String giveParser()
