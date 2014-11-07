@@ -25,7 +25,7 @@ namespace INF3.Connector
         public void receive()      //to receive data via network
         {
             try{
-                while(true)
+                while(true)//connecteds
                 {
                     data = new byte[1024];
                     int recv = client.Client.Receive(data);

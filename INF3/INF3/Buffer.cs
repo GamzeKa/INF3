@@ -15,12 +15,12 @@ namespace INF3
         private int messageCounter = 0;
        
 
-        public Buffer(int größe) {
-            Contract.Requires(größe > 0);
-            if (größe > 0)
+        public Buffer(int size) {
+            Contract.Requires(size > 0);
+            if (size > 0)
             {
-                buffer = new Ringbuffer(größe);
-                uBuffer = new Ringbuffer(größe*5);
+                buffer = new Ringbuffer(size);
+                uBuffer = new Ringbuffer(size*5); //has to be bigger. aprox. 4000 lines receiving from server
             }
         }
 
