@@ -43,16 +43,14 @@ namespace INF3.Connector
             try
             {
                 this.receiveThread.Abort();
-                // close the stream
-                client.GetStream().Close();
-                // closes the server-connection 
-                client.Close();
+                client.GetStream().Close(); // close the stream
+                client.Close();  // closes the server-connection
                 connected = false;
 
             }
-            catch (Exception g)
+            catch (Exception e)
             {
-                Console.WriteLine(g.Message);
+                Console.WriteLine(e.Message);
             }
         }
 
@@ -61,9 +59,14 @@ namespace INF3.Connector
         {
             //here send a message to the Server with the Sender-class (sender.sendMessage(String))
             Contract.Requires(s!=null);
-            Contract.Requires(connected); 
-
-            sender.sendMessage(s);
+            Contract.Requires(connected);
+            try
+            {
+                sender.sendMessage(s);
+            }
+            catch (Exception e) {
+                Console.WriteLine(e.Message);
+            }
         }
 
         public bool isConnected()
@@ -80,6 +83,7 @@ namespace INF3.Connector
             }
             catch (SocketException e)
             {
+                this.connected = false;
                 Console.WriteLine("Unable to connect to server.");
                 Console.WriteLine(e.ToString());
             }

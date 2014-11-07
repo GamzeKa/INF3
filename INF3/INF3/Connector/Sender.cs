@@ -21,18 +21,15 @@ namespace INF3.Connector
 
         public void sendMessage(String message)          //send a message to the Server 
         {
-
             Contract.Requires(message != null);
+            Contract.Requires(!client.GetStream().CanWrite);
+
             if (message != null)
             {
-
-                // Translate the passed message into UTF8 and store it as a Byte array.
+                // Translate the passed message and store it as a Byte array.
                 this.data = System.Text.Encoding.UTF8.GetBytes(message + "\n");
+                client.GetStream().Write(data, 0, data.Length);
             }
-
-            client.GetStream().Write(data, 0, data.Length);
-
-            Contract.Requires(!client.GetStream().CanWrite);
         }
     }
 }

@@ -32,9 +32,9 @@ namespace INF3.Connector
                     rcvString = Encoding.ASCII.GetString(data, 0, recv);
                     this.sendToBuffer(rcvString);
                 }
-            }catch(Exception d)
+            }catch(Exception e)
             {
-                Console.WriteLine(d);
+                Console.WriteLine(e.Message);
             }
         }
         public void sendToBuffer(string msg)

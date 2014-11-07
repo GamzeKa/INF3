@@ -10,15 +10,18 @@ namespace INF3
 {
     public class Buffer //is filled by the connector
     {
-        private Ringbuffer buffer;
-        private Ringbuffer uBuffer;
+        private Ringbuffer buffer;  //sortedBuffer
+        private Ringbuffer uBuffer; //unsortedBufffer
         private int messageCounter = 0;
        
 
         public Buffer(int größe) {
             Contract.Requires(größe > 0);
-            buffer = new Ringbuffer(größe);
-            uBuffer = new Ringbuffer(größe);
+            if (größe > 0)
+            {
+                buffer = new Ringbuffer(größe);
+                uBuffer = new Ringbuffer(größe*3);
+            }
         }
 
         public void append(String s)
@@ -33,8 +36,11 @@ namespace INF3
             Contract.Requires(buffer != null);
             String message="";
 
-            messageComplete();
-            message = buffer.getMessage();
+            complete();
+            if (buffer.getMsgAtReadPointer() !=null)
+            {
+                message = buffer.getMessage();
+            }
             //send message to parser
             return message; //if the buffer is full or a message is finished reading, content is give to the parser
         }
@@ -80,38 +86,6 @@ namespace INF3
                 
             }
             
-            message = String.Empty;
-            message2 = String.Empty;
-        }
-
-        public void messageComplete() //mechanism that detects wether a message is finished
-        {   
-            String message="";
-            while (!message.Contains(Syntax.END + Syntax.COLON_CHAR + messageCounter)) 
-            {
-                message += this.uBuffer.getMessage();
-            }
-            String[] content=Regex.Split(message, Syntax.END + Syntax.COLON_CHAR + messageCounter);
-            message = String.Empty;
-            if (!buffer.isFull())
-            {
-                this.buffer.addMessage(content[0]);
-                this.messageCounter++;
-            }
-            else 
-            {
-                Console.WriteLine("Parser is too slow :D");    
-            } 
-         }
-
-        public String getMessage() {
-            return buffer.getMessage(); 
-        }
-
-
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
-        {
         }
     }
 }
