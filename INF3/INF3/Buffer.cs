@@ -57,33 +57,13 @@ namespace INF3
         public void complete()
         {
             String message = "";
-            String message2 = "";
-            bool secondMessage = false;
 
             if (this.uBuffer.getMsgAtReadPointer().Contains(Syntax.BEGIN + Syntax.COLON_CHAR + this.messageCounter)) {
                 while (!message.Contains(Syntax.END + Syntax.COLON_CHAR + this.messageCounter)) {
-                    if (this.uBuffer.getMsgAtReadPointer().Contains(Syntax.BEGIN + Syntax.COLON_CHAR + this.messageCounter + 1))
-                    {
-                        while (!message2.Contains(Syntax.END + Syntax.COLON_CHAR + this.messageCounter + 1)) {
-                            message2 += this.uBuffer.getMessage();
-                        }
-                        secondMessage = true;
-                    }
                     message += this.uBuffer.getMessage();
                 }
-
-                             if (secondMessage)
-                             {
-                                this.messageCounter = this.messageCounter + 2;
-                                buffer.addMessage(message);
-                                buffer.addMessage(message2);
-                             }
-                            else
-                             {
-                                 this.messageCounter++;
-                                 buffer.addMessage(message);
-                             }   
-                
+                    buffer.addMessage(message);
+                    this.messageCounter++;
             }
             
         }
