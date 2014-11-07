@@ -30,7 +30,10 @@ namespace INF3.Connector
                     data = new byte[1024];
                     int recv = client.Client.Receive(data);
                     rcvString = Encoding.ASCII.GetString(data, 0, recv);
-                    this.sendToBuffer(rcvString);
+                    if (rcvString.Length > 0) 
+                    { 
+                        this.sendToBuffer(rcvString);
+                    }
                 }
             }catch(Exception e)
             {
@@ -42,7 +45,9 @@ namespace INF3.Connector
             Contract.Requires(msg != null);
 
             Console.WriteLine(msg);
-            //buffer.append(msg);
+            /*lock(buffer){
+                buffer.append(msg);
+            }*/
         }
     }
 }
