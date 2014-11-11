@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 
 
@@ -12,10 +14,11 @@ namespace INF3.Connector
     public class Receiver
     {
         private TcpClient client;
-        byte [] data;
-        private String rcvString;
+        private List<byte> data;
+        private String rcvString="";
         private Buffer buffer;
         private const int sizeBuffer=15;
+        private const int sizeByteTMP = 1;
 
 
         public Receiver(TcpClient client)
@@ -33,12 +36,25 @@ namespace INF3.Connector
             try{
                 while(client.Connected)
                 {
-                    data = new byte[client.Available];
-                    client.GetStream().Read(data,0, data.Length);
-                    rcvString = Encoding.ASCII.GetString(data, 0, data.Length);
-                    if (rcvString.Length > 0) 
-                    { 
-                        this.sendToBuffer(rcvString);
+                    if (client.GetStream().DataAvailable)
+                    {
+                        data = new List<byte>();
+                        do
+                        {
+                            byte[] dataByte = new byte[sizeByteTMP];
+                            client.GetStream().ReadAsync(dataByte, 0, sizeByteTMP);
+                            data.Add(dataByte[0]);
+                            rcvString = Encoding.ASCII.GetString(data.ToArray(), 0, data.Count);
+                        } while (!(Regex.Match(rcvString, "\n").Success));
+
+                        if (rcvString.Length > 0)
+                        {
+                            this.sendToBuffer(rcvString);
+                        }
+                    }
+                    else
+                    {
+                        Thread.Sleep(100);
                     }
                 }
             }catch(Exception e)
@@ -46,7 +62,7 @@ namespace INF3.Connector
                 Console.WriteLine(e.Message);
             }
         }
-        public void sendToBuffer(string msg)
+        private void sendToBuffer(string msg)
         {
             Contract.Requires(msg != null);
 

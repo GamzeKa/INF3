@@ -47,9 +47,12 @@ namespace INF3
         }
 //---------------------------------------------------------
         //parsto-methods for the string input, to int32, bool, long etc..
-        public static String parsToString(String input)
+        public static String replaceString(String input)
         {
-            return Regex.Match(input, Syntax.STRING).Value.Replace("\r", "");
+            if (Regex.Match(input, Syntax.STRING).Success) {
+                input=input.Replace("\r\n", "");
+            }
+            return input;
         }
 
         public static Int32 parsToInt32(String input)
@@ -295,7 +298,7 @@ namespace INF3
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.DESCRIPTION + Syntax.COLON_CHAR)).Success)
                     {
-                        description = parsToString(parMatch.Value); 
+                        description = replaceString(parMatch.Value); 
 
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.POS_X + Syntax.COLON_CHAR)).Success)
@@ -372,7 +375,7 @@ namespace INF3
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.DESCRIPTION + Syntax.COLON_CHAR)).Success)
                     {
-                        description = parsToString(parMatch.Value); 
+                        description = replaceString(parMatch.Value); 
                         //                    Console.WriteLine("desc = " + description);
 
                     }
@@ -421,7 +424,7 @@ namespace INF3
                 {
                     if ((Regex.Match(parMatch.Value, Syntax.BEGIN + Syntax.COLON_CHAR + Syntax.CELL)).Success)
                     {
-                        cellcheck = parsToString(parMatch.Value);
+                        cellcheck = replaceString(parMatch.Value);
                         //                     Console.WriteLine("cellcheck = " + cellcheck);
 
                     }
@@ -504,7 +507,7 @@ namespace INF3
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.TYPE + Syntax.COLON_CHAR)).Success)
                     {
-                        typ = parsToString(parMatch.Value);
+                        typ = replaceString(parMatch.Value);
                     }
                 }
                 backend.deletePlayer(idPlayer,typ);
@@ -530,7 +533,7 @@ namespace INF3
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.TYPE + Syntax.COLON_CHAR)).Success)
                     {
-                        typ = parsToString(parMatch.Value);
+                        typ = replaceString(parMatch.Value);
                     }
                 }
                 backend.deleteDragon(idDragon, typ);
@@ -624,8 +627,7 @@ namespace INF3
                     }
                     else if ((Regex.Match(parMatch.Value, Syntax.DESCRIPTION + Syntax.COLON_CHAR)).Success)
                     {
-                        
-                        description = parsToString(parMatch.Value);
+                        description = replaceString(parMatch.Value);
                         //			Console.WriteLine("desc = " + description);
 
                     }
@@ -728,8 +730,8 @@ namespace INF3
 					}
 					else if ((Regex.Match(parMatch.Value, Syntax.DESCRIPTION + Syntax.COLON_CHAR)).Success)
 					{
-						
-						description = parsToString(parMatch.Value);
+
+                        description = replaceString(parMatch.Value);
 		//				Console.WriteLine("desc = " + description);
 
 					}

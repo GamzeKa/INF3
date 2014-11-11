@@ -34,7 +34,9 @@ namespace INF3.Connector
             client = new TcpClient();
             receiver = new Receiver(this.client);
             sender = new Sender(this.client);
+
             this.receiveThread = new Thread(new ThreadStart(receive));
+            this.receiveThread.Name = "Receive";
         }
 
         public Buffer getBufferRef()
