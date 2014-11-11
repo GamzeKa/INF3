@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
@@ -11,8 +12,7 @@ namespace INF3
     public class Buffer //is filled by the connector
     {
         private Ringbuffer buffer;  //sortedBuffer
-        private Ringbuffer uBuffer; //unsortedBufffer
-        private int messageCounter = 0;
+        private List<String> uBuffer; //unsortedBufffer
        
 
         public Buffer(int size) {
@@ -20,7 +20,7 @@ namespace INF3
             if (size > 0)
             {
                 buffer = new Ringbuffer(size);
-                uBuffer = new Ringbuffer(size*5); //has to be bigger. aprox. 4000 lines receiving from server
+                uBuffer = new List<String>();
             }
         }
 
@@ -28,21 +28,34 @@ namespace INF3
         {
             //add a new message to the Buffer
             Contract.Requires(s != null);
-            if (!uBuffer.isFull())
-            { 
-                uBuffer.addMessage(s);
+            if (s != null) {
+                lock(uBuffer)
+                {
+                    uBuffer.Add(s);
+                }
             }
         }
 
         public String giveParser()
         {
             Contract.Requires(buffer != null);
-            String message="";
+            String message=null;
 
-            complete();
-            if (buffer.getMsgAtReadPointer() !=null)
+            lock(uBuffer){
+                if (this.uBuffer.Count>0) {
+                    lock (buffer)
+                    {
+                        complete();
+
+                    }
+                }
+            }
+            lock (buffer)
             {
-                message = buffer.getMessage();
+                if (buffer.getMsgAtReadPointer() != null)
+                {
+                    message = buffer.getMessage();
+                }
             }
             //send message to parser
             return message; //if the buffer is full or a message is finished reading, content is give to the parser
@@ -60,13 +73,20 @@ namespace INF3
         public void complete()
         {
             String message = "";
+            String messageNumber;
 
-            if (this.uBuffer.getMsgAtReadPointer().Contains(Syntax.BEGIN + Syntax.COLON_CHAR + this.messageCounter)) {
-                while (!message.Contains(Syntax.END + Syntax.COLON_CHAR + this.messageCounter)) {
-                    message += this.uBuffer.getMessage();
+            messageNumber = Regex.Match(this.uBuffer[0], Syntax.INTEGER).ToString();
+
+            if (Regex.Match(this.uBuffer[0],Syntax.BEGIN + Syntax.COLON_CHAR + messageNumber).Success) {
+                while (!(Regex.Match(message, Syntax.END + Syntax.COLON_CHAR + messageNumber).Success))
+                {
+                    if (uBuffer.Count > 0)
+                    {
+                        message += this.uBuffer[0];
+                        this.uBuffer.RemoveAt(0);
+                    }
                 }
                     buffer.addMessage(message);
-                    this.messageCounter++;
             }
             
         }

@@ -23,6 +23,15 @@ namespace INF3
 
             c.connectToServer();
             c.send("get:time");
+            c.send("get:map");
+
+            Buffer b = c.getBufferRef();
+            while (true) { 
+                Console.WriteLine(b.giveParser());
+                Console.WriteLine("-------------------------------------");
+                for (int i=0; i < 50000000; i++);
+            }
+            
             //c.closeConnection();
         }
     }

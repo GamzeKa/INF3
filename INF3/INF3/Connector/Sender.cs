@@ -27,7 +27,7 @@ namespace INF3.Connector
             if (message != null)
             {
                 // Translate the passed message and store it as a Byte array.
-                this.data = System.Text.Encoding.UTF8.GetBytes(message + "\n");
+                this.data = System.Text.Encoding.ASCII.GetBytes(message + "\n");
                 client.GetStream().Write(data, 0, data.Length);
             }
         }

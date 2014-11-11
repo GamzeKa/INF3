@@ -27,30 +27,38 @@ namespace INF3.Connector
             //the server needs an ip-adress and a port for the unique identification
             Contract.Requires(ip != null);
             Contract.Requires(port != 0);
-            Contract.Requires(connected == false);
-
-            ipep= new IPEndPoint(IPAddress.Parse(ip), port);
-
+            if (ip != null && port > 0)
+            {
+                ipep = new IPEndPoint(IPAddress.Parse(ip), port);
+            }
             client = new TcpClient();
             receiver = new Receiver(this.client);
             sender = new Sender(this.client);
             this.receiveThread = new Thread(new ThreadStart(receive));
         }
+
+        public Buffer getBufferRef()
+        {
+            return this.receiver.getBufferRef();
+        }
+
         public void closeConnection()
         {
             Contract.Requires(connected);
             //closing the Stream from client and break off the server-connection
-            try
-            {
-                this.receiveThread.Abort();
-                client.GetStream().Close(); // close the stream
-                client.Close();  // closes the server-connection
-                connected = false;
+            if(this.connected){
+                try
+                {
+                    this.receiveThread.Abort();
+                    client.GetStream().Close(); // close the stream
+                    client.Close();  // closes the server-connection
+                    connected = false;
 
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
         }
 
@@ -60,12 +68,16 @@ namespace INF3.Connector
             //here send a message to the Server with the Sender-class (sender.sendMessage(String))
             Contract.Requires(s!=null);
             Contract.Requires(connected);
-            try
+            if (s != null && this.connected)
             {
-                sender.sendMessage(s);
-            }
-            catch (Exception e) {
-                Console.WriteLine(e.Message);
+                try
+                {
+                    sender.sendMessage(s);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
         }
 

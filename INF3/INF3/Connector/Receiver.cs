@@ -15,21 +15,27 @@ namespace INF3.Connector
         byte [] data;
         private String rcvString;
         private Buffer buffer;
+        private const int sizeBuffer=15;
 
 
         public Receiver(TcpClient client)
         {
             this.client=client;
-            buffer = new Buffer(15);
+            buffer = new Buffer(sizeBuffer);
+        }
+
+        public Buffer getBufferRef()
+        {
+            return this.buffer;
         }
         public void receive()      //to receive data via network
         {
             try{
-                while(true)//connecteds
+                while(client.Connected)
                 {
-                    data = new byte[1024];
-                    int recv = client.Client.Receive(data);
-                    rcvString = Encoding.ASCII.GetString(data, 0, recv);
+                    data = new byte[client.Available];
+                    client.GetStream().Read(data,0, data.Length);
+                    rcvString = Encoding.ASCII.GetString(data, 0, data.Length);
                     if (rcvString.Length > 0) 
                     { 
                         this.sendToBuffer(rcvString);
@@ -44,10 +50,8 @@ namespace INF3.Connector
         {
             Contract.Requires(msg != null);
 
-            Console.WriteLine(msg);
-            /*lock(buffer){
-                buffer.append(msg);
-            }*/
+            //Console.WriteLine(msg);
+            buffer.append(msg);
         }
     }
 }
