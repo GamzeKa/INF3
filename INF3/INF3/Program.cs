@@ -19,22 +19,22 @@ namespace INF3
             /*Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());*/
-            INF3.Connector.Connector c = new Connector.Connector("127.0.0.1",666);
+            INF3.Connector.Connector c = new Connector.Connector("134.103.110.93",666);
 
             c.connectToServer();
-            c.send("get:time");
+            //c.send("get:time");
             c.send("get:map");
-            c.send("get:time");
-            c.send("get:time");
+            //c.send("get:time");
+            //c.send("get:time");
 
             Buffer b = c.getBufferRef();
 
-            for(int i=0;i<10;i++) { 
+            while(true) { 
                 Console.WriteLine(b.giveParser());
                 Console.WriteLine("-------------------------------------");
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
             }
-            c.closeConnection();
+            //c.closeConnection();
         }
     }
 }

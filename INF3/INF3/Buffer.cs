@@ -5,6 +5,7 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace INF3
@@ -13,6 +14,7 @@ namespace INF3
     {
         private Ringbuffer buffer;  //sortedBuffer
         private List<String> uBuffer; //unsortedBufffer
+        private Thread bufferThread;
        
 
         public Buffer(int size) {
@@ -22,6 +24,9 @@ namespace INF3
                 buffer = new Ringbuffer(size);
                 uBuffer = new List<String>();
             }
+            this.bufferThread = new Thread(new ThreadStart(complete));
+            this.bufferThread.Name = "BufferThread";
+            this.bufferThread.Start();
         }
 
         public void append(String s)
@@ -41,15 +46,6 @@ namespace INF3
             Contract.Requires(buffer != null);
             String message=null;
 
-            lock(uBuffer){
-                if (this.uBuffer.Count>0) {
-                    lock (buffer)
-                    {
-                        complete();
-
-                    }
-                }
-            }
             lock (buffer)
             {
                 if (buffer.getMsgAtReadPointer() != null)
@@ -75,20 +71,37 @@ namespace INF3
             String message = "";
             String messageNumber;
 
-            messageNumber = Regex.Match(this.uBuffer[0], Syntax.INTEGER).ToString();
-
-            if (Regex.Match(this.uBuffer[0],Syntax.BEGIN + Syntax.COLON_CHAR + messageNumber).Success) {
-                while (!(Regex.Match(message, Syntax.END + Syntax.COLON_CHAR + messageNumber).Success))
+            while (true)
+            {
+                if (this.uBuffer.Count > 0)
                 {
-                    if (uBuffer.Count > 0)
+                    lock (this.uBuffer)
                     {
-                        message += this.uBuffer[0];
-                        this.uBuffer.RemoveAt(0);
+                        messageNumber = Regex.Match(this.uBuffer[0], Syntax.INTEGER).ToString();
+
+                        if (Regex.Match(this.uBuffer[0], Syntax.BEGIN + Syntax.COLON_CHAR + messageNumber).Success)
+                        {
+                            while (!(Regex.Match(message, Syntax.END + Syntax.COLON_CHAR + messageNumber).Success))
+                            {
+                                if (uBuffer.Count > 0)
+                                {
+                                    message += this.uBuffer[0];
+                                    this.uBuffer.RemoveAt(0);
+                                }
+                            }
+                            lock (this.buffer)
+                            {
+                                buffer.addMessage(message);
+                            }
+                            message = "";
+                        }
                     }
                 }
-                    buffer.addMessage(message);
+                else
+                {
+                    Thread.Sleep(200);
+                }
             }
-            
         }
     }
 }
